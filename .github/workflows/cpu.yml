@@ -1,0 +1,51 @@
+name: CPU checks
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: cpu-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  checks:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    env:
+      HF_HUB_OFFLINE: "1"
+      HF_DATASETS_OFFLINE: "1"
+      GRADIO_ANALYTICS_ENABLED: "False"
+      MPLCONFIGDIR: /tmp/ticket-matplotlib
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: astral-sh/setup-uv@68559e99cc807c1eb7e9238fd43a15bba460eec2 # v10.3.3
+        with:
+          version: "0.12.1"
+          enable-cache: true
+      - run: uv python install 3.12.12
+      - run: uv sync --locked --extra cpu --group pretraining --group demo
+      - name: Static checks and tests
+        run: |
+          uv run --no-sync ruff check .
+          uv run --no-sync ruff format --check .
+          uv run --no-sync mypy
+          uv run --no-sync pytest
+          uv lock --check
+      - name: Tiny training workflow
+        run: |
+          uv run --no-sync pretraining data prepare --config pretraining/configs/smoke.toml
+          uv run --no-sync pretraining train --config pretraining/configs/smoke.toml --run-id ci-smoke
+          uv run --no-sync pretraining predict --model pretraining/runs/ci-smoke --text "My invoice is wrong. No rush."
+      - name: Profiles and independent package builds
+        run: |
+          uv run --no-sync python scripts/verify_profiles.py
+          uv build --all-packages
+          for track in pretraining finetuning; do
+            uv venv "/tmp/wheel-$track" --python 3.12.12
+            uv pip install --python "/tmp/wheel-$track/bin/python" --no-deps "dist/small_llm_$track-0.1.0-py3-none-any.whl"
+            "/tmp/wheel-$track/bin/python" -I -c "import $track; print($track.__file__)"
+          done
