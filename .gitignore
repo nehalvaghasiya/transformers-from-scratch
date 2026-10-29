@@ -18,3 +18,8 @@ dist/
 data/
 runs/
 .cache/
+
+# Original imported bundle is preserved locally; maintained code lives in pretraining/.
+pretrained/
+*.mp4
+*.webm

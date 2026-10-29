@@ -1,0 +1,14 @@
+[project]
+name = "small-llm-pretraining"
+version = "0.1.0"
+description = "Train a small language model from scratch."
+readme = "README.md"
+requires-python = ">=3.12,<3.13"
+dependencies = []
+
+[build-system]
+requires = ["uv_build==0.12.1"]
+build-backend = "uv_build"
+
+[tool.uv.build-backend]
+module-name = "pretraining"
