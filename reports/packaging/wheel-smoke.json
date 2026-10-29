@@ -1,0 +1,32 @@
+{
+  "status": "passed",
+  "verified_on": "2026-10-28",
+  "independent_track_environments": {
+    "pretraining": {
+      "status": "passed",
+      "wheel": "small_llm_pretraining-0.1.0-py3-none-any.whl",
+      "sha256": "91423e28bbe337a92a8e566fd59826d64c1eca35c3f3aa8f7e616be62ad404aa",
+      "source_files": [
+        "pretraining/__init__.py"
+      ],
+      "console_entry_points": false,
+      "package": "pretraining",
+      "import_from_site_packages": true,
+      "independent_of_other_track": true,
+      "ml_libraries_loaded": false
+    },
+    "finetuning": {
+      "status": "passed",
+      "wheel": "small_llm_finetuning-0.1.0-py3-none-any.whl",
+      "sha256": "320762d23e283577be3afc3833cc1f70078a928076f5ed835518d1c2ad7a721f",
+      "source_files": [
+        "finetuning/__init__.py"
+      ],
+      "console_entry_points": false,
+      "package": "finetuning",
+      "import_from_site_packages": true,
+      "independent_of_other_track": true,
+      "ml_libraries_loaded": false
+    }
+  }
+}

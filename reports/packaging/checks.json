@@ -1,0 +1,50 @@
+{
+  "status": "passed",
+  "verified_on": "2026-10-28",
+  "lock_sha256": "49a148fabe96665eaadf0518de8d51209e71f81626001f4100d65b242276e0cd",
+  "checks": [
+    {
+      "check": "cpu_environment_sync",
+      "status": "passed"
+    },
+    {
+      "check": "ruff",
+      "status": "passed"
+    },
+    {
+      "check": "format",
+      "status": "passed"
+    },
+    {
+      "check": "mypy",
+      "status": "passed"
+    },
+    {
+      "check": "lock",
+      "status": "passed"
+    },
+    {
+      "check": "dependencies",
+      "status": "passed"
+    },
+    {
+      "check": "profiles",
+      "status": "passed"
+    },
+    {
+      "check": "cpu_lora",
+      "status": "passed"
+    },
+    {
+      "check": "diff_whitespace",
+      "status": "passed"
+    }
+  ],
+  "wheel_checks": [
+    "independent_install",
+    "outside_repository_import",
+    "no_placeholder_entry_points"
+  ],
+  "track_tests": "No functional track implementation or tests yet.",
+  "cuda_runtime_tested": false
+}

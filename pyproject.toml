@@ -97,7 +97,3 @@ select = ["E", "F", "I", "UP", "B"]
 python_version = "3.12"
 strict = true
 files = ["pretraining/src/pretraining", "finetuning/src/finetuning"]
-
-[tool.pytest.ini_options]
-testpaths = ["pretraining/tests", "finetuning/tests"]
-addopts = "-ra"
