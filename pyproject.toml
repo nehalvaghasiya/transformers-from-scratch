@@ -46,6 +46,8 @@ cu128 = [
 [dependency-groups]
 dev = ["mypy>=1.18,<2", "pytest>=8,<10", "ruff>=0.14,<1"]
 demo = ["gradio>=6,<7"]
+pretraining = ["scikit-learn>=1.8,<2", "matplotlib>=3.10,<4", "pandas>=2,<4", "tqdm>=4.66,<5"]
+media = ["playwright>=1.58,<2", "imageio-ffmpeg>=0.6,<1"]
 
 [tool.uv]
 package = false
@@ -89,6 +91,7 @@ explicit = true
 [tool.ruff]
 target-version = "py312"
 line-length = 100
+extend-exclude = ["pretrained"]
 
 [tool.ruff.lint]
 select = ["E", "F", "I", "UP", "B"]
@@ -97,3 +100,11 @@ select = ["E", "F", "I", "UP", "B"]
 python_version = "3.12"
 strict = true
 files = ["pretraining/src/pretraining", "finetuning/src/finetuning"]
+
+[[tool.mypy.overrides]]
+module = ["sklearn.*", "matplotlib.*", "pandas.*", "gradio.*"]
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+testpaths = ["pretraining/tests", "finetuning/tests"]
+addopts = "-ra"
