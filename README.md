@@ -1,71 +1,71 @@
-# Small LLM Pretraining & Fine-Tuning
+# Transformers from Scratch & Fine-Tuning
 
-A portfolio project demonstrating how to build a language model from scratch and
-adapt a pretrained model, with reproducible experiments and honest evaluation.
+An ML portfolio with readable implementations, reproducible experiments and measured comparisons.
 
-| Track | Planned work |
-| --- | --- |
-| [Pretraining](pretraining/README.md) | Integrate the existing scratch-trained ticket Transformer; retain WikiText/BPE language modeling as a separate planned experiment |
-| [Fine-tuning](finetuning/README.md) | Adapt SmolLM2-135M-Instruct with LoRA for structured job extraction; compare against rules and untouched-model baselines |
+| Track | Status | What it demonstrates |
+| --- | --- | --- |
+| [Pretraining / training from scratch](pretraining/README.md) | **Implemented and evaluated** | A 656K-parameter causal Transformer, training-only tokenizer, nine training runs, classical baselines, checkpoint recovery and a working demo |
+| [Fine-tuning](finetuning/README.md) | Planned | LoRA adaptation of SmolLM2 for structured job extraction |
 
-**Current status:** the workspace packages contain environment setup. An existing
-trained ticket Transformer, comparisons and saved results are available in
-`pretrained/`; its [integration plan](pretraining/integration-plan.md) records the
-artifact audit and proposed migration. WikiText training and LoRA extraction remain
-planned. The original issue roadmap and contracts are in [plan.md](plan.md).
+One repository, two independent Python packages. The ticket model is trained from
+random weights to predict intent and priority; it is a small task-specific language
+model. WikiText pretraining remains a separate future experiment.
 
-The showcase will center on readable model and training code, data preparation,
-correctness tests, learning curves, ablations, error analysis and reproducible
-results. Each track owns its source, tests, configs and reports. Full datasets,
-weights and checkpoints stay out of Git.
+![Actual ticket Transformer demo](pretraining/docs/assets/demo-preview.gif)
 
-## Setup
+## Measured results
 
-Use Linux x86-64 (including WSL2), Python 3.12 and uv 0.12.1.
-Install [uv](https://docs.astral.sh/uv/getting-started/installation/), then run:
+On the versioned synthetic ticket-v2 benchmark, pooled-head training plus dual-head
+decoding reaches **96.51% ± 2.98 test joint accuracy** across three seeds. Word
+TF-IDF reaches **99.51%**. On the challenge split, the same Transformer variant
+reaches **73.15% ± 6.14**, while character TF-IDF reaches **93.89%**.
+
+The comparisons show learning, the effect of auxiliary supervision, and the strength
+of classical methods on small synthetic datasets. These scores do not establish
+real-ticket performance. The [full case study](pretraining/README.md) includes every
+seed, the validation selection, plots, uncertainty and failures.
+
+![Measured model comparison](pretraining/reports/ticket-v2/comparison.png)
+
+## Run locally
+
+Use Linux x86-64 (including WSL2), Python 3.12.12 and uv 0.12.1. From the repository root:
 
 ```bash
 uv python install 3.12.12
-uv sync --locked --extra cpu
-uv run --no-sync python scripts/smoke_cpu.py
+uv sync --locked --extra cpu --group pretraining --group demo
+uv run --no-sync pretraining data prepare --config pretraining/configs/ticket-base.toml
+uv run --no-sync pretraining train --config pretraining/configs/ticket-base.toml --run-id ticket-v2-base-42
+uv run --no-sync pretraining demo --model pretraining/runs/ticket-v2-base-42 --report pretraining/reports/ticket-v2
 ```
 
-The smoke check runs one tiny local LoRA optimizer update without downloading a
-model or dataset. It verifies library compatibility; it is not a training result.
+The local demo opens at `http://127.0.0.1:7860`. This trains the **validation-selected**
+Transformer; it is intentionally distinct from the best average test-scoring variant.
+Training took about one minute per run on the recorded i5-13420H CPU with two Torch
+threads. Timings vary by machine. No pretrained weights or dataset download is needed.
 
-Choose exactly one accelerator profile:
+For the full three-seed benchmark, artifact verification, notebook and demo recording,
+follow the [pretraining reproduction guide](pretraining/README.md#reproduce-the-experiments).
 
-| Profile | PyTorch | Use |
-| --- | --- | --- |
-| `cpu` | 2.8.0+cpu | Local software checks |
-| `cu126` | 2.8.0+cu126 | Local RTX 4050 experiments |
-| `cu128` | 2.8.0+cu128 | Planned Hugging Face Space GPU |
+## Environment and checks
 
-Replace `cpu` in the sync command to select a CUDA profile. Add `--group demo`
-for Gradio. The CUDA profiles are lock-resolved; GPU execution and the planned
-3 GiB training target still need measurement.
-
-The two independent packages share one root `uv.lock` and `.venv`. From a track
-directory, use `uv sync --project .. --locked --extra cpu`. Keep `--no-sync` on
-subsequent `uv run` commands to preserve the selected profile, or repeat the same
-profile flags when syncing. Development tools are included by default; use
-`--no-dev` for runtime dependencies only.
-
-## Development checks
+The independent track packages share one root `uv.lock` and `.venv`.
+Choose exactly one profile: `cpu`, `cu126` (local GPU), or `cu128` (planned Space).
+CUDA profiles are lock-resolved; CUDA training and the 3 GiB memory target have not
+been verified. From a track directory, add `--project ..` to root sync commands.
+Keep `--no-sync` on subsequent commands to preserve the selected profile.
 
 ```bash
 uv run --no-sync ruff check .
 uv run --no-sync ruff format --check .
 uv run --no-sync mypy
+uv run --no-sync pytest
 uv lock --check
 uv build --all-packages
 uv run --no-sync python scripts/verify_profiles.py
 ```
 
-Add tests under each track's `tests/` with its ML implementation and run them with
-`uv run --no-sync pytest`. There are no functional track tests yet.
-Commands for data preparation, training, evaluation and inference will be added
-alongside those implementations.
-
-The [environment verification notes](docs/packaging-verification.md) record the
-scope of the setup checks. Build outputs go to ignored `dist/`.
+[CPU CI](.github/workflows/cpu.yml) runs software checks and tiny fixtures; it does
+not rerun the full experiment matrix. The original [P01 roadmap](plan.md) retains
+its issue IDs and separate WikiText/LoRA contracts. Full datasets, checkpoints,
+environments and videos remain outside Git. Compact reports and demo previews are included.
