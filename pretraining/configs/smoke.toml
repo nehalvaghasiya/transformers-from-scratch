@@ -1,0 +1,11 @@
+dataset = "ticket-v2"
+data_dir = "../data/ticket-v2"
+runs_dir = "../runs"
+n_layer = 1
+n_head = 2
+n_embd = 32
+epochs = 1
+batch_size = 16
+max_steps = 8
+limit_train = 72
+pool_weight = 0.0
