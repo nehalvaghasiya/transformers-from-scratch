@@ -1,0 +1,5 @@
+dataset = "ticket-v2"
+data_dir = "../data/ticket-v2"
+runs_dir = "../runs"
+schedule = "flat"
+pool_weight = 0.0
