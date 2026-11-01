@@ -1,0 +1,122 @@
+[
+  {
+    "split": "test",
+    "ticket": "We use the web app. I want our DataHarbor membership cancelled rather than renewed. This can be handled within your standard support window.",
+    "truth": {
+      "intent": "account_cancellation",
+      "priority": "normal"
+    },
+    "prediction": {
+      "intent": "billing_issue",
+      "priority": "normal"
+    }
+  },
+  {
+    "split": "test",
+    "ticket": "This started today. We would like OrbitCRM to support batch updates in a future version. Our team is blocked from an essential task today.",
+    "truth": {
+      "intent": "feature_request",
+      "priority": "high"
+    },
+    "prediction": {
+      "intent": "service_outage",
+      "priority": "high"
+    }
+  },
+  {
+    "split": "test",
+    "ticket": "My colleague asked me to contact support. We are ending our relationship with ZenFlow; please terminate the plan. This blocks an important business deadline and we need help immediately.",
+    "truth": {
+      "intent": "account_cancellation",
+      "priority": "high"
+    },
+    "prediction": {
+      "intent": "access_reset",
+      "priority": "high"
+    }
+  },
+  {
+    "split": "test",
+    "ticket": "Changing a filter in CloudLedger makes the displayed totals incorrect. There is no rush; next week is fine. Our account is on the standard plan.",
+    "truth": {
+      "intent": "bug_report",
+      "priority": "low"
+    },
+    "prediction": {
+      "intent": "billing_issue",
+      "priority": "low"
+    }
+  },
+  {
+    "split": "test",
+    "ticket": "The issue occurs in our staging workspace. We are ending our relationship with ZenFlow; please terminate the plan. Our team is blocked from an essential task today.",
+    "truth": {
+      "intent": "account_cancellation",
+      "priority": "high"
+    },
+    "prediction": {
+      "intent": "access_reset",
+      "priority": "high"
+    }
+  },
+  {
+    "split": "challenge",
+    "ticket": "We were invoiced for TeamSphere licenses we never purchased. Please help when you can during normal business hours. It happened yesterday.",
+    "truth": {
+      "intent": "billing_issue",
+      "priority": "normal"
+    },
+    "prediction": {
+      "intent": "access_reset",
+      "priority": "normal"
+    }
+  },
+  {
+    "split": "challenge",
+    "ticket": "This is for our production workspace. The DataHarbor renewal deducted an unexpected sum from our card. We cannot finish critical work until this is resolved.",
+    "truth": {
+      "intent": "billing_issue",
+      "priority": "high"
+    },
+    "prediction": {
+      "intent": "account_cancellation",
+      "priority": "high"
+    }
+  },
+  {
+    "split": "challenge",
+    "ticket": "Please wind down our ZenFlow membership and cease future renewal. This is a minor question for whenever you have time. I am writing from our mobile browser.",
+    "truth": {
+      "intent": "account_cancellation",
+      "priority": "low"
+    },
+    "prediction": {
+      "intent": "service_outage",
+      "priority": "low"
+    }
+  },
+  {
+    "split": "challenge",
+    "ticket": "Please wind down our CloudLedger membership and cease future renewal. This is time-sensitive and affecting an important launch. The same request was fine last week.",
+    "truth": {
+      "intent": "account_cancellation",
+      "priority": "high"
+    },
+    "prediction": {
+      "intent": "service_outage",
+      "priority": "high"
+    }
+  },
+  {
+    "split": "challenge",
+    "ticket": "Please put a custom reporting capability on the TeamSphere roadmap. There is no immediate emergency, but I'd like guidance. My colleague asked me to contact support.",
+    "truth": {
+      "intent": "feature_request",
+      "priority": "normal"
+    },
+    "prediction": {
+      "intent": "bug_report",
+      "priority": "normal"
+    }
+  }
+]

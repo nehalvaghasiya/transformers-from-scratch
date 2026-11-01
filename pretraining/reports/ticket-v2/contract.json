@@ -1,0 +1,69 @@
+{
+  "dataset": "ticket-v2",
+  "data_hashes": {
+    "train": "3821c211136ce107185ca1a2b57455ca93eaf37f3921335a5e056285d499672f",
+    "val": "347be792882486c1888e1ad45a7674d80432c8ffd1e861243f91db0cda767224",
+    "test": "04edf74d1fe7af98a5f5153f596293dbca6ea7452c3acd9e8d68bef6a878d4dc",
+    "challenge": "97378c0b8c013a0bad5ccdfe17b8d68d9ea40287604887bf37ec17d9736fe7c2"
+  },
+  "source_hashes": {
+    "baselines.py": "f338a5db564adf85a1d387760412af0a18947c87c7f091340385853efb315c19",
+    "benchmark.py": "d43d783420b4dfb35dba0e8aabecf29a7c11d0a4e3bdafb807551d3fd05bc30c",
+    "config.py": "b9672853ec9c4623fe1a4fe7c02cb80f5a31268ee944bdb75b0198773bd2fba5",
+    "data.py": "1959c622ac7df31ae7e9cd85c07a99e7ed7abef1ee79ec62371a1311e6ab5c3f",
+    "evaluate.py": "220ca33a4711ee4247548bee8cb05304c23d267880a3f8ae3f041c57c9a75208",
+    "inference.py": "ab0b602b2831edc5262dd1dba12229a90940df7ddffa696b37ac48c05fbd3400",
+    "model.py": "51b25c8b5f46f410756ebf7e58c36100392e2ce23052daf8927681a79861a0ad",
+    "report.py": "a859b2a855857d5f3f80839a7aed35a4216d0db18c6fa1cdfb8f1ca9f0a52d53",
+    "tokenizer.py": "06e5bce746a9c89c7951c2fe5809c3e64af37c2bce96b0343103580625d5e690",
+    "train.py": "aa1dfc0721cff7aa54be0c79aab3d694f5c6327773397af0b523d8c5908d4b3d"
+  },
+  "seeds": [
+    42,
+    7,
+    123
+  ],
+  "variants": [
+    [
+      "base",
+      "flat",
+      0.0
+    ],
+    [
+      "cosine",
+      "cosine",
+      0.0
+    ],
+    [
+      "pool",
+      "cosine",
+      2.0
+    ]
+  ],
+  "config": {
+    "dataset": "ticket-v2",
+    "data_dir": "/home/nehal/Personal/small-llm-pretraining-finetuning/pretraining/data/ticket-v2",
+    "runs_dir": "/home/nehal/Personal/small-llm-pretraining-finetuning/pretraining/runs",
+    "seed": 42,
+    "data_seed": 2026,
+    "threads": 2,
+    "device": "cpu",
+    "n_layer": 3,
+    "n_head": 4,
+    "n_embd": 128,
+    "max_seq_len": 112,
+    "dropout": 0.1,
+    "epochs": 10,
+    "batch_size": 64,
+    "learning_rate": 0.0008,
+    "weight_decay": 0.01,
+    "schedule": "cosine",
+    "warmup_ratio": 0.1,
+    "pool_weight": 2.0,
+    "max_steps": 0,
+    "limit_train": 0,
+    "loader_rng": "isolated"
+  },
+  "dual_alpha": 2.0,
+  "selection": "maximum mean validation joint accuracy, then intent macro-F1, then minimum mean validation answer CE; lexical variant/mode tie break; demo seed by validation CE then seed"
+}

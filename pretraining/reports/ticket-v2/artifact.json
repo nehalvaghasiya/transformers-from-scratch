@@ -1,0 +1,14 @@
+{
+  "archive": "ticket-v2-base-42.tar.gz",
+  "sha256": "2cef0b91106af0ddae45ff8409884aaff9b4e18ee30645fc0de40346d45f59de",
+  "files": {
+    "model.pt": "8a164638354d53a860a37292ad2fb6cf78479f27f83a736fd6be69d40f8cd886",
+    "config.json": "753b6d7f61fb57f1789bb41d1b41e285e8f9908fb3f8930b8b374e68effa7c3e",
+    "vocab.json": "2bef64b379fae427a5e6cb727f1aefbc77690be515d3cd25c68adec014b98676",
+    "run_info.json": "e970742a4105ba135662e9a78c076a911372a9682df40018f8954efc7f47b8a6",
+    "initial.pt": "e6bef37da345afa27ec11220a5217978b15e06e714ca12161631c067c598e6bc",
+    "experiment.json": "13572014101bfa203a909e7d894145c925b45f2047240025f381aca78686c040",
+    "README.md": "a1b0747335a6bd1bb41bd1a459daca731d194cecd8b54e19b3866f625e5fa9d6",
+    "LICENSE": "fd9727fe7e9a835f85af95f757528cb5cf31501d32609e6b155af604a6f7324d"
+  }
+}

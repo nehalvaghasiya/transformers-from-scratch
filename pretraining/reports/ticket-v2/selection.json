@@ -1,0 +1,2685 @@
+{
+  "variant": "base",
+  "mode": "generative",
+  "seed": 42,
+  "artifact": "/home/nehal/Personal/small-llm-pretraining-finetuning/pretraining/runs/ticket-v2-base-42",
+  "comparison_baseline": "char_tfidf",
+  "candidates": [
+    {
+      "variant": "base",
+      "mode": "generative",
+      "seed": 42,
+      "val_answer_ce": 0.11219851322033826,
+      "examples": 612,
+      "intent_accuracy": 0.9133986928104575,
+      "intent_macro_f1": 0.9144454831036384,
+      "intent_per_class": {
+        "access_reset": {
+          "support": 102,
+          "precision": 1.0,
+          "recall": 0.8627450980392157,
+          "f1": 0.9263157894736842
+        },
+        "billing_issue": {
+          "support": 102,
+          "precision": 1.0,
+          "recall": 0.8725490196078431,
+          "f1": 0.9319371727748691
+        },
+        "bug_report": {
+          "support": 102,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "feature_request": {
+          "support": 102,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "service_outage": {
+          "support": 102,
+          "precision": 0.796875,
+          "recall": 1.0,
+          "f1": 0.8869565217391304
+        },
+        "account_cancellation": {
+          "support": 102,
+          "precision": 0.7378640776699029,
+          "recall": 0.7450980392156863,
+          "f1": 0.7414634146341463
+        }
+      },
+      "intent_confusion": {
+        "labels": [
+          "access_reset",
+          "billing_issue",
+          "bug_report",
+          "feature_request",
+          "service_outage",
+          "account_cancellation"
+        ],
+        "prediction_labels": [
+          "access_reset",
+          "billing_issue",
+          "bug_report",
+          "feature_request",
+          "service_outage",
+          "account_cancellation",
+          "<invalid>"
+        ],
+        "counts": [
+          [
+            88,
+            0,
+            0,
+            0,
+            0,
+            14,
+            0
+          ],
+          [
+            0,
+            89,
+            0,
+            0,
+            0,
+            13,
+            0
+          ],
+          [
+            0,
+            0,
+            102,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            102,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            102,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            26,
+            76,
+            0
+          ]
+        ]
+      },
+      "priority_accuracy": 1.0,
+      "priority_macro_f1": 1.0,
+      "priority_per_class": {
+        "low": {
+          "support": 204,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "normal": {
+          "support": 204,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "high": {
+          "support": 204,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        }
+      },
+      "priority_confusion": {
+        "labels": [
+          "low",
+          "normal",
+          "high"
+        ],
+        "prediction_labels": [
+          "low",
+          "normal",
+          "high",
+          "<invalid>"
+        ],
+        "counts": [
+          [
+            204,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            204,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            204,
+            0
+          ]
+        ]
+      },
+      "joint_accuracy": 0.9133986928104575,
+      "rejected_rate": 0.0
+    },
+    {
+      "variant": "base",
+      "mode": "generative",
+      "seed": 7,
+      "val_answer_ce": 0.1442734998425627,
+      "examples": 612,
+      "intent_accuracy": 0.869281045751634,
+      "intent_macro_f1": 0.8639642350430716,
+      "intent_per_class": {
+        "access_reset": {
+          "support": 102,
+          "precision": 1.0,
+          "recall": 0.9313725490196079,
+          "f1": 0.9644670050761421
+        },
+        "billing_issue": {
+          "support": 102,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "bug_report": {
+          "support": 102,
+          "precision": 1.0,
+          "recall": 0.5392156862745098,
+          "f1": 0.7006369426751593
+        },
+        "feature_request": {
+          "support": 102,
+          "precision": 0.7611940298507462,
+          "recall": 1.0,
+          "f1": 0.864406779661017
+        },
+        "service_outage": {
+          "support": 102,
+          "precision": 0.7132867132867133,
+          "recall": 1.0,
+          "f1": 0.8326530612244898
+        },
+        "account_cancellation": {
+          "support": 102,
+          "precision": 0.9156626506024096,
+          "recall": 0.7450980392156863,
+          "f1": 0.8216216216216217
+        }
+      },
+      "intent_confusion": {
+        "labels": [
+          "access_reset",
+          "billing_issue",
+          "bug_report",
+          "feature_request",
+          "service_outage",
+          "account_cancellation"
+        ],
+        "prediction_labels": [
+          "access_reset",
+          "billing_issue",
+          "bug_report",
+          "feature_request",
+          "service_outage",
+          "account_cancellation",
+          "<invalid>"
+        ],
+        "counts": [
+          [
+            95,
+            0,
+            0,
+            0,
+            0,
+            7,
+            0
+          ],
+          [
+            0,
+            102,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            55,
+            32,
+            15,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            102,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            102,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            26,
+            76,
+            0
+          ]
+        ]
+      },
+      "priority_accuracy": 0.9983660130718954,
+      "priority_macro_f1": 0.9983660032559788,
+      "priority_per_class": {
+        "low": {
+          "support": 204,
+          "precision": 1.0,
+          "recall": 0.9950980392156863,
+          "f1": 0.9975429975429976
+        },
+        "normal": {
+          "support": 204,
+          "precision": 0.9951219512195122,
+          "recall": 1.0,
+          "f1": 0.9975550122249389
+        },
+        "high": {
+          "support": 204,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        }
+      },
+      "priority_confusion": {
+        "labels": [
+          "low",
+          "normal",
+          "high"
+        ],
+        "prediction_labels": [
+          "low",
+          "normal",
+          "high",
+          "<invalid>"
+        ],
+        "counts": [
+          [
+            203,
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            204,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            204,
+            0
+          ]
+        ]
+      },
+      "joint_accuracy": 0.8676470588235294,
+      "rejected_rate": 0.0
+    },
+    {
+      "variant": "base",
+      "mode": "generative",
+      "seed": 123,
+      "val_answer_ce": 0.11388281085132773,
+      "examples": 612,
+      "intent_accuracy": 0.9101307189542484,
+      "intent_macro_f1": 0.9108283705489695,
+      "intent_per_class": {
+        "access_reset": {
+          "support": 102,
+          "precision": 1.0,
+          "recall": 0.7745098039215687,
+          "f1": 0.8729281767955802
+        },
+        "billing_issue": {
+          "support": 102,
+          "precision": 1.0,
+          "recall": 0.9313725490196079,
+          "f1": 0.9644670050761421
+        },
+        "bug_report": {
+          "support": 102,
+          "precision": 1.0,
+          "recall": 0.9607843137254902,
+          "f1": 0.98
+        },
+        "feature_request": {
+          "support": 102,
+          "precision": 0.9622641509433962,
+          "recall": 1.0,
+          "f1": 0.9807692307692307
+        },
+        "service_outage": {
+          "support": 102,
+          "precision": 0.8225806451612904,
+          "recall": 1.0,
+          "f1": 0.9026548672566371
+        },
+        "account_cancellation": {
+          "support": 102,
+          "precision": 0.7363636363636363,
+          "recall": 0.7941176470588235,
+          "f1": 0.7641509433962265
+        }
+      },
+      "intent_confusion": {
+        "labels": [
+          "access_reset",
+          "billing_issue",
+          "bug_report",
+          "feature_request",
+          "service_outage",
+          "account_cancellation"
+        ],
+        "prediction_labels": [
+          "access_reset",
+          "billing_issue",
+          "bug_report",
+          "feature_request",
+          "service_outage",
+          "account_cancellation",
+          "<invalid>"
+        ],
+        "counts": [
+          [
+            79,
+            0,
+            0,
+            0,
+            0,
+            23,
+            0
+          ],
+          [
+            0,
+            95,
+            0,
+            0,
+            1,
+            6,
+            0
+          ],
+          [
+            0,
+            0,
+            98,
+            4,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            102,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            102,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            21,
+            81,
+            0
+          ]
+        ]
+      },
+      "priority_accuracy": 0.9983660130718954,
+      "priority_macro_f1": 0.9983660032559788,
+      "priority_per_class": {
+        "low": {
+          "support": 204,
+          "precision": 1.0,
+          "recall": 0.9950980392156863,
+          "f1": 0.9975429975429976
+        },
+        "normal": {
+          "support": 204,
+          "precision": 0.9951219512195122,
+          "recall": 1.0,
+          "f1": 0.9975550122249389
+        },
+        "high": {
+          "support": 204,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        }
+      },
+      "priority_confusion": {
+        "labels": [
+          "low",
+          "normal",
+          "high"
+        ],
+        "prediction_labels": [
+          "low",
+          "normal",
+          "high",
+          "<invalid>"
+        ],
+        "counts": [
+          [
+            203,
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            204,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            204,
+            0
+          ]
+        ]
+      },
+      "joint_accuracy": 0.9084967320261438,
+      "rejected_rate": 0.0
+    },
+    {
+      "variant": "cosine",
+      "mode": "generative",
+      "seed": 42,
+      "val_answer_ce": 0.1374811724899641,
+      "examples": 612,
+      "intent_accuracy": 0.8872549019607843,
+      "intent_macro_f1": 0.8863733969681622,
+      "intent_per_class": {
+        "access_reset": {
+          "support": 102,
+          "precision": 1.0,
+          "recall": 0.9117647058823529,
+          "f1": 0.9538461538461539
+        },
+        "billing_issue": {
+          "support": 102,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "bug_report": {
+          "support": 102,
+          "precision": 0.8953488372093024,
+          "recall": 0.7549019607843137,
+          "f1": 0.8191489361702127
+        },
+        "feature_request": {
+          "support": 102,
+          "precision": 0.788135593220339,
+          "recall": 0.9117647058823529,
+          "f1": 0.8454545454545455
+        },
+        "service_outage": {
+          "support": 102,
+          "precision": 0.796875,
+          "recall": 1.0,
+          "f1": 0.8869565217391304
+        },
+        "account_cancellation": {
+          "support": 102,
+          "precision": 0.8941176470588236,
+          "recall": 0.7450980392156863,
+          "f1": 0.8128342245989305
+        }
+      },
+      "intent_confusion": {
+        "labels": [
+          "access_reset",
+          "billing_issue",
+          "bug_report",
+          "feature_request",
+          "service_outage",
+          "account_cancellation"
+        ],
+        "prediction_labels": [
+          "access_reset",
+          "billing_issue",
+          "bug_report",
+          "feature_request",
+          "service_outage",
+          "account_cancellation",
+          "<invalid>"
+        ],
+        "counts": [
+          [
+            93,
+            0,
+            0,
+            0,
+            0,
+            9,
+            0
+          ],
+          [
+            0,
+            102,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            77,
+            25,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            9,
+            93,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            102,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            26,
+            76,
+            0
+          ]
+        ]
+      },
+      "priority_accuracy": 1.0,
+      "priority_macro_f1": 1.0,
+      "priority_per_class": {
+        "low": {
+          "support": 204,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "normal": {
+          "support": 204,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "high": {
+          "support": 204,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        }
+      },
+      "priority_confusion": {
+        "labels": [
+          "low",
+          "normal",
+          "high"
+        ],
+        "prediction_labels": [
+          "low",
+          "normal",
+          "high",
+          "<invalid>"
+        ],
+        "counts": [
+          [
+            204,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            204,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            204,
+            0
+          ]
+        ]
+      },
+      "joint_accuracy": 0.8872549019607843,
+      "rejected_rate": 0.0
+    },
+    {
+      "variant": "cosine",
+      "mode": "generative",
+      "seed": 7,
+      "val_answer_ce": 0.21718852660235236,
+      "examples": 612,
+      "intent_accuracy": 0.8464052287581699,
+      "intent_macro_f1": 0.8396794833945962,
+      "intent_per_class": {
+        "access_reset": {
+          "support": 102,
+          "precision": 0.9272727272727272,
+          "recall": 1.0,
+          "f1": 0.9622641509433962
+        },
+        "billing_issue": {
+          "support": 102,
+          "precision": 1.0,
+          "recall": 0.9215686274509803,
+          "f1": 0.9591836734693878
+        },
+        "bug_report": {
+          "support": 102,
+          "precision": 0.875,
+          "recall": 0.4803921568627451,
+          "f1": 0.620253164556962
+        },
+        "feature_request": {
+          "support": 102,
+          "precision": 0.7480314960629921,
+          "recall": 0.9313725490196079,
+          "f1": 0.8296943231441049
+        },
+        "service_outage": {
+          "support": 102,
+          "precision": 0.6845637583892618,
+          "recall": 1.0,
+          "f1": 0.8127490039840637
+        },
+        "account_cancellation": {
+          "support": 102,
+          "precision": 1.0,
+          "recall": 0.7450980392156863,
+          "f1": 0.8539325842696629
+        }
+      },
+      "intent_confusion": {
+        "labels": [
+          "access_reset",
+          "billing_issue",
+          "bug_report",
+          "feature_request",
+          "service_outage",
+          "account_cancellation"
+        ],
+        "prediction_labels": [
+          "access_reset",
+          "billing_issue",
+          "bug_report",
+          "feature_request",
+          "service_outage",
+          "account_cancellation",
+          "<invalid>"
+        ],
+        "counts": [
+          [
+            102,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            8,
+            94,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            49,
+            32,
+            21,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            7,
+            95,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            102,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            26,
+            76,
+            0
+          ]
+        ]
+      },
+      "priority_accuracy": 1.0,
+      "priority_macro_f1": 1.0,
+      "priority_per_class": {
+        "low": {
+          "support": 204,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "normal": {
+          "support": 204,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "high": {
+          "support": 204,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        }
+      },
+      "priority_confusion": {
+        "labels": [
+          "low",
+          "normal",
+          "high"
+        ],
+        "prediction_labels": [
+          "low",
+          "normal",
+          "high",
+          "<invalid>"
+        ],
+        "counts": [
+          [
+            204,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            204,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            204,
+            0
+          ]
+        ]
+      },
+      "joint_accuracy": 0.8464052287581699,
+      "rejected_rate": 0.0
+    },
+    {
+      "variant": "cosine",
+      "mode": "generative",
+      "seed": 123,
+      "val_answer_ce": 0.10296933167900135,
+      "examples": 612,
+      "intent_accuracy": 0.9395424836601307,
+      "intent_macro_f1": 0.9389585924416295,
+      "intent_per_class": {
+        "access_reset": {
+          "support": 102,
+          "precision": 1.0,
+          "recall": 0.7745098039215687,
+          "f1": 0.8729281767955802
+        },
+        "billing_issue": {
+          "support": 102,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "bug_report": {
+          "support": 102,
+          "precision": 0.9901960784313726,
+          "recall": 0.9901960784313726,
+          "f1": 0.9901960784313726
+        },
+        "feature_request": {
+          "support": 102,
+          "precision": 0.9528301886792453,
+          "recall": 0.9901960784313726,
+          "f1": 0.9711538461538463
+        },
+        "service_outage": {
+          "support": 102,
+          "precision": 0.9272727272727272,
+          "recall": 1.0,
+          "f1": 0.9622641509433962
+        },
+        "account_cancellation": {
+          "support": 102,
+          "precision": 0.7964601769911505,
+          "recall": 0.8823529411764706,
+          "f1": 0.8372093023255814
+        }
+      },
+      "intent_confusion": {
+        "labels": [
+          "access_reset",
+          "billing_issue",
+          "bug_report",
+          "feature_request",
+          "service_outage",
+          "account_cancellation"
+        ],
+        "prediction_labels": [
+          "access_reset",
+          "billing_issue",
+          "bug_report",
+          "feature_request",
+          "service_outage",
+          "account_cancellation",
+          "<invalid>"
+        ],
+        "counts": [
+          [
+            79,
+            0,
+            0,
+            0,
+            0,
+            23,
+            0
+          ],
+          [
+            0,
+            102,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            101,
+            1,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1,
+            101,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            102,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            4,
+            8,
+            90,
+            0
+          ]
+        ]
+      },
+      "priority_accuracy": 0.9771241830065359,
+      "priority_macro_f1": 0.9772871018938335,
+      "priority_per_class": {
+        "low": {
+          "support": 204,
+          "precision": 1.0,
+          "recall": 0.9558823529411765,
+          "f1": 0.9774436090225563
+        },
+        "normal": {
+          "support": 204,
+          "precision": 0.9357798165137615,
+          "recall": 1.0,
+          "f1": 0.966824644549763
+        },
+        "high": {
+          "support": 204,
+          "precision": 1.0,
+          "recall": 0.9754901960784313,
+          "f1": 0.987593052109181
+        }
+      },
+      "priority_confusion": {
+        "labels": [
+          "low",
+          "normal",
+          "high"
+        ],
+        "prediction_labels": [
+          "low",
+          "normal",
+          "high",
+          "<invalid>"
+        ],
+        "counts": [
+          [
+            195,
+            9,
+            0,
+            0
+          ],
+          [
+            0,
+            204,
+            0,
+            0
+          ],
+          [
+            0,
+            5,
+            199,
+            0
+          ]
+        ]
+      },
+      "joint_accuracy": 0.9166666666666666,
+      "rejected_rate": 0.0
+    },
+    {
+      "variant": "pool",
+      "mode": "generative",
+      "seed": 42,
+      "val_answer_ce": 0.17631959496370328,
+      "examples": 612,
+      "intent_accuracy": 0.8856209150326797,
+      "intent_macro_f1": 0.8843801274346283,
+      "intent_per_class": {
+        "access_reset": {
+          "support": 102,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "billing_issue": {
+          "support": 102,
+          "precision": 0.9885057471264368,
+          "recall": 0.8431372549019608,
+          "f1": 0.91005291005291
+        },
+        "bug_report": {
+          "support": 102,
+          "precision": 0.8314606741573034,
+          "recall": 0.7254901960784313,
+          "f1": 0.7748691099476441
+        },
+        "feature_request": {
+          "support": 102,
+          "precision": 0.8292682926829268,
+          "recall": 1.0,
+          "f1": 0.9066666666666667
+        },
+        "service_outage": {
+          "support": 102,
+          "precision": 0.7555555555555555,
+          "recall": 1.0,
+          "f1": 0.8607594936708861
+        },
+        "account_cancellation": {
+          "support": 102,
+          "precision": 1.0,
+          "recall": 0.7450980392156863,
+          "f1": 0.8539325842696629
+        }
+      },
+      "intent_confusion": {
+        "labels": [
+          "access_reset",
+          "billing_issue",
+          "bug_report",
+          "feature_request",
+          "service_outage",
+          "account_cancellation"
+        ],
+        "prediction_labels": [
+          "access_reset",
+          "billing_issue",
+          "bug_report",
+          "feature_request",
+          "service_outage",
+          "account_cancellation",
+          "<invalid>"
+        ],
+        "counts": [
+          [
+            102,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            86,
+            15,
+            1,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            74,
+            20,
+            7,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            102,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            102,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            26,
+            76,
+            0
+          ]
+        ]
+      },
+      "priority_accuracy": 0.9967320261437909,
+      "priority_macro_f1": 0.9967319476150427,
+      "priority_per_class": {
+        "low": {
+          "support": 204,
+          "precision": 0.9902912621359223,
+          "recall": 1.0,
+          "f1": 0.9951219512195122
+        },
+        "normal": {
+          "support": 204,
+          "precision": 1.0,
+          "recall": 0.9901960784313726,
+          "f1": 0.9950738916256158
+        },
+        "high": {
+          "support": 204,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        }
+      },
+      "priority_confusion": {
+        "labels": [
+          "low",
+          "normal",
+          "high"
+        ],
+        "prediction_labels": [
+          "low",
+          "normal",
+          "high",
+          "<invalid>"
+        ],
+        "counts": [
+          [
+            204,
+            0,
+            0,
+            0
+          ],
+          [
+            2,
+            202,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            204,
+            0
+          ]
+        ]
+      },
+      "joint_accuracy": 0.8823529411764706,
+      "rejected_rate": 0.0
+    },
+    {
+      "variant": "pool",
+      "mode": "dual",
+      "seed": 42,
+      "val_answer_ce": 0.17631959496370328,
+      "examples": 612,
+      "intent_accuracy": 0.8790849673202614,
+      "intent_macro_f1": 0.878092217735791,
+      "intent_per_class": {
+        "access_reset": {
+          "support": 102,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "billing_issue": {
+          "support": 102,
+          "precision": 0.967032967032967,
+          "recall": 0.8627450980392157,
+          "f1": 0.9119170984455958
+        },
+        "bug_report": {
+          "support": 102,
+          "precision": 0.9855072463768116,
+          "recall": 0.6666666666666666,
+          "f1": 0.7953216374269007
+        },
+        "feature_request": {
+          "support": 102,
+          "precision": 0.7611940298507462,
+          "recall": 1.0,
+          "f1": 0.864406779661017
+        },
+        "service_outage": {
+          "support": 102,
+          "precision": 0.7285714285714285,
+          "recall": 1.0,
+          "f1": 0.8429752066115702
+        },
+        "account_cancellation": {
+          "support": 102,
+          "precision": 1.0,
+          "recall": 0.7450980392156863,
+          "f1": 0.8539325842696629
+        }
+      },
+      "intent_confusion": {
+        "labels": [
+          "access_reset",
+          "billing_issue",
+          "bug_report",
+          "feature_request",
+          "service_outage",
+          "account_cancellation"
+        ],
+        "prediction_labels": [
+          "access_reset",
+          "billing_issue",
+          "bug_report",
+          "feature_request",
+          "service_outage",
+          "account_cancellation",
+          "<invalid>"
+        ],
+        "counts": [
+          [
+            102,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            88,
+            1,
+            13,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            3,
+            68,
+            19,
+            12,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            102,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            102,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            26,
+            76,
+            0
+          ]
+        ]
+      },
+      "priority_accuracy": 0.9967320261437909,
+      "priority_macro_f1": 0.9967319476150427,
+      "priority_per_class": {
+        "low": {
+          "support": 204,
+          "precision": 0.9902912621359223,
+          "recall": 1.0,
+          "f1": 0.9951219512195122
+        },
+        "normal": {
+          "support": 204,
+          "precision": 1.0,
+          "recall": 0.9901960784313726,
+          "f1": 0.9950738916256158
+        },
+        "high": {
+          "support": 204,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        }
+      },
+      "priority_confusion": {
+        "labels": [
+          "low",
+          "normal",
+          "high"
+        ],
+        "prediction_labels": [
+          "low",
+          "normal",
+          "high",
+          "<invalid>"
+        ],
+        "counts": [
+          [
+            204,
+            0,
+            0,
+            0
+          ],
+          [
+            2,
+            202,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            204,
+            0
+          ]
+        ]
+      },
+      "joint_accuracy": 0.8758169934640523,
+      "rejected_rate": 0.0
+    },
+    {
+      "variant": "pool",
+      "mode": "generative",
+      "seed": 7,
+      "val_answer_ce": 0.1680767574146682,
+      "examples": 612,
+      "intent_accuracy": 0.8937908496732027,
+      "intent_macro_f1": 0.892954763137081,
+      "intent_per_class": {
+        "access_reset": {
+          "support": 102,
+          "precision": 1.0,
+          "recall": 0.8921568627450981,
+          "f1": 0.9430051813471504
+        },
+        "billing_issue": {
+          "support": 102,
+          "precision": 0.9444444444444444,
+          "recall": 1.0,
+          "f1": 0.9714285714285714
+        },
+        "bug_report": {
+          "support": 102,
+          "precision": 1.0,
+          "recall": 0.7843137254901961,
+          "f1": 0.8791208791208792
+        },
+        "feature_request": {
+          "support": 102,
+          "precision": 0.8360655737704918,
+          "recall": 1.0,
+          "f1": 0.9107142857142857
+        },
+        "service_outage": {
+          "support": 102,
+          "precision": 0.723404255319149,
+          "recall": 1.0,
+          "f1": 0.8395061728395062
+        },
+        "account_cancellation": {
+          "support": 102,
+          "precision": 1.0,
+          "recall": 0.6862745098039216,
+          "f1": 0.813953488372093
+        }
+      },
+      "intent_confusion": {
+        "labels": [
+          "access_reset",
+          "billing_issue",
+          "bug_report",
+          "feature_request",
+          "service_outage",
+          "account_cancellation"
+        ],
+        "prediction_labels": [
+          "access_reset",
+          "billing_issue",
+          "bug_report",
+          "feature_request",
+          "service_outage",
+          "account_cancellation",
+          "<invalid>"
+        ],
+        "counts": [
+          [
+            91,
+            0,
+            0,
+            0,
+            11,
+            0,
+            0
+          ],
+          [
+            0,
+            102,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            80,
+            20,
+            2,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            102,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            102,
+            0,
+            0
+          ],
+          [
+            0,
+            6,
+            0,
+            0,
+            26,
+            70,
+            0
+          ]
+        ]
+      },
+      "priority_accuracy": 1.0,
+      "priority_macro_f1": 1.0,
+      "priority_per_class": {
+        "low": {
+          "support": 204,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "normal": {
+          "support": 204,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "high": {
+          "support": 204,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        }
+      },
+      "priority_confusion": {
+        "labels": [
+          "low",
+          "normal",
+          "high"
+        ],
+        "prediction_labels": [
+          "low",
+          "normal",
+          "high",
+          "<invalid>"
+        ],
+        "counts": [
+          [
+            204,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            204,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            204,
+            0
+          ]
+        ]
+      },
+      "joint_accuracy": 0.8937908496732027,
+      "rejected_rate": 0.0
+    },
+    {
+      "variant": "pool",
+      "mode": "dual",
+      "seed": 7,
+      "val_answer_ce": 0.1680767574146682,
+      "examples": 612,
+      "intent_accuracy": 0.9003267973856209,
+      "intent_macro_f1": 0.8976121914563392,
+      "intent_per_class": {
+        "access_reset": {
+          "support": 102,
+          "precision": 1.0,
+          "recall": 0.9803921568627451,
+          "f1": 0.99009900990099
+        },
+        "billing_issue": {
+          "support": 102,
+          "precision": 0.9444444444444444,
+          "recall": 1.0,
+          "f1": 0.9714285714285714
+        },
+        "bug_report": {
+          "support": 102,
+          "precision": 1.0,
+          "recall": 0.7254901960784313,
+          "f1": 0.8409090909090908
+        },
+        "feature_request": {
+          "support": 102,
+          "precision": 0.7906976744186046,
+          "recall": 1.0,
+          "f1": 0.8831168831168831
+        },
+        "service_outage": {
+          "support": 102,
+          "precision": 0.7846153846153846,
+          "recall": 1.0,
+          "f1": 0.8793103448275863
+        },
+        "account_cancellation": {
+          "support": 102,
+          "precision": 1.0,
+          "recall": 0.696078431372549,
+          "f1": 0.8208092485549133
+        }
+      },
+      "intent_confusion": {
+        "labels": [
+          "access_reset",
+          "billing_issue",
+          "bug_report",
+          "feature_request",
+          "service_outage",
+          "account_cancellation"
+        ],
+        "prediction_labels": [
+          "access_reset",
+          "billing_issue",
+          "bug_report",
+          "feature_request",
+          "service_outage",
+          "account_cancellation",
+          "<invalid>"
+        ],
+        "counts": [
+          [
+            100,
+            0,
+            0,
+            0,
+            2,
+            0,
+            0
+          ],
+          [
+            0,
+            102,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            74,
+            27,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            102,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            102,
+            0,
+            0
+          ],
+          [
+            0,
+            5,
+            0,
+            0,
+            26,
+            71,
+            0
+          ]
+        ]
+      },
+      "priority_accuracy": 1.0,
+      "priority_macro_f1": 1.0,
+      "priority_per_class": {
+        "low": {
+          "support": 204,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "normal": {
+          "support": 204,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "high": {
+          "support": 204,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        }
+      },
+      "priority_confusion": {
+        "labels": [
+          "low",
+          "normal",
+          "high"
+        ],
+        "prediction_labels": [
+          "low",
+          "normal",
+          "high",
+          "<invalid>"
+        ],
+        "counts": [
+          [
+            204,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            204,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            204,
+            0
+          ]
+        ]
+      },
+      "joint_accuracy": 0.9003267973856209,
+      "rejected_rate": 0.0
+    },
+    {
+      "variant": "pool",
+      "mode": "generative",
+      "seed": 123,
+      "val_answer_ce": 0.16055354768154667,
+      "examples": 612,
+      "intent_accuracy": 0.8529411764705882,
+      "intent_macro_f1": 0.8514333160549052,
+      "intent_per_class": {
+        "access_reset": {
+          "support": 102,
+          "precision": 0.9357798165137615,
+          "recall": 1.0,
+          "f1": 0.966824644549763
+        },
+        "billing_issue": {
+          "support": 102,
+          "precision": 1.0,
+          "recall": 0.9705882352941176,
+          "f1": 0.9850746268656716
+        },
+        "bug_report": {
+          "support": 102,
+          "precision": 0.8823529411764706,
+          "recall": 0.7352941176470589,
+          "f1": 0.8021390374331552
+        },
+        "feature_request": {
+          "support": 102,
+          "precision": 0.918918918918919,
+          "recall": 0.6666666666666666,
+          "f1": 0.7727272727272727
+        },
+        "service_outage": {
+          "support": 102,
+          "precision": 0.6754966887417219,
+          "recall": 1.0,
+          "f1": 0.8063241106719368
+        },
+        "account_cancellation": {
+          "support": 102,
+          "precision": 0.8085106382978723,
+          "recall": 0.7450980392156863,
+          "f1": 0.7755102040816325
+        }
+      },
+      "intent_confusion": {
+        "labels": [
+          "access_reset",
+          "billing_issue",
+          "bug_report",
+          "feature_request",
+          "service_outage",
+          "account_cancellation"
+        ],
+        "prediction_labels": [
+          "access_reset",
+          "billing_issue",
+          "bug_report",
+          "feature_request",
+          "service_outage",
+          "account_cancellation",
+          "<invalid>"
+        ],
+        "counts": [
+          [
+            102,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            3,
+            99,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            75,
+            6,
+            21,
+            0,
+            0
+          ],
+          [
+            4,
+            0,
+            10,
+            68,
+            2,
+            18,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            102,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            26,
+            76,
+            0
+          ]
+        ]
+      },
+      "priority_accuracy": 0.9934640522875817,
+      "priority_macro_f1": 0.9934637872450954,
+      "priority_per_class": {
+        "low": {
+          "support": 204,
+          "precision": 0.9950980392156863,
+          "recall": 0.9950980392156863,
+          "f1": 0.9950980392156863
+        },
+        "normal": {
+          "support": 204,
+          "precision": 0.9855072463768116,
+          "recall": 1.0,
+          "f1": 0.9927007299270074
+        },
+        "high": {
+          "support": 204,
+          "precision": 1.0,
+          "recall": 0.9852941176470589,
+          "f1": 0.9925925925925926
+        }
+      },
+      "priority_confusion": {
+        "labels": [
+          "low",
+          "normal",
+          "high"
+        ],
+        "prediction_labels": [
+          "low",
+          "normal",
+          "high",
+          "<invalid>"
+        ],
+        "counts": [
+          [
+            203,
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            204,
+            0,
+            0
+          ],
+          [
+            1,
+            2,
+            201,
+            0
+          ]
+        ]
+      },
+      "joint_accuracy": 0.8496732026143791,
+      "rejected_rate": 0.0
+    },
+    {
+      "variant": "pool",
+      "mode": "dual",
+      "seed": 123,
+      "val_answer_ce": 0.16055354768154667,
+      "examples": 612,
+      "intent_accuracy": 0.8741830065359477,
+      "intent_macro_f1": 0.8730228243513956,
+      "intent_per_class": {
+        "access_reset": {
+          "support": 102,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "billing_issue": {
+          "support": 102,
+          "precision": 0.9711538461538461,
+          "recall": 0.9901960784313726,
+          "f1": 0.9805825242718447
+        },
+        "bug_report": {
+          "support": 102,
+          "precision": 0.9852941176470589,
+          "recall": 0.6568627450980392,
+          "f1": 0.7882352941176471
+        },
+        "feature_request": {
+          "support": 102,
+          "precision": 0.8737864077669902,
+          "recall": 0.8823529411764706,
+          "f1": 0.8780487804878048
+        },
+        "service_outage": {
+          "support": 102,
+          "precision": 0.6754966887417219,
+          "recall": 1.0,
+          "f1": 0.8063241106719368
+        },
+        "account_cancellation": {
+          "support": 102,
+          "precision": 0.8690476190476191,
+          "recall": 0.7156862745098039,
+          "f1": 0.7849462365591398
+        }
+      },
+      "intent_confusion": {
+        "labels": [
+          "access_reset",
+          "billing_issue",
+          "bug_report",
+          "feature_request",
+          "service_outage",
+          "account_cancellation"
+        ],
+        "prediction_labels": [
+          "access_reset",
+          "billing_issue",
+          "bug_report",
+          "feature_request",
+          "service_outage",
+          "account_cancellation",
+          "<invalid>"
+        ],
+        "counts": [
+          [
+            102,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            101,
+            0,
+            0,
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            67,
+            13,
+            22,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1,
+            90,
+            1,
+            10,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            102,
+            0,
+            0
+          ],
+          [
+            0,
+            3,
+            0,
+            0,
+            26,
+            73,
+            0
+          ]
+        ]
+      },
+      "priority_accuracy": 0.9934640522875817,
+      "priority_macro_f1": 0.9934637872450954,
+      "priority_per_class": {
+        "low": {
+          "support": 204,
+          "precision": 0.9950980392156863,
+          "recall": 0.9950980392156863,
+          "f1": 0.9950980392156863
+        },
+        "normal": {
+          "support": 204,
+          "precision": 0.9855072463768116,
+          "recall": 1.0,
+          "f1": 0.9927007299270074
+        },
+        "high": {
+          "support": 204,
+          "precision": 1.0,
+          "recall": 0.9852941176470589,
+          "f1": 0.9925925925925926
+        }
+      },
+      "priority_confusion": {
+        "labels": [
+          "low",
+          "normal",
+          "high"
+        ],
+        "prediction_labels": [
+          "low",
+          "normal",
+          "high",
+          "<invalid>"
+        ],
+        "counts": [
+          [
+            203,
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            204,
+            0,
+            0
+          ],
+          [
+            1,
+            2,
+            201,
+            0
+          ]
+        ]
+      },
+      "joint_accuracy": 0.869281045751634,
+      "rejected_rate": 0.0
+    }
+  ],
+  "baseline_validation": {
+    "majority": {
+      "examples": 612,
+      "intent_accuracy": 0.16666666666666666,
+      "intent_macro_f1": 0.047619047619047616,
+      "intent_per_class": {
+        "access_reset": {
+          "support": 102,
+          "precision": 0.16666666666666666,
+          "recall": 1.0,
+          "f1": 0.2857142857142857
+        },
+        "billing_issue": {
+          "support": 102,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        },
+        "bug_report": {
+          "support": 102,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        },
+        "feature_request": {
+          "support": 102,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        },
+        "service_outage": {
+          "support": 102,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        },
+        "account_cancellation": {
+          "support": 102,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        }
+      },
+      "intent_confusion": {
+        "labels": [
+          "access_reset",
+          "billing_issue",
+          "bug_report",
+          "feature_request",
+          "service_outage",
+          "account_cancellation"
+        ],
+        "prediction_labels": [
+          "access_reset",
+          "billing_issue",
+          "bug_report",
+          "feature_request",
+          "service_outage",
+          "account_cancellation",
+          "<invalid>"
+        ],
+        "counts": [
+          [
+            102,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            102,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            102,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            102,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            102,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            102,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        ]
+      },
+      "priority_accuracy": 0.3333333333333333,
+      "priority_macro_f1": 0.16666666666666666,
+      "priority_per_class": {
+        "low": {
+          "support": 204,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        },
+        "normal": {
+          "support": 204,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        },
+        "high": {
+          "support": 204,
+          "precision": 0.3333333333333333,
+          "recall": 1.0,
+          "f1": 0.5
+        }
+      },
+      "priority_confusion": {
+        "labels": [
+          "low",
+          "normal",
+          "high"
+        ],
+        "prediction_labels": [
+          "low",
+          "normal",
+          "high",
+          "<invalid>"
+        ],
+        "counts": [
+          [
+            0,
+            0,
+            204,
+            0
+          ],
+          [
+            0,
+            0,
+            204,
+            0
+          ],
+          [
+            0,
+            0,
+            204,
+            0
+          ]
+        ]
+      },
+      "joint_accuracy": 0.05555555555555555,
+      "rejected_rate": 0.0
+    },
+    "word_tfidf": {
+      "examples": 612,
+      "intent_accuracy": 0.9558823529411765,
+      "intent_macro_f1": 0.9568523810218562,
+      "intent_per_class": {
+        "access_reset": {
+          "support": 102,
+          "precision": 1.0,
+          "recall": 0.9411764705882353,
+          "f1": 0.9696969696969697
+        },
+        "billing_issue": {
+          "support": 102,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "bug_report": {
+          "support": 102,
+          "precision": 1.0,
+          "recall": 0.9705882352941176,
+          "f1": 0.9850746268656716
+        },
+        "feature_request": {
+          "support": 102,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "service_outage": {
+          "support": 102,
+          "precision": 0.7906976744186046,
+          "recall": 1.0,
+          "f1": 0.8831168831168831
+        },
+        "account_cancellation": {
+          "support": 102,
+          "precision": 1.0,
+          "recall": 0.8235294117647058,
+          "f1": 0.9032258064516129
+        }
+      },
+      "intent_confusion": {
+        "labels": [
+          "access_reset",
+          "billing_issue",
+          "bug_report",
+          "feature_request",
+          "service_outage",
+          "account_cancellation"
+        ],
+        "prediction_labels": [
+          "access_reset",
+          "billing_issue",
+          "bug_report",
+          "feature_request",
+          "service_outage",
+          "account_cancellation",
+          "<invalid>"
+        ],
+        "counts": [
+          [
+            96,
+            0,
+            0,
+            0,
+            6,
+            0,
+            0
+          ],
+          [
+            0,
+            102,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            99,
+            0,
+            3,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            102,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            102,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            18,
+            84,
+            0
+          ]
+        ]
+      },
+      "priority_accuracy": 1.0,
+      "priority_macro_f1": 1.0,
+      "priority_per_class": {
+        "low": {
+          "support": 204,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "normal": {
+          "support": 204,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "high": {
+          "support": 204,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        }
+      },
+      "priority_confusion": {
+        "labels": [
+          "low",
+          "normal",
+          "high"
+        ],
+        "prediction_labels": [
+          "low",
+          "normal",
+          "high",
+          "<invalid>"
+        ],
+        "counts": [
+          [
+            204,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            204,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            204,
+            0
+          ]
+        ]
+      },
+      "joint_accuracy": 0.9558823529411765,
+      "rejected_rate": 0.0
+    },
+    "char_tfidf": {
+      "examples": 612,
+      "intent_accuracy": 1.0,
+      "intent_macro_f1": 1.0,
+      "intent_per_class": {
+        "access_reset": {
+          "support": 102,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "billing_issue": {
+          "support": 102,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "bug_report": {
+          "support": 102,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "feature_request": {
+          "support": 102,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "service_outage": {
+          "support": 102,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "account_cancellation": {
+          "support": 102,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        }
+      },
+      "intent_confusion": {
+        "labels": [
+          "access_reset",
+          "billing_issue",
+          "bug_report",
+          "feature_request",
+          "service_outage",
+          "account_cancellation"
+        ],
+        "prediction_labels": [
+          "access_reset",
+          "billing_issue",
+          "bug_report",
+          "feature_request",
+          "service_outage",
+          "account_cancellation",
+          "<invalid>"
+        ],
+        "counts": [
+          [
+            102,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            102,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            102,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            102,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            102,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            102,
+            0
+          ]
+        ]
+      },
+      "priority_accuracy": 1.0,
+      "priority_macro_f1": 1.0,
+      "priority_per_class": {
+        "low": {
+          "support": 204,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "normal": {
+          "support": 204,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "high": {
+          "support": 204,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        }
+      },
+      "priority_confusion": {
+        "labels": [
+          "low",
+          "normal",
+          "high"
+        ],
+        "prediction_labels": [
+          "low",
+          "normal",
+          "high",
+          "<invalid>"
+        ],
+        "counts": [
+          [
+            204,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            204,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            204,
+            0
+          ]
+        ]
+      },
+      "joint_accuracy": 1.0,
+      "rejected_rate": 0.0
+    }
+  },
+  "test_used_for_selection": false
+}

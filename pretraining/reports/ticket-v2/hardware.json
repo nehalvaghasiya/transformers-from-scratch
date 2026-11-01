@@ -1,0 +1,7 @@
+{
+  "cpu": "13th Gen Intel(R) Core(TM) i5-13420H",
+  "torch_threads": 2,
+  "device": "cpu",
+  "timing_scope": "process training including checkpoint writes; reported inference includes warm tokenization and decoding",
+  "cuda_measured": false
+}
