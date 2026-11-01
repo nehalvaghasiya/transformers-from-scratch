@@ -1,0 +1,7214 @@
+{
+  "dataset": "ticket-v2",
+  "selection": {
+    "variant": "base",
+    "mode": "generative",
+    "seed": 42,
+    "artifact": "/home/nehal/Personal/small-llm-pretraining-finetuning/pretraining/runs/ticket-v2-base-42",
+    "comparison_baseline": "char_tfidf",
+    "test_used_for_selection": false
+  },
+  "results": [
+    {
+      "split": "test",
+      "system": "majority",
+      "seed": null,
+      "examples": 612,
+      "intent_accuracy": 0.16666666666666666,
+      "intent_macro_f1": 0.047619047619047616,
+      "intent_per_class": {
+        "access_reset": {
+          "support": 102,
+          "precision": 0.16666666666666666,
+          "recall": 1.0,
+          "f1": 0.2857142857142857
+        },
+        "billing_issue": {
+          "support": 102,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        },
+        "bug_report": {
+          "support": 102,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        },
+        "feature_request": {
+          "support": 102,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        },
+        "service_outage": {
+          "support": 102,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        },
+        "account_cancellation": {
+          "support": 102,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        }
+      },
+      "intent_confusion": {
+        "labels": [
+          "access_reset",
+          "billing_issue",
+          "bug_report",
+          "feature_request",
+          "service_outage",
+          "account_cancellation"
+        ],
+        "prediction_labels": [
+          "access_reset",
+          "billing_issue",
+          "bug_report",
+          "feature_request",
+          "service_outage",
+          "account_cancellation",
+          "<invalid>"
+        ],
+        "counts": [
+          [
+            102,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            102,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            102,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            102,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            102,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            102,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        ]
+      },
+      "priority_accuracy": 0.3333333333333333,
+      "priority_macro_f1": 0.16666666666666666,
+      "priority_per_class": {
+        "low": {
+          "support": 204,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        },
+        "normal": {
+          "support": 204,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        },
+        "high": {
+          "support": 204,
+          "precision": 0.3333333333333333,
+          "recall": 1.0,
+          "f1": 0.5
+        }
+      },
+      "priority_confusion": {
+        "labels": [
+          "low",
+          "normal",
+          "high"
+        ],
+        "prediction_labels": [
+          "low",
+          "normal",
+          "high",
+          "<invalid>"
+        ],
+        "counts": [
+          [
+            0,
+            0,
+            204,
+            0
+          ],
+          [
+            0,
+            0,
+            204,
+            0
+          ],
+          [
+            0,
+            0,
+            204,
+            0
+          ]
+        ]
+      },
+      "joint_accuracy": 0.05555555555555555,
+      "rejected_rate": 0.0
+    },
+    {
+      "split": "test",
+      "system": "word_tfidf",
+      "seed": null,
+      "examples": 612,
+      "intent_accuracy": 0.9950980392156863,
+      "intent_macro_f1": 0.9950976858136733,
+      "intent_per_class": {
+        "access_reset": {
+          "support": 102,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "billing_issue": {
+          "support": 102,
+          "precision": 0.9807692307692307,
+          "recall": 1.0,
+          "f1": 0.9902912621359222
+        },
+        "bug_report": {
+          "support": 102,
+          "precision": 1.0,
+          "recall": 0.9803921568627451,
+          "f1": 0.99009900990099
+        },
+        "feature_request": {
+          "support": 102,
+          "precision": 0.9902912621359223,
+          "recall": 1.0,
+          "f1": 0.9951219512195122
+        },
+        "service_outage": {
+          "support": 102,
+          "precision": 1.0,
+          "recall": 0.9901960784313726,
+          "f1": 0.9950738916256158
+        },
+        "account_cancellation": {
+          "support": 102,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        }
+      },
+      "intent_confusion": {
+        "labels": [
+          "access_reset",
+          "billing_issue",
+          "bug_report",
+          "feature_request",
+          "service_outage",
+          "account_cancellation"
+        ],
+        "prediction_labels": [
+          "access_reset",
+          "billing_issue",
+          "bug_report",
+          "feature_request",
+          "service_outage",
+          "account_cancellation",
+          "<invalid>"
+        ],
+        "counts": [
+          [
+            102,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            102,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            2,
+            100,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            102,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            1,
+            101,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            102,
+            0
+          ]
+        ]
+      },
+      "priority_accuracy": 1.0,
+      "priority_macro_f1": 1.0,
+      "priority_per_class": {
+        "low": {
+          "support": 204,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "normal": {
+          "support": 204,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "high": {
+          "support": 204,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        }
+      },
+      "priority_confusion": {
+        "labels": [
+          "low",
+          "normal",
+          "high"
+        ],
+        "prediction_labels": [
+          "low",
+          "normal",
+          "high",
+          "<invalid>"
+        ],
+        "counts": [
+          [
+            204,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            204,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            204,
+            0
+          ]
+        ]
+      },
+      "joint_accuracy": 0.9950980392156863,
+      "rejected_rate": 0.0
+    },
+    {
+      "split": "test",
+      "system": "char_tfidf",
+      "seed": null,
+      "examples": 612,
+      "intent_accuracy": 0.9918300653594772,
+      "intent_macro_f1": 0.9918279167507166,
+      "intent_per_class": {
+        "access_reset": {
+          "support": 102,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "billing_issue": {
+          "support": 102,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "bug_report": {
+          "support": 102,
+          "precision": 1.0,
+          "recall": 0.9901960784313726,
+          "f1": 0.9950738916256158
+        },
+        "feature_request": {
+          "support": 102,
+          "precision": 0.98989898989899,
+          "recall": 0.9607843137254902,
+          "f1": 0.9751243781094527
+        },
+        "service_outage": {
+          "support": 102,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "account_cancellation": {
+          "support": 102,
+          "precision": 0.9622641509433962,
+          "recall": 1.0,
+          "f1": 0.9807692307692307
+        }
+      },
+      "intent_confusion": {
+        "labels": [
+          "access_reset",
+          "billing_issue",
+          "bug_report",
+          "feature_request",
+          "service_outage",
+          "account_cancellation"
+        ],
+        "prediction_labels": [
+          "access_reset",
+          "billing_issue",
+          "bug_report",
+          "feature_request",
+          "service_outage",
+          "account_cancellation",
+          "<invalid>"
+        ],
+        "counts": [
+          [
+            102,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            102,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            101,
+            1,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            98,
+            0,
+            4,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            102,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            102,
+            0
+          ]
+        ]
+      },
+      "priority_accuracy": 1.0,
+      "priority_macro_f1": 1.0,
+      "priority_per_class": {
+        "low": {
+          "support": 204,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "normal": {
+          "support": 204,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "high": {
+          "support": 204,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        }
+      },
+      "priority_confusion": {
+        "labels": [
+          "low",
+          "normal",
+          "high"
+        ],
+        "prediction_labels": [
+          "low",
+          "normal",
+          "high",
+          "<invalid>"
+        ],
+        "counts": [
+          [
+            204,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            204,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            204,
+            0
+          ]
+        ]
+      },
+      "joint_accuracy": 0.9918300653594772,
+      "rejected_rate": 0.0
+    },
+    {
+      "system": "base-generative",
+      "seed": 42,
+      "split": "test",
+      "mode": "generative",
+      "artifact": "/home/nehal/Personal/small-llm-pretraining-finetuning/pretraining/runs/ticket-v2-base-42",
+      "model_sha256": "8a164638354d53a860a37292ad2fb6cf78479f27f83a736fd6be69d40f8cd886",
+      "data_sha256": "04edf74d1fe7af98a5f5153f596293dbca6ea7452c3acd9e8d68bef6a878d4dc",
+      "examples": 612,
+      "intent_accuracy": 0.9199346405228758,
+      "intent_macro_f1": 0.9190558495769264,
+      "intent_per_class": {
+        "access_reset": {
+          "support": 102,
+          "precision": 0.8429752066115702,
+          "recall": 1.0,
+          "f1": 0.914798206278027
+        },
+        "billing_issue": {
+          "support": 102,
+          "precision": 0.8166666666666667,
+          "recall": 0.9607843137254902,
+          "f1": 0.882882882882883
+        },
+        "bug_report": {
+          "support": 102,
+          "precision": 0.9310344827586207,
+          "recall": 0.7941176470588235,
+          "f1": 0.8571428571428571
+        },
+        "feature_request": {
+          "support": 102,
+          "precision": 1.0,
+          "recall": 0.9803921568627451,
+          "f1": 0.99009900990099
+        },
+        "service_outage": {
+          "support": 102,
+          "precision": 0.9807692307692307,
+          "recall": 1.0,
+          "f1": 0.9902912621359222
+        },
+        "account_cancellation": {
+          "support": 102,
+          "precision": 1.0,
+          "recall": 0.7843137254901961,
+          "f1": 0.8791208791208792
+        }
+      },
+      "intent_confusion": {
+        "labels": [
+          "access_reset",
+          "billing_issue",
+          "bug_report",
+          "feature_request",
+          "service_outage",
+          "account_cancellation"
+        ],
+        "prediction_labels": [
+          "access_reset",
+          "billing_issue",
+          "bug_report",
+          "feature_request",
+          "service_outage",
+          "account_cancellation",
+          "<invalid>"
+        ],
+        "counts": [
+          [
+            102,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            98,
+            4,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            8,
+            13,
+            81,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            0,
+            0,
+            100,
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            102,
+            0,
+            0
+          ],
+          [
+            10,
+            9,
+            2,
+            0,
+            1,
+            80,
+            0
+          ]
+        ]
+      },
+      "priority_accuracy": 1.0,
+      "priority_macro_f1": 1.0,
+      "priority_per_class": {
+        "low": {
+          "support": 204,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "normal": {
+          "support": 204,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "high": {
+          "support": 204,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        }
+      },
+      "priority_confusion": {
+        "labels": [
+          "low",
+          "normal",
+          "high"
+        ],
+        "prediction_labels": [
+          "low",
+          "normal",
+          "high",
+          "<invalid>"
+        ],
+        "counts": [
+          [
+            204,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            204,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            204,
+            0
+          ]
+        ]
+      },
+      "joint_accuracy": 0.9199346405228758,
+      "rejected_rate": 0.0,
+      "known_vocabulary_fraction": 0.8983788058521155,
+      "latency_ms": {
+        "p50": 1.7614765001781052,
+        "p95": 2.228554001703742,
+        "samples": 30,
+        "scope": "one ticket; warm tokenization plus decoding"
+      }
+    },
+    {
+      "system": "base-generative",
+      "seed": 7,
+      "split": "test",
+      "mode": "generative",
+      "artifact": "/home/nehal/Personal/small-llm-pretraining-finetuning/pretraining/runs/ticket-v2-base-7",
+      "model_sha256": "10707fb41d496be348427f98f73cabd9b8ae0c57963826cb461a342d99052548",
+      "data_sha256": "04edf74d1fe7af98a5f5153f596293dbca6ea7452c3acd9e8d68bef6a878d4dc",
+      "examples": 612,
+      "intent_accuracy": 0.9411764705882353,
+      "intent_macro_f1": 0.9402212456079088,
+      "intent_per_class": {
+        "access_reset": {
+          "support": 102,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "billing_issue": {
+          "support": 102,
+          "precision": 0.8064516129032258,
+          "recall": 0.9803921568627451,
+          "f1": 0.8849557522123893
+        },
+        "bug_report": {
+          "support": 102,
+          "precision": 0.9433962264150944,
+          "recall": 0.9803921568627451,
+          "f1": 0.9615384615384616
+        },
+        "feature_request": {
+          "support": 102,
+          "precision": 0.9896907216494846,
+          "recall": 0.9411764705882353,
+          "f1": 0.964824120603015
+        },
+        "service_outage": {
+          "support": 102,
+          "precision": 0.9532710280373832,
+          "recall": 1.0,
+          "f1": 0.9760765550239235
+        },
+        "account_cancellation": {
+          "support": 102,
+          "precision": 1.0,
+          "recall": 0.7450980392156863,
+          "f1": 0.8539325842696629
+        }
+      },
+      "intent_confusion": {
+        "labels": [
+          "access_reset",
+          "billing_issue",
+          "bug_report",
+          "feature_request",
+          "service_outage",
+          "account_cancellation"
+        ],
+        "prediction_labels": [
+          "access_reset",
+          "billing_issue",
+          "bug_report",
+          "feature_request",
+          "service_outage",
+          "account_cancellation",
+          "<invalid>"
+        ],
+        "counts": [
+          [
+            102,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            100,
+            0,
+            1,
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            2,
+            100,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            6,
+            96,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            102,
+            0,
+            0
+          ],
+          [
+            0,
+            22,
+            0,
+            0,
+            4,
+            76,
+            0
+          ]
+        ]
+      },
+      "priority_accuracy": 0.9983660130718954,
+      "priority_macro_f1": 0.9983660032559788,
+      "priority_per_class": {
+        "low": {
+          "support": 204,
+          "precision": 0.9951219512195122,
+          "recall": 1.0,
+          "f1": 0.9975550122249389
+        },
+        "normal": {
+          "support": 204,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "high": {
+          "support": 204,
+          "precision": 1.0,
+          "recall": 0.9950980392156863,
+          "f1": 0.9975429975429976
+        }
+      },
+      "priority_confusion": {
+        "labels": [
+          "low",
+          "normal",
+          "high"
+        ],
+        "prediction_labels": [
+          "low",
+          "normal",
+          "high",
+          "<invalid>"
+        ],
+        "counts": [
+          [
+            204,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            204,
+            0,
+            0
+          ],
+          [
+            1,
+            0,
+            203,
+            0
+          ]
+        ]
+      },
+      "joint_accuracy": 0.9395424836601307,
+      "rejected_rate": 0.0,
+      "known_vocabulary_fraction": 0.8983788058521155,
+      "latency_ms": {
+        "p50": 1.7087584992623306,
+        "p95": 2.683853999769781,
+        "samples": 30,
+        "scope": "one ticket; warm tokenization plus decoding"
+      }
+    },
+    {
+      "system": "base-generative",
+      "seed": 123,
+      "split": "test",
+      "mode": "generative",
+      "artifact": "/home/nehal/Personal/small-llm-pretraining-finetuning/pretraining/runs/ticket-v2-base-123",
+      "model_sha256": "5934ad7e401e3975783f799490f18ef72e01deffe4ebb589712f6c13c87b78c5",
+      "data_sha256": "04edf74d1fe7af98a5f5153f596293dbca6ea7452c3acd9e8d68bef6a878d4dc",
+      "examples": 612,
+      "intent_accuracy": 0.9117647058823529,
+      "intent_macro_f1": 0.912891746138644,
+      "intent_per_class": {
+        "access_reset": {
+          "support": 102,
+          "precision": 0.9807692307692307,
+          "recall": 1.0,
+          "f1": 0.9902912621359222
+        },
+        "billing_issue": {
+          "support": 102,
+          "precision": 0.7383177570093458,
+          "recall": 0.7745098039215687,
+          "f1": 0.7559808612440191
+        },
+        "bug_report": {
+          "support": 102,
+          "precision": 0.7788461538461539,
+          "recall": 0.7941176470588235,
+          "f1": 0.7864077669902914
+        },
+        "feature_request": {
+          "support": 102,
+          "precision": 1.0,
+          "recall": 0.9705882352941176,
+          "f1": 0.9850746268656716
+        },
+        "service_outage": {
+          "support": 102,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "account_cancellation": {
+          "support": 102,
+          "precision": 0.9895833333333334,
+          "recall": 0.9313725490196079,
+          "f1": 0.9595959595959597
+        }
+      },
+      "intent_confusion": {
+        "labels": [
+          "access_reset",
+          "billing_issue",
+          "bug_report",
+          "feature_request",
+          "service_outage",
+          "account_cancellation"
+        ],
+        "prediction_labels": [
+          "access_reset",
+          "billing_issue",
+          "bug_report",
+          "feature_request",
+          "service_outage",
+          "account_cancellation",
+          "<invalid>"
+        ],
+        "counts": [
+          [
+            102,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            79,
+            23,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            21,
+            81,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            2,
+            0,
+            0,
+            99,
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            102,
+            0,
+            0
+          ],
+          [
+            0,
+            7,
+            0,
+            0,
+            0,
+            95,
+            0
+          ]
+        ]
+      },
+      "priority_accuracy": 1.0,
+      "priority_macro_f1": 1.0,
+      "priority_per_class": {
+        "low": {
+          "support": 204,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "normal": {
+          "support": 204,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "high": {
+          "support": 204,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        }
+      },
+      "priority_confusion": {
+        "labels": [
+          "low",
+          "normal",
+          "high"
+        ],
+        "prediction_labels": [
+          "low",
+          "normal",
+          "high",
+          "<invalid>"
+        ],
+        "counts": [
+          [
+            204,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            204,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            204,
+            0
+          ]
+        ]
+      },
+      "joint_accuracy": 0.9117647058823529,
+      "rejected_rate": 0.0,
+      "known_vocabulary_fraction": 0.8983788058521155,
+      "latency_ms": {
+        "p50": 1.5222445008475916,
+        "p95": 2.0727080009237397,
+        "samples": 30,
+        "scope": "one ticket; warm tokenization plus decoding"
+      }
+    },
+    {
+      "system": "cosine-generative",
+      "seed": 42,
+      "split": "test",
+      "mode": "generative",
+      "artifact": "/home/nehal/Personal/small-llm-pretraining-finetuning/pretraining/runs/ticket-v2-cosine-42",
+      "model_sha256": "c97fa8f4ee6294413f1738d2ce95b542182000f324d690afd8318fd87609c069",
+      "data_sha256": "04edf74d1fe7af98a5f5153f596293dbca6ea7452c3acd9e8d68bef6a878d4dc",
+      "examples": 612,
+      "intent_accuracy": 0.7843137254901961,
+      "intent_macro_f1": 0.7658462399040911,
+      "intent_per_class": {
+        "access_reset": {
+          "support": 102,
+          "precision": 0.816,
+          "recall": 1.0,
+          "f1": 0.8986784140969163
+        },
+        "billing_issue": {
+          "support": 102,
+          "precision": 0.7117117117117117,
+          "recall": 0.7745098039215687,
+          "f1": 0.7417840375586854
+        },
+        "bug_report": {
+          "support": 102,
+          "precision": 0.6639344262295082,
+          "recall": 0.7941176470588235,
+          "f1": 0.7232142857142856
+        },
+        "feature_request": {
+          "support": 102,
+          "precision": 1.0,
+          "recall": 0.8235294117647058,
+          "f1": 0.9032258064516129
+        },
+        "service_outage": {
+          "support": 102,
+          "precision": 0.7611940298507462,
+          "recall": 1.0,
+          "f1": 0.864406779661017
+        },
+        "account_cancellation": {
+          "support": 102,
+          "precision": 0.8888888888888888,
+          "recall": 0.3137254901960784,
+          "f1": 0.46376811594202894
+        }
+      },
+      "intent_confusion": {
+        "labels": [
+          "access_reset",
+          "billing_issue",
+          "bug_report",
+          "feature_request",
+          "service_outage",
+          "account_cancellation"
+        ],
+        "prediction_labels": [
+          "access_reset",
+          "billing_issue",
+          "bug_report",
+          "feature_request",
+          "service_outage",
+          "account_cancellation",
+          "<invalid>"
+        ],
+        "counts": [
+          [
+            102,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            79,
+            23,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            21,
+            0,
+            81,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            3,
+            0,
+            84,
+            10,
+            4,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            102,
+            0,
+            0
+          ],
+          [
+            1,
+            29,
+            18,
+            0,
+            22,
+            32,
+            0
+          ]
+        ]
+      },
+      "priority_accuracy": 0.9983660130718954,
+      "priority_macro_f1": 0.9983660032559788,
+      "priority_per_class": {
+        "low": {
+          "support": 204,
+          "precision": 0.9951219512195122,
+          "recall": 1.0,
+          "f1": 0.9975550122249389
+        },
+        "normal": {
+          "support": 204,
+          "precision": 1.0,
+          "recall": 0.9950980392156863,
+          "f1": 0.9975429975429976
+        },
+        "high": {
+          "support": 204,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        }
+      },
+      "priority_confusion": {
+        "labels": [
+          "low",
+          "normal",
+          "high"
+        ],
+        "prediction_labels": [
+          "low",
+          "normal",
+          "high",
+          "<invalid>"
+        ],
+        "counts": [
+          [
+            204,
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            203,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            204,
+            0
+          ]
+        ]
+      },
+      "joint_accuracy": 0.7826797385620915,
+      "rejected_rate": 0.0,
+      "known_vocabulary_fraction": 0.8983788058521155,
+      "latency_ms": {
+        "p50": 1.549651000459562,
+        "p95": 2.2091609989729477,
+        "samples": 30,
+        "scope": "one ticket; warm tokenization plus decoding"
+      }
+    },
+    {
+      "system": "cosine-generative",
+      "seed": 7,
+      "split": "test",
+      "mode": "generative",
+      "artifact": "/home/nehal/Personal/small-llm-pretraining-finetuning/pretraining/runs/ticket-v2-cosine-7",
+      "model_sha256": "8954fc90baf69bf4758c59f83af79a3ff1a733b0cee75af4a0da19335c1e03c1",
+      "data_sha256": "04edf74d1fe7af98a5f5153f596293dbca6ea7452c3acd9e8d68bef6a878d4dc",
+      "examples": 612,
+      "intent_accuracy": 0.8921568627450981,
+      "intent_macro_f1": 0.8941618842332211,
+      "intent_per_class": {
+        "access_reset": {
+          "support": 102,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "billing_issue": {
+          "support": 102,
+          "precision": 0.6666666666666666,
+          "recall": 0.9803921568627451,
+          "f1": 0.7936507936507936
+        },
+        "bug_report": {
+          "support": 102,
+          "precision": 0.8541666666666666,
+          "recall": 0.803921568627451,
+          "f1": 0.8282828282828283
+        },
+        "feature_request": {
+          "support": 102,
+          "precision": 1.0,
+          "recall": 0.8725490196078431,
+          "f1": 0.9319371727748691
+        },
+        "service_outage": {
+          "support": 102,
+          "precision": 0.9807692307692307,
+          "recall": 1.0,
+          "f1": 0.9902912621359222
+        },
+        "account_cancellation": {
+          "support": 102,
+          "precision": 1.0,
+          "recall": 0.696078431372549,
+          "f1": 0.8208092485549133
+        }
+      },
+      "intent_confusion": {
+        "labels": [
+          "access_reset",
+          "billing_issue",
+          "bug_report",
+          "feature_request",
+          "service_outage",
+          "account_cancellation"
+        ],
+        "prediction_labels": [
+          "access_reset",
+          "billing_issue",
+          "bug_report",
+          "feature_request",
+          "service_outage",
+          "account_cancellation",
+          "<invalid>"
+        ],
+        "counts": [
+          [
+            102,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            100,
+            2,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            20,
+            82,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            12,
+            89,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            102,
+            0,
+            0
+          ],
+          [
+            0,
+            29,
+            0,
+            0,
+            2,
+            71,
+            0
+          ]
+        ]
+      },
+      "priority_accuracy": 0.9983660130718954,
+      "priority_macro_f1": 0.9983660032559788,
+      "priority_per_class": {
+        "low": {
+          "support": 204,
+          "precision": 0.9951219512195122,
+          "recall": 1.0,
+          "f1": 0.9975550122249389
+        },
+        "normal": {
+          "support": 204,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "high": {
+          "support": 204,
+          "precision": 1.0,
+          "recall": 0.9950980392156863,
+          "f1": 0.9975429975429976
+        }
+      },
+      "priority_confusion": {
+        "labels": [
+          "low",
+          "normal",
+          "high"
+        ],
+        "prediction_labels": [
+          "low",
+          "normal",
+          "high",
+          "<invalid>"
+        ],
+        "counts": [
+          [
+            204,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            204,
+            0,
+            0
+          ],
+          [
+            1,
+            0,
+            203,
+            0
+          ]
+        ]
+      },
+      "joint_accuracy": 0.8905228758169934,
+      "rejected_rate": 0.0,
+      "known_vocabulary_fraction": 0.8983788058521155,
+      "latency_ms": {
+        "p50": 1.6092565001599723,
+        "p95": 2.64322600014566,
+        "samples": 30,
+        "scope": "one ticket; warm tokenization plus decoding"
+      }
+    },
+    {
+      "system": "cosine-generative",
+      "seed": 123,
+      "split": "test",
+      "mode": "generative",
+      "artifact": "/home/nehal/Personal/small-llm-pretraining-finetuning/pretraining/runs/ticket-v2-cosine-123",
+      "model_sha256": "e6ca167801a079100fc12304d4908894eb3f764b6949d57329bdc2dea00dd904",
+      "data_sha256": "04edf74d1fe7af98a5f5153f596293dbca6ea7452c3acd9e8d68bef6a878d4dc",
+      "examples": 612,
+      "intent_accuracy": 0.9624183006535948,
+      "intent_macro_f1": 0.962893907795723,
+      "intent_per_class": {
+        "access_reset": {
+          "support": 102,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "billing_issue": {
+          "support": 102,
+          "precision": 1.0,
+          "recall": 0.9411764705882353,
+          "f1": 0.9696969696969697
+        },
+        "bug_report": {
+          "support": 102,
+          "precision": 0.9306930693069307,
+          "recall": 0.9215686274509803,
+          "f1": 0.9261083743842364
+        },
+        "feature_request": {
+          "support": 102,
+          "precision": 0.8632478632478633,
+          "recall": 0.9901960784313726,
+          "f1": 0.9223744292237442
+        },
+        "service_outage": {
+          "support": 102,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "account_cancellation": {
+          "support": 102,
+          "precision": 1.0,
+          "recall": 0.9215686274509803,
+          "f1": 0.9591836734693878
+        }
+      },
+      "intent_confusion": {
+        "labels": [
+          "access_reset",
+          "billing_issue",
+          "bug_report",
+          "feature_request",
+          "service_outage",
+          "account_cancellation"
+        ],
+        "prediction_labels": [
+          "access_reset",
+          "billing_issue",
+          "bug_report",
+          "feature_request",
+          "service_outage",
+          "account_cancellation",
+          "<invalid>"
+        ],
+        "counts": [
+          [
+            102,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            96,
+            6,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            94,
+            8,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1,
+            101,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            102,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            8,
+            0,
+            94,
+            0
+          ]
+        ]
+      },
+      "priority_accuracy": 1.0,
+      "priority_macro_f1": 1.0,
+      "priority_per_class": {
+        "low": {
+          "support": 204,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "normal": {
+          "support": 204,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "high": {
+          "support": 204,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        }
+      },
+      "priority_confusion": {
+        "labels": [
+          "low",
+          "normal",
+          "high"
+        ],
+        "prediction_labels": [
+          "low",
+          "normal",
+          "high",
+          "<invalid>"
+        ],
+        "counts": [
+          [
+            204,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            204,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            204,
+            0
+          ]
+        ]
+      },
+      "joint_accuracy": 0.9624183006535948,
+      "rejected_rate": 0.0,
+      "known_vocabulary_fraction": 0.8983788058521155,
+      "latency_ms": {
+        "p50": 1.5547149996564258,
+        "p95": 2.071001001240802,
+        "samples": 30,
+        "scope": "one ticket; warm tokenization plus decoding"
+      }
+    },
+    {
+      "system": "pool-generative",
+      "seed": 42,
+      "split": "test",
+      "mode": "generative",
+      "artifact": "/home/nehal/Personal/small-llm-pretraining-finetuning/pretraining/runs/ticket-v2-pool-42",
+      "model_sha256": "606bca382b422994f2489f0e9c57af0166f316b72f7d58f2bcd1704c508f5ffa",
+      "data_sha256": "04edf74d1fe7af98a5f5153f596293dbca6ea7452c3acd9e8d68bef6a878d4dc",
+      "examples": 612,
+      "intent_accuracy": 0.9575163398692811,
+      "intent_macro_f1": 0.9572311922002049,
+      "intent_per_class": {
+        "access_reset": {
+          "support": 102,
+          "precision": 0.9357798165137615,
+          "recall": 1.0,
+          "f1": 0.966824644549763
+        },
+        "billing_issue": {
+          "support": 102,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "bug_report": {
+          "support": 102,
+          "precision": 1.0,
+          "recall": 0.9313725490196079,
+          "f1": 0.9644670050761421
+        },
+        "feature_request": {
+          "support": 102,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "service_outage": {
+          "support": 102,
+          "precision": 0.8429752066115702,
+          "recall": 1.0,
+          "f1": 0.914798206278027
+        },
+        "account_cancellation": {
+          "support": 102,
+          "precision": 1.0,
+          "recall": 0.8137254901960784,
+          "f1": 0.8972972972972973
+        }
+      },
+      "intent_confusion": {
+        "labels": [
+          "access_reset",
+          "billing_issue",
+          "bug_report",
+          "feature_request",
+          "service_outage",
+          "account_cancellation"
+        ],
+        "prediction_labels": [
+          "access_reset",
+          "billing_issue",
+          "bug_report",
+          "feature_request",
+          "service_outage",
+          "account_cancellation",
+          "<invalid>"
+        ],
+        "counts": [
+          [
+            102,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            102,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            7,
+            0,
+            95,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            102,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            102,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            19,
+            83,
+            0
+          ]
+        ]
+      },
+      "priority_accuracy": 0.9967320261437909,
+      "priority_macro_f1": 0.9967319476150427,
+      "priority_per_class": {
+        "low": {
+          "support": 204,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "normal": {
+          "support": 204,
+          "precision": 1.0,
+          "recall": 0.9901960784313726,
+          "f1": 0.9950738916256158
+        },
+        "high": {
+          "support": 204,
+          "precision": 0.9902912621359223,
+          "recall": 1.0,
+          "f1": 0.9951219512195122
+        }
+      },
+      "priority_confusion": {
+        "labels": [
+          "low",
+          "normal",
+          "high"
+        ],
+        "prediction_labels": [
+          "low",
+          "normal",
+          "high",
+          "<invalid>"
+        ],
+        "counts": [
+          [
+            204,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            202,
+            2,
+            0
+          ],
+          [
+            0,
+            0,
+            204,
+            0
+          ]
+        ]
+      },
+      "joint_accuracy": 0.954248366013072,
+      "rejected_rate": 0.0,
+      "known_vocabulary_fraction": 0.8983788058521155,
+      "latency_ms": {
+        "p50": 1.6901119997783098,
+        "p95": 2.7802780005004024,
+        "samples": 30,
+        "scope": "one ticket; warm tokenization plus decoding"
+      }
+    },
+    {
+      "system": "pool-dual",
+      "seed": 42,
+      "split": "test",
+      "mode": "dual",
+      "artifact": "/home/nehal/Personal/small-llm-pretraining-finetuning/pretraining/runs/ticket-v2-pool-42",
+      "model_sha256": "606bca382b422994f2489f0e9c57af0166f316b72f7d58f2bcd1704c508f5ffa",
+      "data_sha256": "04edf74d1fe7af98a5f5153f596293dbca6ea7452c3acd9e8d68bef6a878d4dc",
+      "examples": 612,
+      "intent_accuracy": 0.9738562091503268,
+      "intent_macro_f1": 0.973747646337393,
+      "intent_per_class": {
+        "access_reset": {
+          "support": 102,
+          "precision": 0.8793103448275862,
+          "recall": 1.0,
+          "f1": 0.9357798165137614
+        },
+        "billing_issue": {
+          "support": 102,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "bug_report": {
+          "support": 102,
+          "precision": 1.0,
+          "recall": 0.8627450980392157,
+          "f1": 0.9263157894736842
+        },
+        "feature_request": {
+          "support": 102,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "service_outage": {
+          "support": 102,
+          "precision": 0.9807692307692307,
+          "recall": 1.0,
+          "f1": 0.9902912621359222
+        },
+        "account_cancellation": {
+          "support": 102,
+          "precision": 1.0,
+          "recall": 0.9803921568627451,
+          "f1": 0.99009900990099
+        }
+      },
+      "intent_confusion": {
+        "labels": [
+          "access_reset",
+          "billing_issue",
+          "bug_report",
+          "feature_request",
+          "service_outage",
+          "account_cancellation"
+        ],
+        "prediction_labels": [
+          "access_reset",
+          "billing_issue",
+          "bug_report",
+          "feature_request",
+          "service_outage",
+          "account_cancellation",
+          "<invalid>"
+        ],
+        "counts": [
+          [
+            102,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            102,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            14,
+            0,
+            88,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            102,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            102,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            2,
+            100,
+            0
+          ]
+        ]
+      },
+      "priority_accuracy": 0.9967320261437909,
+      "priority_macro_f1": 0.9967319476150427,
+      "priority_per_class": {
+        "low": {
+          "support": 204,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "normal": {
+          "support": 204,
+          "precision": 1.0,
+          "recall": 0.9901960784313726,
+          "f1": 0.9950738916256158
+        },
+        "high": {
+          "support": 204,
+          "precision": 0.9902912621359223,
+          "recall": 1.0,
+          "f1": 0.9951219512195122
+        }
+      },
+      "priority_confusion": {
+        "labels": [
+          "low",
+          "normal",
+          "high"
+        ],
+        "prediction_labels": [
+          "low",
+          "normal",
+          "high",
+          "<invalid>"
+        ],
+        "counts": [
+          [
+            204,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            202,
+            2,
+            0
+          ],
+          [
+            0,
+            0,
+            204,
+            0
+          ]
+        ]
+      },
+      "joint_accuracy": 0.9705882352941176,
+      "rejected_rate": 0.0,
+      "known_vocabulary_fraction": 0.8983788058521155,
+      "latency_ms": {
+        "p50": 1.6821789995447034,
+        "p95": 2.4927919985202607,
+        "samples": 30,
+        "scope": "one ticket; warm tokenization plus decoding"
+      }
+    },
+    {
+      "system": "pool-generative",
+      "seed": 7,
+      "split": "test",
+      "mode": "generative",
+      "artifact": "/home/nehal/Personal/small-llm-pretraining-finetuning/pretraining/runs/ticket-v2-pool-7",
+      "model_sha256": "1ac345e59d2ca4e807b32c74aa403cbf36828a4730c591a38801e01ea4f1178a",
+      "data_sha256": "04edf74d1fe7af98a5f5153f596293dbca6ea7452c3acd9e8d68bef6a878d4dc",
+      "examples": 612,
+      "intent_accuracy": 0.9787581699346405,
+      "intent_macro_f1": 0.9788660595244596,
+      "intent_per_class": {
+        "access_reset": {
+          "support": 102,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "billing_issue": {
+          "support": 102,
+          "precision": 0.8869565217391304,
+          "recall": 1.0,
+          "f1": 0.9400921658986175
+        },
+        "bug_report": {
+          "support": 102,
+          "precision": 1.0,
+          "recall": 0.8921568627450981,
+          "f1": 0.9430051813471504
+        },
+        "feature_request": {
+          "support": 102,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "service_outage": {
+          "support": 102,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "account_cancellation": {
+          "support": 102,
+          "precision": 1.0,
+          "recall": 0.9803921568627451,
+          "f1": 0.99009900990099
+        }
+      },
+      "intent_confusion": {
+        "labels": [
+          "access_reset",
+          "billing_issue",
+          "bug_report",
+          "feature_request",
+          "service_outage",
+          "account_cancellation"
+        ],
+        "prediction_labels": [
+          "access_reset",
+          "billing_issue",
+          "bug_report",
+          "feature_request",
+          "service_outage",
+          "account_cancellation",
+          "<invalid>"
+        ],
+        "counts": [
+          [
+            102,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            102,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            11,
+            91,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            102,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            102,
+            0,
+            0
+          ],
+          [
+            0,
+            2,
+            0,
+            0,
+            0,
+            100,
+            0
+          ]
+        ]
+      },
+      "priority_accuracy": 1.0,
+      "priority_macro_f1": 1.0,
+      "priority_per_class": {
+        "low": {
+          "support": 204,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "normal": {
+          "support": 204,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "high": {
+          "support": 204,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        }
+      },
+      "priority_confusion": {
+        "labels": [
+          "low",
+          "normal",
+          "high"
+        ],
+        "prediction_labels": [
+          "low",
+          "normal",
+          "high",
+          "<invalid>"
+        ],
+        "counts": [
+          [
+            204,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            204,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            204,
+            0
+          ]
+        ]
+      },
+      "joint_accuracy": 0.9787581699346405,
+      "rejected_rate": 0.0,
+      "known_vocabulary_fraction": 0.8983788058521155,
+      "latency_ms": {
+        "p50": 1.6603569993094425,
+        "p95": 2.166962000046624,
+        "samples": 30,
+        "scope": "one ticket; warm tokenization plus decoding"
+      }
+    },
+    {
+      "system": "pool-dual",
+      "seed": 7,
+      "split": "test",
+      "mode": "dual",
+      "artifact": "/home/nehal/Personal/small-llm-pretraining-finetuning/pretraining/runs/ticket-v2-pool-7",
+      "model_sha256": "1ac345e59d2ca4e807b32c74aa403cbf36828a4730c591a38801e01ea4f1178a",
+      "data_sha256": "04edf74d1fe7af98a5f5153f596293dbca6ea7452c3acd9e8d68bef6a878d4dc",
+      "examples": 612,
+      "intent_accuracy": 0.9918300653594772,
+      "intent_macro_f1": 0.9918251544805367,
+      "intent_per_class": {
+        "access_reset": {
+          "support": 102,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "billing_issue": {
+          "support": 102,
+          "precision": 0.9532710280373832,
+          "recall": 1.0,
+          "f1": 0.9760765550239235
+        },
+        "bug_report": {
+          "support": 102,
+          "precision": 1.0,
+          "recall": 0.9509803921568627,
+          "f1": 0.9748743718592965
+        },
+        "feature_request": {
+          "support": 102,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "service_outage": {
+          "support": 102,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "account_cancellation": {
+          "support": 102,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        }
+      },
+      "intent_confusion": {
+        "labels": [
+          "access_reset",
+          "billing_issue",
+          "bug_report",
+          "feature_request",
+          "service_outage",
+          "account_cancellation"
+        ],
+        "prediction_labels": [
+          "access_reset",
+          "billing_issue",
+          "bug_report",
+          "feature_request",
+          "service_outage",
+          "account_cancellation",
+          "<invalid>"
+        ],
+        "counts": [
+          [
+            102,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            102,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            5,
+            97,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            102,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            102,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            102,
+            0
+          ]
+        ]
+      },
+      "priority_accuracy": 1.0,
+      "priority_macro_f1": 1.0,
+      "priority_per_class": {
+        "low": {
+          "support": 204,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "normal": {
+          "support": 204,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "high": {
+          "support": 204,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        }
+      },
+      "priority_confusion": {
+        "labels": [
+          "low",
+          "normal",
+          "high"
+        ],
+        "prediction_labels": [
+          "low",
+          "normal",
+          "high",
+          "<invalid>"
+        ],
+        "counts": [
+          [
+            204,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            204,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            204,
+            0
+          ]
+        ]
+      },
+      "joint_accuracy": 0.9918300653594772,
+      "rejected_rate": 0.0,
+      "known_vocabulary_fraction": 0.8983788058521155,
+      "latency_ms": {
+        "p50": 1.6417835004176595,
+        "p95": 3.276325000115321,
+        "samples": 30,
+        "scope": "one ticket; warm tokenization plus decoding"
+      }
+    },
+    {
+      "system": "pool-generative",
+      "seed": 123,
+      "split": "test",
+      "mode": "generative",
+      "artifact": "/home/nehal/Personal/small-llm-pretraining-finetuning/pretraining/runs/ticket-v2-pool-123",
+      "model_sha256": "e4c14cbc37a130ccdaaac2f1f399cab17c38015dd05f0486552c2e99f30b1d23",
+      "data_sha256": "04edf74d1fe7af98a5f5153f596293dbca6ea7452c3acd9e8d68bef6a878d4dc",
+      "examples": 612,
+      "intent_accuracy": 0.8970588235294118,
+      "intent_macro_f1": 0.8920939587408517,
+      "intent_per_class": {
+        "access_reset": {
+          "support": 102,
+          "precision": 0.7906976744186046,
+          "recall": 1.0,
+          "f1": 0.8831168831168831
+        },
+        "billing_issue": {
+          "support": 102,
+          "precision": 1.0,
+          "recall": 0.9901960784313726,
+          "f1": 0.9950738916256158
+        },
+        "bug_report": {
+          "support": 102,
+          "precision": 0.9885057471264368,
+          "recall": 0.8431372549019608,
+          "f1": 0.91005291005291
+        },
+        "feature_request": {
+          "support": 102,
+          "precision": 1.0,
+          "recall": 0.5588235294117647,
+          "f1": 0.7169811320754718
+        },
+        "service_outage": {
+          "support": 102,
+          "precision": 0.9901960784313726,
+          "recall": 0.9901960784313726,
+          "f1": 0.9901960784313726
+        },
+        "account_cancellation": {
+          "support": 102,
+          "precision": 0.75,
+          "recall": 1.0,
+          "f1": 0.8571428571428571
+        }
+      },
+      "intent_confusion": {
+        "labels": [
+          "access_reset",
+          "billing_issue",
+          "bug_report",
+          "feature_request",
+          "service_outage",
+          "account_cancellation"
+        ],
+        "prediction_labels": [
+          "access_reset",
+          "billing_issue",
+          "bug_report",
+          "feature_request",
+          "service_outage",
+          "account_cancellation",
+          "<invalid>"
+        ],
+        "counts": [
+          [
+            102,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            101,
+            1,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            16,
+            0,
+            86,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            11,
+            0,
+            0,
+            57,
+            1,
+            33,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            101,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            102,
+            0
+          ]
+        ]
+      },
+      "priority_accuracy": 1.0,
+      "priority_macro_f1": 1.0,
+      "priority_per_class": {
+        "low": {
+          "support": 204,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "normal": {
+          "support": 204,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "high": {
+          "support": 204,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        }
+      },
+      "priority_confusion": {
+        "labels": [
+          "low",
+          "normal",
+          "high"
+        ],
+        "prediction_labels": [
+          "low",
+          "normal",
+          "high",
+          "<invalid>"
+        ],
+        "counts": [
+          [
+            204,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            204,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            204,
+            0
+          ]
+        ]
+      },
+      "joint_accuracy": 0.8970588235294118,
+      "rejected_rate": 0.0,
+      "known_vocabulary_fraction": 0.8983788058521155,
+      "latency_ms": {
+        "p50": 1.6586945002927678,
+        "p95": 2.569452000898309,
+        "samples": 30,
+        "scope": "one ticket; warm tokenization plus decoding"
+      }
+    },
+    {
+      "system": "pool-dual",
+      "seed": 123,
+      "split": "test",
+      "mode": "dual",
+      "artifact": "/home/nehal/Personal/small-llm-pretraining-finetuning/pretraining/runs/ticket-v2-pool-123",
+      "model_sha256": "e4c14cbc37a130ccdaaac2f1f399cab17c38015dd05f0486552c2e99f30b1d23",
+      "data_sha256": "04edf74d1fe7af98a5f5153f596293dbca6ea7452c3acd9e8d68bef6a878d4dc",
+      "examples": 612,
+      "intent_accuracy": 0.9330065359477124,
+      "intent_macro_f1": 0.9330512069635749,
+      "intent_per_class": {
+        "access_reset": {
+          "support": 102,
+          "precision": 0.7611940298507462,
+          "recall": 1.0,
+          "f1": 0.864406779661017
+        },
+        "billing_issue": {
+          "support": 102,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "bug_report": {
+          "support": 102,
+          "precision": 1.0,
+          "recall": 0.8235294117647058,
+          "f1": 0.9032258064516129
+        },
+        "feature_request": {
+          "support": 102,
+          "precision": 1.0,
+          "recall": 0.7745098039215687,
+          "f1": 0.8729281767955802
+        },
+        "service_outage": {
+          "support": 102,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "account_cancellation": {
+          "support": 102,
+          "precision": 0.918918918918919,
+          "recall": 1.0,
+          "f1": 0.9577464788732395
+        }
+      },
+      "intent_confusion": {
+        "labels": [
+          "access_reset",
+          "billing_issue",
+          "bug_report",
+          "feature_request",
+          "service_outage",
+          "account_cancellation"
+        ],
+        "prediction_labels": [
+          "access_reset",
+          "billing_issue",
+          "bug_report",
+          "feature_request",
+          "service_outage",
+          "account_cancellation",
+          "<invalid>"
+        ],
+        "counts": [
+          [
+            102,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            102,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            18,
+            0,
+            84,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            14,
+            0,
+            0,
+            79,
+            0,
+            9,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            102,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            102,
+            0
+          ]
+        ]
+      },
+      "priority_accuracy": 1.0,
+      "priority_macro_f1": 1.0,
+      "priority_per_class": {
+        "low": {
+          "support": 204,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "normal": {
+          "support": 204,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "high": {
+          "support": 204,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        }
+      },
+      "priority_confusion": {
+        "labels": [
+          "low",
+          "normal",
+          "high"
+        ],
+        "prediction_labels": [
+          "low",
+          "normal",
+          "high",
+          "<invalid>"
+        ],
+        "counts": [
+          [
+            204,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            204,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            204,
+            0
+          ]
+        ]
+      },
+      "joint_accuracy": 0.9330065359477124,
+      "rejected_rate": 0.0,
+      "known_vocabulary_fraction": 0.8983788058521155,
+      "latency_ms": {
+        "p50": 1.8051835004371242,
+        "p95": 2.4785859986877767,
+        "samples": 30,
+        "scope": "one ticket; warm tokenization plus decoding"
+      }
+    },
+    {
+      "split": "test",
+      "system": "random-init",
+      "seed": 42,
+      "examples": 612,
+      "intent_accuracy": 0.1781045751633987,
+      "intent_macro_f1": 0.07366012690773105,
+      "intent_per_class": {
+        "access_reset": {
+          "support": 102,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        },
+        "billing_issue": {
+          "support": 102,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        },
+        "bug_report": {
+          "support": 102,
+          "precision": 0.1752212389380531,
+          "recall": 0.9705882352941176,
+          "f1": 0.2968515742128936
+        },
+        "feature_request": {
+          "support": 102,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        },
+        "service_outage": {
+          "support": 102,
+          "precision": 0.14285714285714285,
+          "recall": 0.00980392156862745,
+          "f1": 0.018348623853211007
+        },
+        "account_cancellation": {
+          "support": 102,
+          "precision": 0.225,
+          "recall": 0.08823529411764706,
+          "f1": 0.12676056338028172
+        }
+      },
+      "intent_confusion": {
+        "labels": [
+          "access_reset",
+          "billing_issue",
+          "bug_report",
+          "feature_request",
+          "service_outage",
+          "account_cancellation"
+        ],
+        "prediction_labels": [
+          "access_reset",
+          "billing_issue",
+          "bug_report",
+          "feature_request",
+          "service_outage",
+          "account_cancellation",
+          "<invalid>"
+        ],
+        "counts": [
+          [
+            0,
+            0,
+            94,
+            0,
+            1,
+            7,
+            0
+          ],
+          [
+            0,
+            0,
+            89,
+            0,
+            2,
+            11,
+            0
+          ],
+          [
+            0,
+            0,
+            99,
+            0,
+            0,
+            3,
+            0
+          ],
+          [
+            0,
+            0,
+            96,
+            0,
+            1,
+            5,
+            0
+          ],
+          [
+            0,
+            0,
+            96,
+            0,
+            1,
+            5,
+            0
+          ],
+          [
+            0,
+            0,
+            91,
+            0,
+            2,
+            9,
+            0
+          ]
+        ]
+      },
+      "priority_accuracy": 0.31862745098039214,
+      "priority_macro_f1": 0.27690258349537417,
+      "priority_per_class": {
+        "low": {
+          "support": 204,
+          "precision": 0.3209549071618037,
+          "recall": 0.5931372549019608,
+          "f1": 0.41652323580034417
+        },
+        "normal": {
+          "support": 204,
+          "precision": 0.4,
+          "recall": 0.06862745098039216,
+          "f1": 0.11715481171548119
+        },
+        "high": {
+          "support": 204,
+          "precision": 0.3,
+          "recall": 0.29411764705882354,
+          "f1": 0.29702970297029707
+        }
+      },
+      "priority_confusion": {
+        "labels": [
+          "low",
+          "normal",
+          "high"
+        ],
+        "prediction_labels": [
+          "low",
+          "normal",
+          "high",
+          "<invalid>"
+        ],
+        "counts": [
+          [
+            121,
+            11,
+            72,
+            0
+          ],
+          [
+            122,
+            14,
+            68,
+            0
+          ],
+          [
+            134,
+            10,
+            60,
+            0
+          ]
+        ]
+      },
+      "joint_accuracy": 0.05555555555555555,
+      "rejected_rate": 0.0
+    },
+    {
+      "split": "test",
+      "system": "random-init",
+      "seed": 7,
+      "examples": 612,
+      "intent_accuracy": 0.16013071895424835,
+      "intent_macro_f1": 0.06335341011822995,
+      "intent_per_class": {
+        "access_reset": {
+          "support": 102,
+          "precision": 0.166044776119403,
+          "recall": 0.8725490196078431,
+          "f1": 0.27899686520376177
+        },
+        "billing_issue": {
+          "support": 102,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        },
+        "bug_report": {
+          "support": 102,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        },
+        "feature_request": {
+          "support": 102,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        },
+        "service_outage": {
+          "support": 102,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        },
+        "account_cancellation": {
+          "support": 102,
+          "precision": 0.11842105263157894,
+          "recall": 0.08823529411764706,
+          "f1": 0.10112359550561799
+        }
+      },
+      "intent_confusion": {
+        "labels": [
+          "access_reset",
+          "billing_issue",
+          "bug_report",
+          "feature_request",
+          "service_outage",
+          "account_cancellation"
+        ],
+        "prediction_labels": [
+          "access_reset",
+          "billing_issue",
+          "bug_report",
+          "feature_request",
+          "service_outage",
+          "account_cancellation",
+          "<invalid>"
+        ],
+        "counts": [
+          [
+            89,
+            0,
+            0,
+            0,
+            0,
+            13,
+            0
+          ],
+          [
+            91,
+            0,
+            0,
+            0,
+            0,
+            11,
+            0
+          ],
+          [
+            89,
+            0,
+            0,
+            0,
+            0,
+            13,
+            0
+          ],
+          [
+            97,
+            0,
+            0,
+            0,
+            0,
+            5,
+            0
+          ],
+          [
+            77,
+            0,
+            0,
+            0,
+            0,
+            25,
+            0
+          ],
+          [
+            93,
+            0,
+            0,
+            0,
+            0,
+            9,
+            0
+          ]
+        ]
+      },
+      "priority_accuracy": 0.2973856209150327,
+      "priority_macro_f1": 0.2385019891633852,
+      "priority_per_class": {
+        "low": {
+          "support": 204,
+          "precision": 0.30845771144278605,
+          "recall": 0.30392156862745096,
+          "f1": 0.3061728395061728
+        },
+        "normal": {
+          "support": 204,
+          "precision": 0.295,
+          "recall": 0.5784313725490197,
+          "f1": 0.39072847682119205
+        },
+        "high": {
+          "support": 204,
+          "precision": 0.18181818181818182,
+          "recall": 0.00980392156862745,
+          "f1": 0.018604651162790697
+        }
+      },
+      "priority_confusion": {
+        "labels": [
+          "low",
+          "normal",
+          "high"
+        ],
+        "prediction_labels": [
+          "low",
+          "normal",
+          "high",
+          "<invalid>"
+        ],
+        "counts": [
+          [
+            62,
+            138,
+            4,
+            0
+          ],
+          [
+            81,
+            118,
+            5,
+            0
+          ],
+          [
+            58,
+            144,
+            2,
+            0
+          ]
+        ]
+      },
+      "joint_accuracy": 0.05065359477124183,
+      "rejected_rate": 0.0
+    },
+    {
+      "split": "test",
+      "system": "random-init",
+      "seed": 123,
+      "examples": 612,
+      "intent_accuracy": 0.1830065359477124,
+      "intent_macro_f1": 0.09068941009239516,
+      "intent_per_class": {
+        "access_reset": {
+          "support": 102,
+          "precision": 0.16738197424892703,
+          "recall": 0.38235294117647056,
+          "f1": 0.23283582089552238
+        },
+        "billing_issue": {
+          "support": 102,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        },
+        "bug_report": {
+          "support": 102,
+          "precision": 0.1989100817438692,
+          "recall": 0.7156862745098039,
+          "f1": 0.3113006396588486
+        },
+        "feature_request": {
+          "support": 102,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        },
+        "service_outage": {
+          "support": 102,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        },
+        "account_cancellation": {
+          "support": 102,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        }
+      },
+      "intent_confusion": {
+        "labels": [
+          "access_reset",
+          "billing_issue",
+          "bug_report",
+          "feature_request",
+          "service_outage",
+          "account_cancellation"
+        ],
+        "prediction_labels": [
+          "access_reset",
+          "billing_issue",
+          "bug_report",
+          "feature_request",
+          "service_outage",
+          "account_cancellation",
+          "<invalid>"
+        ],
+        "counts": [
+          [
+            39,
+            0,
+            61,
+            2,
+            0,
+            0,
+            0
+          ],
+          [
+            40,
+            0,
+            61,
+            1,
+            0,
+            0,
+            0
+          ],
+          [
+            28,
+            0,
+            73,
+            1,
+            0,
+            0,
+            0
+          ],
+          [
+            52,
+            0,
+            50,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            39,
+            0,
+            58,
+            5,
+            0,
+            0,
+            0
+          ],
+          [
+            35,
+            0,
+            64,
+            3,
+            0,
+            0,
+            0
+          ]
+        ]
+      },
+      "priority_accuracy": 0.31862745098039214,
+      "priority_macro_f1": 0.23133812844066412,
+      "priority_per_class": {
+        "low": {
+          "support": 204,
+          "precision": 0.31968810916179335,
+          "recall": 0.803921568627451,
+          "f1": 0.45746164574616455
+        },
+        "normal": {
+          "support": 204,
+          "precision": 0.32857142857142857,
+          "recall": 0.11274509803921569,
+          "f1": 0.16788321167883213
+        },
+        "high": {
+          "support": 204,
+          "precision": 0.27586206896551724,
+          "recall": 0.0392156862745098,
+          "f1": 0.06866952789699571
+        }
+      },
+      "priority_confusion": {
+        "labels": [
+          "low",
+          "normal",
+          "high"
+        ],
+        "prediction_labels": [
+          "low",
+          "normal",
+          "high",
+          "<invalid>"
+        ],
+        "counts": [
+          [
+            164,
+            27,
+            13,
+            0
+          ],
+          [
+            173,
+            23,
+            8,
+            0
+          ],
+          [
+            176,
+            20,
+            8,
+            0
+          ]
+        ]
+      },
+      "joint_accuracy": 0.05065359477124183,
+      "rejected_rate": 0.0
+    },
+    {
+      "split": "challenge",
+      "system": "majority",
+      "seed": null,
+      "examples": 180,
+      "intent_accuracy": 0.16666666666666666,
+      "intent_macro_f1": 0.047619047619047616,
+      "intent_per_class": {
+        "access_reset": {
+          "support": 30,
+          "precision": 0.16666666666666666,
+          "recall": 1.0,
+          "f1": 0.2857142857142857
+        },
+        "billing_issue": {
+          "support": 30,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        },
+        "bug_report": {
+          "support": 30,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        },
+        "feature_request": {
+          "support": 30,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        },
+        "service_outage": {
+          "support": 30,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        },
+        "account_cancellation": {
+          "support": 30,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        }
+      },
+      "intent_confusion": {
+        "labels": [
+          "access_reset",
+          "billing_issue",
+          "bug_report",
+          "feature_request",
+          "service_outage",
+          "account_cancellation"
+        ],
+        "prediction_labels": [
+          "access_reset",
+          "billing_issue",
+          "bug_report",
+          "feature_request",
+          "service_outage",
+          "account_cancellation",
+          "<invalid>"
+        ],
+        "counts": [
+          [
+            30,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            30,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            30,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            30,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            30,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            30,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        ]
+      },
+      "priority_accuracy": 0.3333333333333333,
+      "priority_macro_f1": 0.16666666666666666,
+      "priority_per_class": {
+        "low": {
+          "support": 60,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        },
+        "normal": {
+          "support": 60,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        },
+        "high": {
+          "support": 60,
+          "precision": 0.3333333333333333,
+          "recall": 1.0,
+          "f1": 0.5
+        }
+      },
+      "priority_confusion": {
+        "labels": [
+          "low",
+          "normal",
+          "high"
+        ],
+        "prediction_labels": [
+          "low",
+          "normal",
+          "high",
+          "<invalid>"
+        ],
+        "counts": [
+          [
+            0,
+            0,
+            60,
+            0
+          ],
+          [
+            0,
+            0,
+            60,
+            0
+          ],
+          [
+            0,
+            0,
+            60,
+            0
+          ]
+        ]
+      },
+      "joint_accuracy": 0.05555555555555555,
+      "rejected_rate": 0.0
+    },
+    {
+      "split": "challenge",
+      "system": "word_tfidf",
+      "seed": null,
+      "examples": 180,
+      "intent_accuracy": 0.7888888888888889,
+      "intent_macro_f1": 0.7550677554922037,
+      "intent_per_class": {
+        "access_reset": {
+          "support": 30,
+          "precision": 0.9545454545454546,
+          "recall": 0.7,
+          "f1": 0.8076923076923077
+        },
+        "billing_issue": {
+          "support": 30,
+          "precision": 0.84375,
+          "recall": 0.9,
+          "f1": 0.870967741935484
+        },
+        "bug_report": {
+          "support": 30,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "feature_request": {
+          "support": 30,
+          "precision": 0.8333333333333334,
+          "recall": 0.16666666666666666,
+          "f1": 0.2777777777777778
+        },
+        "service_outage": {
+          "support": 30,
+          "precision": 0.6304347826086957,
+          "recall": 0.9666666666666667,
+          "f1": 0.763157894736842
+        },
+        "account_cancellation": {
+          "support": 30,
+          "precision": 0.6818181818181818,
+          "recall": 1.0,
+          "f1": 0.8108108108108109
+        }
+      },
+      "intent_confusion": {
+        "labels": [
+          "access_reset",
+          "billing_issue",
+          "bug_report",
+          "feature_request",
+          "service_outage",
+          "account_cancellation"
+        ],
+        "prediction_labels": [
+          "access_reset",
+          "billing_issue",
+          "bug_report",
+          "feature_request",
+          "service_outage",
+          "account_cancellation",
+          "<invalid>"
+        ],
+        "counts": [
+          [
+            21,
+            0,
+            0,
+            0,
+            0,
+            9,
+            0
+          ],
+          [
+            0,
+            27,
+            0,
+            0,
+            0,
+            3,
+            0
+          ],
+          [
+            0,
+            0,
+            30,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            5,
+            0,
+            5,
+            17,
+            2,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            1,
+            29,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            30,
+            0
+          ]
+        ]
+      },
+      "priority_accuracy": 1.0,
+      "priority_macro_f1": 1.0,
+      "priority_per_class": {
+        "low": {
+          "support": 60,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "normal": {
+          "support": 60,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "high": {
+          "support": 60,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        }
+      },
+      "priority_confusion": {
+        "labels": [
+          "low",
+          "normal",
+          "high"
+        ],
+        "prediction_labels": [
+          "low",
+          "normal",
+          "high",
+          "<invalid>"
+        ],
+        "counts": [
+          [
+            60,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            60,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            60,
+            0
+          ]
+        ]
+      },
+      "joint_accuracy": 0.7888888888888889,
+      "rejected_rate": 0.0
+    },
+    {
+      "split": "challenge",
+      "system": "char_tfidf",
+      "seed": null,
+      "examples": 180,
+      "intent_accuracy": 0.9388888888888889,
+      "intent_macro_f1": 0.9387719560133353,
+      "intent_per_class": {
+        "access_reset": {
+          "support": 30,
+          "precision": 0.9642857142857143,
+          "recall": 0.9,
+          "f1": 0.9310344827586207
+        },
+        "billing_issue": {
+          "support": 30,
+          "precision": 1.0,
+          "recall": 0.8333333333333334,
+          "f1": 0.9090909090909091
+        },
+        "bug_report": {
+          "support": 30,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "feature_request": {
+          "support": 30,
+          "precision": 0.9642857142857143,
+          "recall": 0.9,
+          "f1": 0.9310344827586207
+        },
+        "service_outage": {
+          "support": 30,
+          "precision": 0.9090909090909091,
+          "recall": 1.0,
+          "f1": 0.9523809523809523
+        },
+        "account_cancellation": {
+          "support": 30,
+          "precision": 0.8333333333333334,
+          "recall": 1.0,
+          "f1": 0.9090909090909091
+        }
+      },
+      "intent_confusion": {
+        "labels": [
+          "access_reset",
+          "billing_issue",
+          "bug_report",
+          "feature_request",
+          "service_outage",
+          "account_cancellation"
+        ],
+        "prediction_labels": [
+          "access_reset",
+          "billing_issue",
+          "bug_report",
+          "feature_request",
+          "service_outage",
+          "account_cancellation",
+          "<invalid>"
+        ],
+        "counts": [
+          [
+            27,
+            0,
+            0,
+            0,
+            3,
+            0,
+            0
+          ],
+          [
+            1,
+            25,
+            0,
+            1,
+            0,
+            3,
+            0
+          ],
+          [
+            0,
+            0,
+            30,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            27,
+            0,
+            3,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            30,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            30,
+            0
+          ]
+        ]
+      },
+      "priority_accuracy": 1.0,
+      "priority_macro_f1": 1.0,
+      "priority_per_class": {
+        "low": {
+          "support": 60,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "normal": {
+          "support": 60,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "high": {
+          "support": 60,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        }
+      },
+      "priority_confusion": {
+        "labels": [
+          "low",
+          "normal",
+          "high"
+        ],
+        "prediction_labels": [
+          "low",
+          "normal",
+          "high",
+          "<invalid>"
+        ],
+        "counts": [
+          [
+            60,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            60,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            60,
+            0
+          ]
+        ]
+      },
+      "joint_accuracy": 0.9388888888888889,
+      "rejected_rate": 0.0
+    },
+    {
+      "system": "base-generative",
+      "seed": 42,
+      "split": "challenge",
+      "mode": "generative",
+      "artifact": "/home/nehal/Personal/small-llm-pretraining-finetuning/pretraining/runs/ticket-v2-base-42",
+      "model_sha256": "8a164638354d53a860a37292ad2fb6cf78479f27f83a736fd6be69d40f8cd886",
+      "data_sha256": "97378c0b8c013a0bad5ccdfe17b8d68d9ea40287604887bf37ec17d9736fe7c2",
+      "examples": 180,
+      "intent_accuracy": 0.5555555555555556,
+      "intent_macro_f1": 0.5041427322677322,
+      "intent_per_class": {
+        "access_reset": {
+          "support": 30,
+          "precision": 0.5714285714285714,
+          "recall": 0.6666666666666666,
+          "f1": 0.6153846153846153
+        },
+        "billing_issue": {
+          "support": 30,
+          "precision": 0.75,
+          "recall": 0.3,
+          "f1": 0.4285714285714285
+        },
+        "bug_report": {
+          "support": 30,
+          "precision": 0.96,
+          "recall": 0.8,
+          "f1": 0.8727272727272728
+        },
+        "feature_request": {
+          "support": 30,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        },
+        "service_outage": {
+          "support": 30,
+          "precision": 0.40540540540540543,
+          "recall": 1.0,
+          "f1": 0.5769230769230769
+        },
+        "account_cancellation": {
+          "support": 30,
+          "precision": 0.5,
+          "recall": 0.5666666666666667,
+          "f1": 0.53125
+        }
+      },
+      "intent_confusion": {
+        "labels": [
+          "access_reset",
+          "billing_issue",
+          "bug_report",
+          "feature_request",
+          "service_outage",
+          "account_cancellation"
+        ],
+        "prediction_labels": [
+          "access_reset",
+          "billing_issue",
+          "bug_report",
+          "feature_request",
+          "service_outage",
+          "account_cancellation",
+          "<invalid>"
+        ],
+        "counts": [
+          [
+            20,
+            0,
+            0,
+            0,
+            9,
+            1,
+            0
+          ],
+          [
+            9,
+            9,
+            0,
+            0,
+            1,
+            11,
+            0
+          ],
+          [
+            4,
+            0,
+            24,
+            0,
+            0,
+            2,
+            0
+          ],
+          [
+            2,
+            3,
+            1,
+            0,
+            21,
+            3,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            30,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            13,
+            17,
+            0
+          ]
+        ]
+      },
+      "priority_accuracy": 1.0,
+      "priority_macro_f1": 1.0,
+      "priority_per_class": {
+        "low": {
+          "support": 60,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "normal": {
+          "support": 60,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "high": {
+          "support": 60,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        }
+      },
+      "priority_confusion": {
+        "labels": [
+          "low",
+          "normal",
+          "high"
+        ],
+        "prediction_labels": [
+          "low",
+          "normal",
+          "high",
+          "<invalid>"
+        ],
+        "counts": [
+          [
+            60,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            60,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            60,
+            0
+          ]
+        ]
+      },
+      "joint_accuracy": 0.5555555555555556,
+      "rejected_rate": 0.0,
+      "known_vocabulary_fraction": 0.8862632084534102,
+      "latency_ms": {
+        "p50": 1.607314500688517,
+        "p95": 1.899397000670433,
+        "samples": 30,
+        "scope": "one ticket; warm tokenization plus decoding"
+      }
+    },
+    {
+      "system": "base-generative",
+      "seed": 7,
+      "split": "challenge",
+      "mode": "generative",
+      "artifact": "/home/nehal/Personal/small-llm-pretraining-finetuning/pretraining/runs/ticket-v2-base-7",
+      "model_sha256": "10707fb41d496be348427f98f73cabd9b8ae0c57963826cb461a342d99052548",
+      "data_sha256": "97378c0b8c013a0bad5ccdfe17b8d68d9ea40287604887bf37ec17d9736fe7c2",
+      "examples": 180,
+      "intent_accuracy": 0.6333333333333333,
+      "intent_macro_f1": 0.5544355644355644,
+      "intent_per_class": {
+        "access_reset": {
+          "support": 30,
+          "precision": 0.7,
+          "recall": 0.7,
+          "f1": 0.7
+        },
+        "billing_issue": {
+          "support": 30,
+          "precision": 0.35714285714285715,
+          "recall": 0.16666666666666666,
+          "f1": 0.22727272727272724
+        },
+        "bug_report": {
+          "support": 30,
+          "precision": 0.9666666666666667,
+          "recall": 0.9666666666666667,
+          "f1": 0.9666666666666667
+        },
+        "feature_request": {
+          "support": 30,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        },
+        "service_outage": {
+          "support": 30,
+          "precision": 0.4918032786885246,
+          "recall": 1.0,
+          "f1": 0.6593406593406593
+        },
+        "account_cancellation": {
+          "support": 30,
+          "precision": 0.6444444444444445,
+          "recall": 0.9666666666666667,
+          "f1": 0.7733333333333334
+        }
+      },
+      "intent_confusion": {
+        "labels": [
+          "access_reset",
+          "billing_issue",
+          "bug_report",
+          "feature_request",
+          "service_outage",
+          "account_cancellation"
+        ],
+        "prediction_labels": [
+          "access_reset",
+          "billing_issue",
+          "bug_report",
+          "feature_request",
+          "service_outage",
+          "account_cancellation",
+          "<invalid>"
+        ],
+        "counts": [
+          [
+            21,
+            0,
+            0,
+            0,
+            9,
+            0,
+            0
+          ],
+          [
+            9,
+            5,
+            0,
+            0,
+            0,
+            16,
+            0
+          ],
+          [
+            0,
+            1,
+            29,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            8,
+            1,
+            0,
+            21,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            30,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            1,
+            29,
+            0
+          ]
+        ]
+      },
+      "priority_accuracy": 0.9944444444444445,
+      "priority_macro_f1": 0.9944440586151816,
+      "priority_per_class": {
+        "low": {
+          "support": 60,
+          "precision": 0.9836065573770492,
+          "recall": 1.0,
+          "f1": 0.9917355371900827
+        },
+        "normal": {
+          "support": 60,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "high": {
+          "support": 60,
+          "precision": 1.0,
+          "recall": 0.9833333333333333,
+          "f1": 0.9915966386554621
+        }
+      },
+      "priority_confusion": {
+        "labels": [
+          "low",
+          "normal",
+          "high"
+        ],
+        "prediction_labels": [
+          "low",
+          "normal",
+          "high",
+          "<invalid>"
+        ],
+        "counts": [
+          [
+            60,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            60,
+            0,
+            0
+          ],
+          [
+            1,
+            0,
+            59,
+            0
+          ]
+        ]
+      },
+      "joint_accuracy": 0.6277777777777778,
+      "rejected_rate": 0.0,
+      "known_vocabulary_fraction": 0.8862632084534102,
+      "latency_ms": {
+        "p50": 1.769295499798318,
+        "p95": 3.321707999930368,
+        "samples": 30,
+        "scope": "one ticket; warm tokenization plus decoding"
+      }
+    },
+    {
+      "system": "base-generative",
+      "seed": 123,
+      "split": "challenge",
+      "mode": "generative",
+      "artifact": "/home/nehal/Personal/small-llm-pretraining-finetuning/pretraining/runs/ticket-v2-base-123",
+      "model_sha256": "5934ad7e401e3975783f799490f18ef72e01deffe4ebb589712f6c13c87b78c5",
+      "data_sha256": "97378c0b8c013a0bad5ccdfe17b8d68d9ea40287604887bf37ec17d9736fe7c2",
+      "examples": 180,
+      "intent_accuracy": 0.6277777777777778,
+      "intent_macro_f1": 0.5943371952386437,
+      "intent_per_class": {
+        "access_reset": {
+          "support": 30,
+          "precision": 0.6086956521739131,
+          "recall": 0.9333333333333333,
+          "f1": 0.7368421052631579
+        },
+        "billing_issue": {
+          "support": 30,
+          "precision": 0.6538461538461539,
+          "recall": 0.5666666666666667,
+          "f1": 0.6071428571428571
+        },
+        "bug_report": {
+          "support": 30,
+          "precision": 1.0,
+          "recall": 0.8333333333333334,
+          "f1": 0.9090909090909091
+        },
+        "feature_request": {
+          "support": 30,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        },
+        "service_outage": {
+          "support": 30,
+          "precision": 0.3684210526315789,
+          "recall": 0.7,
+          "f1": 0.48275862068965514
+        },
+        "account_cancellation": {
+          "support": 30,
+          "precision": 0.9565217391304348,
+          "recall": 0.7333333333333333,
+          "f1": 0.8301886792452831
+        }
+      },
+      "intent_confusion": {
+        "labels": [
+          "access_reset",
+          "billing_issue",
+          "bug_report",
+          "feature_request",
+          "service_outage",
+          "account_cancellation"
+        ],
+        "prediction_labels": [
+          "access_reset",
+          "billing_issue",
+          "bug_report",
+          "feature_request",
+          "service_outage",
+          "account_cancellation",
+          "<invalid>"
+        ],
+        "counts": [
+          [
+            28,
+            0,
+            0,
+            0,
+            2,
+            0,
+            0
+          ],
+          [
+            9,
+            17,
+            0,
+            0,
+            3,
+            1,
+            0
+          ],
+          [
+            0,
+            2,
+            25,
+            3,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            7,
+            0,
+            0,
+            23,
+            0,
+            0
+          ],
+          [
+            9,
+            0,
+            0,
+            0,
+            21,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            8,
+            22,
+            0
+          ]
+        ]
+      },
+      "priority_accuracy": 1.0,
+      "priority_macro_f1": 1.0,
+      "priority_per_class": {
+        "low": {
+          "support": 60,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "normal": {
+          "support": 60,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "high": {
+          "support": 60,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        }
+      },
+      "priority_confusion": {
+        "labels": [
+          "low",
+          "normal",
+          "high"
+        ],
+        "prediction_labels": [
+          "low",
+          "normal",
+          "high",
+          "<invalid>"
+        ],
+        "counts": [
+          [
+            60,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            60,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            60,
+            0
+          ]
+        ]
+      },
+      "joint_accuracy": 0.6277777777777778,
+      "rejected_rate": 0.0,
+      "known_vocabulary_fraction": 0.8862632084534102,
+      "latency_ms": {
+        "p50": 1.8719210002018372,
+        "p95": 2.955145999294473,
+        "samples": 30,
+        "scope": "one ticket; warm tokenization plus decoding"
+      }
+    },
+    {
+      "system": "cosine-generative",
+      "seed": 42,
+      "split": "challenge",
+      "mode": "generative",
+      "artifact": "/home/nehal/Personal/small-llm-pretraining-finetuning/pretraining/runs/ticket-v2-cosine-42",
+      "model_sha256": "c97fa8f4ee6294413f1738d2ce95b542182000f324d690afd8318fd87609c069",
+      "data_sha256": "97378c0b8c013a0bad5ccdfe17b8d68d9ea40287604887bf37ec17d9736fe7c2",
+      "examples": 180,
+      "intent_accuracy": 0.48333333333333334,
+      "intent_macro_f1": 0.43028517865593113,
+      "intent_per_class": {
+        "access_reset": {
+          "support": 30,
+          "precision": 0.4074074074074074,
+          "recall": 0.36666666666666664,
+          "f1": 0.38596491228070173
+        },
+        "billing_issue": {
+          "support": 30,
+          "precision": 0.25,
+          "recall": 0.16666666666666666,
+          "f1": 0.2
+        },
+        "bug_report": {
+          "support": 30,
+          "precision": 1.0,
+          "recall": 0.7666666666666667,
+          "f1": 0.8679245283018869
+        },
+        "feature_request": {
+          "support": 30,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        },
+        "service_outage": {
+          "support": 30,
+          "precision": 0.41509433962264153,
+          "recall": 0.7333333333333333,
+          "f1": 0.5301204819277109
+        },
+        "account_cancellation": {
+          "support": 30,
+          "precision": 0.45614035087719296,
+          "recall": 0.8666666666666667,
+          "f1": 0.5977011494252873
+        }
+      },
+      "intent_confusion": {
+        "labels": [
+          "access_reset",
+          "billing_issue",
+          "bug_report",
+          "feature_request",
+          "service_outage",
+          "account_cancellation"
+        ],
+        "prediction_labels": [
+          "access_reset",
+          "billing_issue",
+          "bug_report",
+          "feature_request",
+          "service_outage",
+          "account_cancellation",
+          "<invalid>"
+        ],
+        "counts": [
+          [
+            11,
+            5,
+            0,
+            0,
+            9,
+            5,
+            0
+          ],
+          [
+            9,
+            5,
+            0,
+            0,
+            0,
+            16,
+            0
+          ],
+          [
+            0,
+            1,
+            23,
+            0,
+            0,
+            6,
+            0
+          ],
+          [
+            0,
+            6,
+            0,
+            0,
+            21,
+            3,
+            0
+          ],
+          [
+            7,
+            0,
+            0,
+            0,
+            22,
+            1,
+            0
+          ],
+          [
+            0,
+            3,
+            0,
+            0,
+            1,
+            26,
+            0
+          ]
+        ]
+      },
+      "priority_accuracy": 1.0,
+      "priority_macro_f1": 1.0,
+      "priority_per_class": {
+        "low": {
+          "support": 60,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "normal": {
+          "support": 60,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "high": {
+          "support": 60,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        }
+      },
+      "priority_confusion": {
+        "labels": [
+          "low",
+          "normal",
+          "high"
+        ],
+        "prediction_labels": [
+          "low",
+          "normal",
+          "high",
+          "<invalid>"
+        ],
+        "counts": [
+          [
+            60,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            60,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            60,
+            0
+          ]
+        ]
+      },
+      "joint_accuracy": 0.48333333333333334,
+      "rejected_rate": 0.0,
+      "known_vocabulary_fraction": 0.8862632084534102,
+      "latency_ms": {
+        "p50": 1.6469345009682002,
+        "p95": 2.476564000971848,
+        "samples": 30,
+        "scope": "one ticket; warm tokenization plus decoding"
+      }
+    },
+    {
+      "system": "cosine-generative",
+      "seed": 7,
+      "split": "challenge",
+      "mode": "generative",
+      "artifact": "/home/nehal/Personal/small-llm-pretraining-finetuning/pretraining/runs/ticket-v2-cosine-7",
+      "model_sha256": "8954fc90baf69bf4758c59f83af79a3ff1a733b0cee75af4a0da19335c1e03c1",
+      "data_sha256": "97378c0b8c013a0bad5ccdfe17b8d68d9ea40287604887bf37ec17d9736fe7c2",
+      "examples": 180,
+      "intent_accuracy": 0.5555555555555556,
+      "intent_macro_f1": 0.4933127307490444,
+      "intent_per_class": {
+        "access_reset": {
+          "support": 30,
+          "precision": 0.5384615384615384,
+          "recall": 0.7,
+          "f1": 0.608695652173913
+        },
+        "billing_issue": {
+          "support": 30,
+          "precision": 0.38461538461538464,
+          "recall": 0.16666666666666666,
+          "f1": 0.2325581395348837
+        },
+        "bug_report": {
+          "support": 30,
+          "precision": 1.0,
+          "recall": 0.9666666666666667,
+          "f1": 0.983050847457627
+        },
+        "feature_request": {
+          "support": 30,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        },
+        "service_outage": {
+          "support": 30,
+          "precision": 0.40384615384615385,
+          "recall": 0.7,
+          "f1": 0.5121951219512195
+        },
+        "account_cancellation": {
+          "support": 30,
+          "precision": 0.5106382978723404,
+          "recall": 0.8,
+          "f1": 0.6233766233766233
+        }
+      },
+      "intent_confusion": {
+        "labels": [
+          "access_reset",
+          "billing_issue",
+          "bug_report",
+          "feature_request",
+          "service_outage",
+          "account_cancellation"
+        ],
+        "prediction_labels": [
+          "access_reset",
+          "billing_issue",
+          "bug_report",
+          "feature_request",
+          "service_outage",
+          "account_cancellation",
+          "<invalid>"
+        ],
+        "counts": [
+          [
+            21,
+            0,
+            0,
+            0,
+            2,
+            7,
+            0
+          ],
+          [
+            9,
+            5,
+            0,
+            0,
+            0,
+            16,
+            0
+          ],
+          [
+            0,
+            0,
+            29,
+            0,
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            8,
+            0,
+            0,
+            22,
+            0,
+            0
+          ],
+          [
+            9,
+            0,
+            0,
+            0,
+            21,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            6,
+            24,
+            0
+          ]
+        ]
+      },
+      "priority_accuracy": 0.9944444444444445,
+      "priority_macro_f1": 0.9944440586151816,
+      "priority_per_class": {
+        "low": {
+          "support": 60,
+          "precision": 0.9836065573770492,
+          "recall": 1.0,
+          "f1": 0.9917355371900827
+        },
+        "normal": {
+          "support": 60,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "high": {
+          "support": 60,
+          "precision": 1.0,
+          "recall": 0.9833333333333333,
+          "f1": 0.9915966386554621
+        }
+      },
+      "priority_confusion": {
+        "labels": [
+          "low",
+          "normal",
+          "high"
+        ],
+        "prediction_labels": [
+          "low",
+          "normal",
+          "high",
+          "<invalid>"
+        ],
+        "counts": [
+          [
+            60,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            60,
+            0,
+            0
+          ],
+          [
+            1,
+            0,
+            59,
+            0
+          ]
+        ]
+      },
+      "joint_accuracy": 0.55,
+      "rejected_rate": 0.0,
+      "known_vocabulary_fraction": 0.8862632084534102,
+      "latency_ms": {
+        "p50": 1.552455500132055,
+        "p95": 1.8515209994802717,
+        "samples": 30,
+        "scope": "one ticket; warm tokenization plus decoding"
+      }
+    },
+    {
+      "system": "cosine-generative",
+      "seed": 123,
+      "split": "challenge",
+      "mode": "generative",
+      "artifact": "/home/nehal/Personal/small-llm-pretraining-finetuning/pretraining/runs/ticket-v2-cosine-123",
+      "model_sha256": "e6ca167801a079100fc12304d4908894eb3f764b6949d57329bdc2dea00dd904",
+      "data_sha256": "97378c0b8c013a0bad5ccdfe17b8d68d9ea40287604887bf37ec17d9736fe7c2",
+      "examples": 180,
+      "intent_accuracy": 0.6777777777777778,
+      "intent_macro_f1": 0.6130863838550173,
+      "intent_per_class": {
+        "access_reset": {
+          "support": 30,
+          "precision": 0.6136363636363636,
+          "recall": 0.9,
+          "f1": 0.7297297297297297
+        },
+        "billing_issue": {
+          "support": 30,
+          "precision": 0.6842105263157895,
+          "recall": 0.43333333333333335,
+          "f1": 0.5306122448979592
+        },
+        "bug_report": {
+          "support": 30,
+          "precision": 0.7692307692307693,
+          "recall": 1.0,
+          "f1": 0.8695652173913044
+        },
+        "feature_request": {
+          "support": 30,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        },
+        "service_outage": {
+          "support": 30,
+          "precision": 0.5238095238095238,
+          "recall": 0.7333333333333333,
+          "f1": 0.611111111111111
+        },
+        "account_cancellation": {
+          "support": 30,
+          "precision": 0.8823529411764706,
+          "recall": 1.0,
+          "f1": 0.9375
+        }
+      },
+      "intent_confusion": {
+        "labels": [
+          "access_reset",
+          "billing_issue",
+          "bug_report",
+          "feature_request",
+          "service_outage",
+          "account_cancellation"
+        ],
+        "prediction_labels": [
+          "access_reset",
+          "billing_issue",
+          "bug_report",
+          "feature_request",
+          "service_outage",
+          "account_cancellation",
+          "<invalid>"
+        ],
+        "counts": [
+          [
+            27,
+            0,
+            0,
+            1,
+            2,
+            0,
+            0
+          ],
+          [
+            9,
+            13,
+            3,
+            1,
+            0,
+            4,
+            0
+          ],
+          [
+            0,
+            0,
+            30,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            6,
+            6,
+            0,
+            18,
+            0,
+            0
+          ],
+          [
+            8,
+            0,
+            0,
+            0,
+            22,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            30,
+            0
+          ]
+        ]
+      },
+      "priority_accuracy": 1.0,
+      "priority_macro_f1": 1.0,
+      "priority_per_class": {
+        "low": {
+          "support": 60,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "normal": {
+          "support": 60,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "high": {
+          "support": 60,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        }
+      },
+      "priority_confusion": {
+        "labels": [
+          "low",
+          "normal",
+          "high"
+        ],
+        "prediction_labels": [
+          "low",
+          "normal",
+          "high",
+          "<invalid>"
+        ],
+        "counts": [
+          [
+            60,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            60,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            60,
+            0
+          ]
+        ]
+      },
+      "joint_accuracy": 0.6777777777777778,
+      "rejected_rate": 0.0,
+      "known_vocabulary_fraction": 0.8862632084534102,
+      "latency_ms": {
+        "p50": 1.5901639990261174,
+        "p95": 2.9599169993161922,
+        "samples": 30,
+        "scope": "one ticket; warm tokenization plus decoding"
+      }
+    },
+    {
+      "system": "pool-generative",
+      "seed": 42,
+      "split": "challenge",
+      "mode": "generative",
+      "artifact": "/home/nehal/Personal/small-llm-pretraining-finetuning/pretraining/runs/ticket-v2-pool-42",
+      "model_sha256": "606bca382b422994f2489f0e9c57af0166f316b72f7d58f2bcd1704c508f5ffa",
+      "data_sha256": "97378c0b8c013a0bad5ccdfe17b8d68d9ea40287604887bf37ec17d9736fe7c2",
+      "examples": 180,
+      "intent_accuracy": 0.7055555555555556,
+      "intent_macro_f1": 0.6463408113045932,
+      "intent_per_class": {
+        "access_reset": {
+          "support": 30,
+          "precision": 0.6170212765957447,
+          "recall": 0.9666666666666667,
+          "f1": 0.7532467532467533
+        },
+        "billing_issue": {
+          "support": 30,
+          "precision": 0.75,
+          "recall": 0.5,
+          "f1": 0.6
+        },
+        "bug_report": {
+          "support": 30,
+          "precision": 0.9032258064516129,
+          "recall": 0.9333333333333333,
+          "f1": 0.9180327868852459
+        },
+        "feature_request": {
+          "support": 30,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        },
+        "service_outage": {
+          "support": 30,
+          "precision": 0.5357142857142857,
+          "recall": 1.0,
+          "f1": 0.6976744186046512
+        },
+        "account_cancellation": {
+          "support": 30,
+          "precision": 1.0,
+          "recall": 0.8333333333333334,
+          "f1": 0.9090909090909091
+        }
+      },
+      "intent_confusion": {
+        "labels": [
+          "access_reset",
+          "billing_issue",
+          "bug_report",
+          "feature_request",
+          "service_outage",
+          "account_cancellation"
+        ],
+        "prediction_labels": [
+          "access_reset",
+          "billing_issue",
+          "bug_report",
+          "feature_request",
+          "service_outage",
+          "account_cancellation",
+          "<invalid>"
+        ],
+        "counts": [
+          [
+            29,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0
+          ],
+          [
+            9,
+            15,
+            1,
+            1,
+            4,
+            0,
+            0
+          ],
+          [
+            0,
+            2,
+            28,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            9,
+            3,
+            2,
+            0,
+            16,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            30,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            5,
+            25,
+            0
+          ]
+        ]
+      },
+      "priority_accuracy": 1.0,
+      "priority_macro_f1": 1.0,
+      "priority_per_class": {
+        "low": {
+          "support": 60,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "normal": {
+          "support": 60,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "high": {
+          "support": 60,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        }
+      },
+      "priority_confusion": {
+        "labels": [
+          "low",
+          "normal",
+          "high"
+        ],
+        "prediction_labels": [
+          "low",
+          "normal",
+          "high",
+          "<invalid>"
+        ],
+        "counts": [
+          [
+            60,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            60,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            60,
+            0
+          ]
+        ]
+      },
+      "joint_accuracy": 0.7055555555555556,
+      "rejected_rate": 0.0,
+      "known_vocabulary_fraction": 0.8862632084534102,
+      "latency_ms": {
+        "p50": 1.5791785008332226,
+        "p95": 2.187523999964469,
+        "samples": 30,
+        "scope": "one ticket; warm tokenization plus decoding"
+      }
+    },
+    {
+      "system": "pool-dual",
+      "seed": 42,
+      "split": "challenge",
+      "mode": "dual",
+      "artifact": "/home/nehal/Personal/small-llm-pretraining-finetuning/pretraining/runs/ticket-v2-pool-42",
+      "model_sha256": "606bca382b422994f2489f0e9c57af0166f316b72f7d58f2bcd1704c508f5ffa",
+      "data_sha256": "97378c0b8c013a0bad5ccdfe17b8d68d9ea40287604887bf37ec17d9736fe7c2",
+      "examples": 180,
+      "intent_accuracy": 0.7388888888888889,
+      "intent_macro_f1": 0.6815335231058083,
+      "intent_per_class": {
+        "access_reset": {
+          "support": 30,
+          "precision": 0.5918367346938775,
+          "recall": 0.9666666666666667,
+          "f1": 0.7341772151898733
+        },
+        "billing_issue": {
+          "support": 30,
+          "precision": 0.68,
+          "recall": 0.5666666666666667,
+          "f1": 0.6181818181818183
+        },
+        "bug_report": {
+          "support": 30,
+          "precision": 1.0,
+          "recall": 0.9,
+          "f1": 0.9473684210526316
+        },
+        "feature_request": {
+          "support": 30,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        },
+        "service_outage": {
+          "support": 30,
+          "precision": 0.6521739130434783,
+          "recall": 1.0,
+          "f1": 0.7894736842105263
+        },
+        "account_cancellation": {
+          "support": 30,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        }
+      },
+      "intent_confusion": {
+        "labels": [
+          "access_reset",
+          "billing_issue",
+          "bug_report",
+          "feature_request",
+          "service_outage",
+          "account_cancellation"
+        ],
+        "prediction_labels": [
+          "access_reset",
+          "billing_issue",
+          "bug_report",
+          "feature_request",
+          "service_outage",
+          "account_cancellation",
+          "<invalid>"
+        ],
+        "counts": [
+          [
+            29,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0
+          ],
+          [
+            8,
+            17,
+            0,
+            3,
+            2,
+            0,
+            0
+          ],
+          [
+            0,
+            3,
+            27,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            12,
+            5,
+            0,
+            0,
+            13,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            30,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            30,
+            0
+          ]
+        ]
+      },
+      "priority_accuracy": 1.0,
+      "priority_macro_f1": 1.0,
+      "priority_per_class": {
+        "low": {
+          "support": 60,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "normal": {
+          "support": 60,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "high": {
+          "support": 60,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        }
+      },
+      "priority_confusion": {
+        "labels": [
+          "low",
+          "normal",
+          "high"
+        ],
+        "prediction_labels": [
+          "low",
+          "normal",
+          "high",
+          "<invalid>"
+        ],
+        "counts": [
+          [
+            60,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            60,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            60,
+            0
+          ]
+        ]
+      },
+      "joint_accuracy": 0.7388888888888889,
+      "rejected_rate": 0.0,
+      "known_vocabulary_fraction": 0.8862632084534102,
+      "latency_ms": {
+        "p50": 1.678392000940221,
+        "p95": 2.5166619998344686,
+        "samples": 30,
+        "scope": "one ticket; warm tokenization plus decoding"
+      }
+    },
+    {
+      "system": "pool-generative",
+      "seed": 7,
+      "split": "challenge",
+      "mode": "generative",
+      "artifact": "/home/nehal/Personal/small-llm-pretraining-finetuning/pretraining/runs/ticket-v2-pool-7",
+      "model_sha256": "1ac345e59d2ca4e807b32c74aa403cbf36828a4730c591a38801e01ea4f1178a",
+      "data_sha256": "97378c0b8c013a0bad5ccdfe17b8d68d9ea40287604887bf37ec17d9736fe7c2",
+      "examples": 180,
+      "intent_accuracy": 0.7722222222222223,
+      "intent_macro_f1": 0.7544099712883742,
+      "intent_per_class": {
+        "access_reset": {
+          "support": 30,
+          "precision": 1.0,
+          "recall": 0.9,
+          "f1": 0.9473684210526316
+        },
+        "billing_issue": {
+          "support": 30,
+          "precision": 0.7878787878787878,
+          "recall": 0.8666666666666667,
+          "f1": 0.8253968253968254
+        },
+        "bug_report": {
+          "support": 30,
+          "precision": 0.9285714285714286,
+          "recall": 0.8666666666666667,
+          "f1": 0.896551724137931
+        },
+        "feature_request": {
+          "support": 30,
+          "precision": 0.5,
+          "recall": 0.2,
+          "f1": 0.28571428571428575
+        },
+        "service_outage": {
+          "support": 30,
+          "precision": 0.5555555555555556,
+          "recall": 1.0,
+          "f1": 0.7142857142857143
+        },
+        "account_cancellation": {
+          "support": 30,
+          "precision": 0.9230769230769231,
+          "recall": 0.8,
+          "f1": 0.8571428571428571
+        }
+      },
+      "intent_confusion": {
+        "labels": [
+          "access_reset",
+          "billing_issue",
+          "bug_report",
+          "feature_request",
+          "service_outage",
+          "account_cancellation"
+        ],
+        "prediction_labels": [
+          "access_reset",
+          "billing_issue",
+          "bug_report",
+          "feature_request",
+          "service_outage",
+          "account_cancellation",
+          "<invalid>"
+        ],
+        "counts": [
+          [
+            27,
+            2,
+            0,
+            0,
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            26,
+            0,
+            2,
+            1,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            26,
+            4,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            5,
+            2,
+            6,
+            17,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            30,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            6,
+            24,
+            0
+          ]
+        ]
+      },
+      "priority_accuracy": 1.0,
+      "priority_macro_f1": 1.0,
+      "priority_per_class": {
+        "low": {
+          "support": 60,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "normal": {
+          "support": 60,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "high": {
+          "support": 60,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        }
+      },
+      "priority_confusion": {
+        "labels": [
+          "low",
+          "normal",
+          "high"
+        ],
+        "prediction_labels": [
+          "low",
+          "normal",
+          "high",
+          "<invalid>"
+        ],
+        "counts": [
+          [
+            60,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            60,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            60,
+            0
+          ]
+        ]
+      },
+      "joint_accuracy": 0.7722222222222223,
+      "rejected_rate": 0.0,
+      "known_vocabulary_fraction": 0.8862632084534102,
+      "latency_ms": {
+        "p50": 1.6020940001908457,
+        "p95": 2.320222998605459,
+        "samples": 30,
+        "scope": "one ticket; warm tokenization plus decoding"
+      }
+    },
+    {
+      "system": "pool-dual",
+      "seed": 7,
+      "split": "challenge",
+      "mode": "dual",
+      "artifact": "/home/nehal/Personal/small-llm-pretraining-finetuning/pretraining/runs/ticket-v2-pool-7",
+      "model_sha256": "1ac345e59d2ca4e807b32c74aa403cbf36828a4730c591a38801e01ea4f1178a",
+      "data_sha256": "97378c0b8c013a0bad5ccdfe17b8d68d9ea40287604887bf37ec17d9736fe7c2",
+      "examples": 180,
+      "intent_accuracy": 0.7888888888888889,
+      "intent_macro_f1": 0.7884654685551451,
+      "intent_per_class": {
+        "access_reset": {
+          "support": 30,
+          "precision": 1.0,
+          "recall": 0.6666666666666666,
+          "f1": 0.8
+        },
+        "billing_issue": {
+          "support": 30,
+          "precision": 0.6578947368421053,
+          "recall": 0.8333333333333334,
+          "f1": 0.7352941176470588
+        },
+        "bug_report": {
+          "support": 30,
+          "precision": 1.0,
+          "recall": 0.8666666666666667,
+          "f1": 0.9285714285714286
+        },
+        "feature_request": {
+          "support": 30,
+          "precision": 0.7272727272727273,
+          "recall": 0.5333333333333333,
+          "f1": 0.6153846153846153
+        },
+        "service_outage": {
+          "support": 30,
+          "precision": 0.6521739130434783,
+          "recall": 1.0,
+          "f1": 0.7894736842105263
+        },
+        "account_cancellation": {
+          "support": 30,
+          "precision": 0.8928571428571429,
+          "recall": 0.8333333333333334,
+          "f1": 0.8620689655172413
+        }
+      },
+      "intent_confusion": {
+        "labels": [
+          "access_reset",
+          "billing_issue",
+          "bug_report",
+          "feature_request",
+          "service_outage",
+          "account_cancellation"
+        ],
+        "prediction_labels": [
+          "access_reset",
+          "billing_issue",
+          "bug_report",
+          "feature_request",
+          "service_outage",
+          "account_cancellation",
+          "<invalid>"
+        ],
+        "counts": [
+          [
+            20,
+            8,
+            0,
+            0,
+            0,
+            2,
+            0
+          ],
+          [
+            0,
+            25,
+            0,
+            4,
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            2,
+            26,
+            2,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            3,
+            0,
+            16,
+            11,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            30,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            5,
+            25,
+            0
+          ]
+        ]
+      },
+      "priority_accuracy": 1.0,
+      "priority_macro_f1": 1.0,
+      "priority_per_class": {
+        "low": {
+          "support": 60,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "normal": {
+          "support": 60,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "high": {
+          "support": 60,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        }
+      },
+      "priority_confusion": {
+        "labels": [
+          "low",
+          "normal",
+          "high"
+        ],
+        "prediction_labels": [
+          "low",
+          "normal",
+          "high",
+          "<invalid>"
+        ],
+        "counts": [
+          [
+            60,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            60,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            60,
+            0
+          ]
+        ]
+      },
+      "joint_accuracy": 0.7888888888888889,
+      "rejected_rate": 0.0,
+      "known_vocabulary_fraction": 0.8862632084534102,
+      "latency_ms": {
+        "p50": 1.6213150001931353,
+        "p95": 2.2073730015108595,
+        "samples": 30,
+        "scope": "one ticket; warm tokenization plus decoding"
+      }
+    },
+    {
+      "system": "pool-generative",
+      "seed": 123,
+      "split": "challenge",
+      "mode": "generative",
+      "artifact": "/home/nehal/Personal/small-llm-pretraining-finetuning/pretraining/runs/ticket-v2-pool-123",
+      "model_sha256": "e4c14cbc37a130ccdaaac2f1f399cab17c38015dd05f0486552c2e99f30b1d23",
+      "data_sha256": "97378c0b8c013a0bad5ccdfe17b8d68d9ea40287604887bf37ec17d9736fe7c2",
+      "examples": 180,
+      "intent_accuracy": 0.6555555555555556,
+      "intent_macro_f1": 0.5728322667187766,
+      "intent_per_class": {
+        "access_reset": {
+          "support": 30,
+          "precision": 0.7073170731707317,
+          "recall": 0.9666666666666667,
+          "f1": 0.8169014084507042
+        },
+        "billing_issue": {
+          "support": 30,
+          "precision": 1.0,
+          "recall": 0.2,
+          "f1": 0.33333333333333337
+        },
+        "bug_report": {
+          "support": 30,
+          "precision": 1.0,
+          "recall": 0.7666666666666667,
+          "f1": 0.8679245283018869
+        },
+        "feature_request": {
+          "support": 30,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        },
+        "service_outage": {
+          "support": 30,
+          "precision": 0.6122448979591837,
+          "recall": 1.0,
+          "f1": 0.759493670886076
+        },
+        "account_cancellation": {
+          "support": 30,
+          "precision": 0.4918032786885246,
+          "recall": 1.0,
+          "f1": 0.6593406593406593
+        }
+      },
+      "intent_confusion": {
+        "labels": [
+          "access_reset",
+          "billing_issue",
+          "bug_report",
+          "feature_request",
+          "service_outage",
+          "account_cancellation"
+        ],
+        "prediction_labels": [
+          "access_reset",
+          "billing_issue",
+          "bug_report",
+          "feature_request",
+          "service_outage",
+          "account_cancellation",
+          "<invalid>"
+        ],
+        "counts": [
+          [
+            29,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0
+          ],
+          [
+            9,
+            6,
+            0,
+            0,
+            0,
+            15,
+            0
+          ],
+          [
+            0,
+            0,
+            23,
+            0,
+            4,
+            3,
+            0
+          ],
+          [
+            3,
+            0,
+            0,
+            0,
+            15,
+            12,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            30,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            30,
+            0
+          ]
+        ]
+      },
+      "priority_accuracy": 1.0,
+      "priority_macro_f1": 1.0,
+      "priority_per_class": {
+        "low": {
+          "support": 60,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "normal": {
+          "support": 60,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "high": {
+          "support": 60,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        }
+      },
+      "priority_confusion": {
+        "labels": [
+          "low",
+          "normal",
+          "high"
+        ],
+        "prediction_labels": [
+          "low",
+          "normal",
+          "high",
+          "<invalid>"
+        ],
+        "counts": [
+          [
+            60,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            60,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            60,
+            0
+          ]
+        ]
+      },
+      "joint_accuracy": 0.6555555555555556,
+      "rejected_rate": 0.0,
+      "known_vocabulary_fraction": 0.8862632084534102,
+      "latency_ms": {
+        "p50": 1.6035710004871362,
+        "p95": 2.3465130016120384,
+        "samples": 30,
+        "scope": "one ticket; warm tokenization plus decoding"
+      }
+    },
+    {
+      "system": "pool-dual",
+      "seed": 123,
+      "split": "challenge",
+      "mode": "dual",
+      "artifact": "/home/nehal/Personal/small-llm-pretraining-finetuning/pretraining/runs/ticket-v2-pool-123",
+      "model_sha256": "e4c14cbc37a130ccdaaac2f1f399cab17c38015dd05f0486552c2e99f30b1d23",
+      "data_sha256": "97378c0b8c013a0bad5ccdfe17b8d68d9ea40287604887bf37ec17d9736fe7c2",
+      "examples": 180,
+      "intent_accuracy": 0.6666666666666666,
+      "intent_macro_f1": 0.5905840734691079,
+      "intent_per_class": {
+        "access_reset": {
+          "support": 30,
+          "precision": 0.725,
+          "recall": 0.9666666666666667,
+          "f1": 0.8285714285714285
+        },
+        "billing_issue": {
+          "support": 30,
+          "precision": 1.0,
+          "recall": 0.26666666666666666,
+          "f1": 0.4210526315789474
+        },
+        "bug_report": {
+          "support": 30,
+          "precision": 1.0,
+          "recall": 0.8,
+          "f1": 0.888888888888889
+        },
+        "feature_request": {
+          "support": 30,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        },
+        "service_outage": {
+          "support": 30,
+          "precision": 0.5357142857142857,
+          "recall": 1.0,
+          "f1": 0.6976744186046512
+        },
+        "account_cancellation": {
+          "support": 30,
+          "precision": 0.5576923076923077,
+          "recall": 0.9666666666666667,
+          "f1": 0.7073170731707317
+        }
+      },
+      "intent_confusion": {
+        "labels": [
+          "access_reset",
+          "billing_issue",
+          "bug_report",
+          "feature_request",
+          "service_outage",
+          "account_cancellation"
+        ],
+        "prediction_labels": [
+          "access_reset",
+          "billing_issue",
+          "bug_report",
+          "feature_request",
+          "service_outage",
+          "account_cancellation",
+          "<invalid>"
+        ],
+        "counts": [
+          [
+            29,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0
+          ],
+          [
+            9,
+            8,
+            0,
+            0,
+            1,
+            12,
+            0
+          ],
+          [
+            0,
+            0,
+            24,
+            0,
+            5,
+            1,
+            0
+          ],
+          [
+            2,
+            0,
+            0,
+            0,
+            19,
+            9,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            30,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            1,
+            29,
+            0
+          ]
+        ]
+      },
+      "priority_accuracy": 1.0,
+      "priority_macro_f1": 1.0,
+      "priority_per_class": {
+        "low": {
+          "support": 60,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "normal": {
+          "support": 60,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "high": {
+          "support": 60,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        }
+      },
+      "priority_confusion": {
+        "labels": [
+          "low",
+          "normal",
+          "high"
+        ],
+        "prediction_labels": [
+          "low",
+          "normal",
+          "high",
+          "<invalid>"
+        ],
+        "counts": [
+          [
+            60,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            60,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            60,
+            0
+          ]
+        ]
+      },
+      "joint_accuracy": 0.6666666666666666,
+      "rejected_rate": 0.0,
+      "known_vocabulary_fraction": 0.8862632084534102,
+      "latency_ms": {
+        "p50": 2.0064209993506665,
+        "p95": 2.9320779995032353,
+        "samples": 30,
+        "scope": "one ticket; warm tokenization plus decoding"
+      }
+    },
+    {
+      "split": "challenge",
+      "system": "random-init",
+      "seed": 42,
+      "examples": 180,
+      "intent_accuracy": 0.17222222222222222,
+      "intent_macro_f1": 0.05936209384485246,
+      "intent_per_class": {
+        "access_reset": {
+          "support": 30,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        },
+        "billing_issue": {
+          "support": 30,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        },
+        "bug_report": {
+          "support": 30,
+          "precision": 0.17341040462427745,
+          "recall": 1.0,
+          "f1": 0.29556650246305416
+        },
+        "feature_request": {
+          "support": 30,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        },
+        "service_outage": {
+          "support": 30,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        },
+        "account_cancellation": {
+          "support": 30,
+          "precision": 0.3333333333333333,
+          "recall": 0.03333333333333333,
+          "f1": 0.0606060606060606
+        }
+      },
+      "intent_confusion": {
+        "labels": [
+          "access_reset",
+          "billing_issue",
+          "bug_report",
+          "feature_request",
+          "service_outage",
+          "account_cancellation"
+        ],
+        "prediction_labels": [
+          "access_reset",
+          "billing_issue",
+          "bug_report",
+          "feature_request",
+          "service_outage",
+          "account_cancellation",
+          "<invalid>"
+        ],
+        "counts": [
+          [
+            0,
+            0,
+            26,
+            0,
+            4,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            28,
+            0,
+            0,
+            2,
+            0
+          ],
+          [
+            0,
+            0,
+            30,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            30,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            30,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            29,
+            0,
+            0,
+            1,
+            0
+          ]
+        ]
+      },
+      "priority_accuracy": 0.2833333333333333,
+      "priority_macro_f1": 0.22376364804110468,
+      "priority_per_class": {
+        "low": {
+          "support": 60,
+          "precision": 0.30973451327433627,
+          "recall": 0.5833333333333334,
+          "f1": 0.4046242774566474
+        },
+        "normal": {
+          "support": 60,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        },
+        "high": {
+          "support": 60,
+          "precision": 0.26666666666666666,
+          "recall": 0.26666666666666666,
+          "f1": 0.26666666666666666
+        }
+      },
+      "priority_confusion": {
+        "labels": [
+          "low",
+          "normal",
+          "high"
+        ],
+        "prediction_labels": [
+          "low",
+          "normal",
+          "high",
+          "<invalid>"
+        ],
+        "counts": [
+          [
+            35,
+            2,
+            23,
+            0
+          ],
+          [
+            39,
+            0,
+            21,
+            0
+          ],
+          [
+            39,
+            5,
+            16,
+            0
+          ]
+        ]
+      },
+      "joint_accuracy": 0.06666666666666667,
+      "rejected_rate": 0.0
+    },
+    {
+      "split": "challenge",
+      "system": "random-init",
+      "seed": 7,
+      "examples": 180,
+      "intent_accuracy": 0.17222222222222222,
+      "intent_macro_f1": 0.07993882073852109,
+      "intent_per_class": {
+        "access_reset": {
+          "support": 30,
+          "precision": 0.16556291390728478,
+          "recall": 0.8333333333333334,
+          "f1": 0.27624309392265195
+        },
+        "billing_issue": {
+          "support": 30,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        },
+        "bug_report": {
+          "support": 30,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        },
+        "feature_request": {
+          "support": 30,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        },
+        "service_outage": {
+          "support": 30,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        },
+        "account_cancellation": {
+          "support": 30,
+          "precision": 0.20689655172413793,
+          "recall": 0.2,
+          "f1": 0.20338983050847456
+        }
+      },
+      "intent_confusion": {
+        "labels": [
+          "access_reset",
+          "billing_issue",
+          "bug_report",
+          "feature_request",
+          "service_outage",
+          "account_cancellation"
+        ],
+        "prediction_labels": [
+          "access_reset",
+          "billing_issue",
+          "bug_report",
+          "feature_request",
+          "service_outage",
+          "account_cancellation",
+          "<invalid>"
+        ],
+        "counts": [
+          [
+            25,
+            0,
+            0,
+            0,
+            0,
+            5,
+            0
+          ],
+          [
+            29,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0
+          ],
+          [
+            28,
+            0,
+            0,
+            0,
+            0,
+            2,
+            0
+          ],
+          [
+            26,
+            0,
+            0,
+            0,
+            0,
+            4,
+            0
+          ],
+          [
+            19,
+            0,
+            0,
+            0,
+            0,
+            11,
+            0
+          ],
+          [
+            24,
+            0,
+            0,
+            0,
+            0,
+            6,
+            0
+          ]
+        ]
+      },
+      "priority_accuracy": 0.3055555555555556,
+      "priority_macro_f1": 0.23023504273504272,
+      "priority_per_class": {
+        "low": {
+          "support": 60,
+          "precision": 0.25,
+          "recall": 0.18333333333333332,
+          "f1": 0.2115384615384615
+        },
+        "normal": {
+          "support": 60,
+          "precision": 0.32575757575757575,
+          "recall": 0.7166666666666667,
+          "f1": 0.44791666666666663
+        },
+        "high": {
+          "support": 60,
+          "precision": 0.25,
+          "recall": 0.016666666666666666,
+          "f1": 0.03125
+        }
+      },
+      "priority_confusion": {
+        "labels": [
+          "low",
+          "normal",
+          "high"
+        ],
+        "prediction_labels": [
+          "low",
+          "normal",
+          "high",
+          "<invalid>"
+        ],
+        "counts": [
+          [
+            11,
+            46,
+            3,
+            0
+          ],
+          [
+            17,
+            43,
+            0,
+            0
+          ],
+          [
+            16,
+            43,
+            1,
+            0
+          ]
+        ]
+      },
+      "joint_accuracy": 0.044444444444444446,
+      "rejected_rate": 0.0
+    },
+    {
+      "split": "challenge",
+      "system": "random-init",
+      "seed": 123,
+      "examples": 180,
+      "intent_accuracy": 0.18888888888888888,
+      "intent_macro_f1": 0.11763516993630241,
+      "intent_per_class": {
+        "access_reset": {
+          "support": 30,
+          "precision": 0.19230769230769232,
+          "recall": 0.3333333333333333,
+          "f1": 0.2439024390243902
+        },
+        "billing_issue": {
+          "support": 30,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        },
+        "bug_report": {
+          "support": 30,
+          "precision": 0.17391304347826086,
+          "recall": 0.6666666666666666,
+          "f1": 0.27586206896551724
+        },
+        "feature_request": {
+          "support": 30,
+          "precision": 0.3076923076923077,
+          "recall": 0.13333333333333333,
+          "f1": 0.18604651162790697
+        },
+        "service_outage": {
+          "support": 30,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        },
+        "account_cancellation": {
+          "support": 30,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        }
+      },
+      "intent_confusion": {
+        "labels": [
+          "access_reset",
+          "billing_issue",
+          "bug_report",
+          "feature_request",
+          "service_outage",
+          "account_cancellation"
+        ],
+        "prediction_labels": [
+          "access_reset",
+          "billing_issue",
+          "bug_report",
+          "feature_request",
+          "service_outage",
+          "account_cancellation",
+          "<invalid>"
+        ],
+        "counts": [
+          [
+            10,
+            0,
+            20,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            9,
+            0,
+            20,
+            1,
+            0,
+            0,
+            0
+          ],
+          [
+            7,
+            0,
+            20,
+            3,
+            0,
+            0,
+            0
+          ],
+          [
+            10,
+            0,
+            16,
+            4,
+            0,
+            0,
+            0
+          ],
+          [
+            9,
+            0,
+            19,
+            2,
+            0,
+            0,
+            0
+          ],
+          [
+            7,
+            0,
+            20,
+            3,
+            0,
+            0,
+            0
+          ]
+        ]
+      },
+      "priority_accuracy": 0.31666666666666665,
+      "priority_macro_f1": 0.2257254772150502,
+      "priority_per_class": {
+        "low": {
+          "support": 60,
+          "precision": 0.3223684210526316,
+          "recall": 0.8166666666666667,
+          "f1": 0.46226415094339623
+        },
+        "normal": {
+          "support": 60,
+          "precision": 0.3125,
+          "recall": 0.08333333333333333,
+          "f1": 0.13157894736842105
+        },
+        "high": {
+          "support": 60,
+          "precision": 0.25,
+          "recall": 0.05,
+          "f1": 0.08333333333333334
+        }
+      },
+      "priority_confusion": {
+        "labels": [
+          "low",
+          "normal",
+          "high"
+        ],
+        "prediction_labels": [
+          "low",
+          "normal",
+          "high",
+          "<invalid>"
+        ],
+        "counts": [
+          [
+            49,
+            5,
+            6,
+            0
+          ],
+          [
+            52,
+            5,
+            3,
+            0
+          ],
+          [
+            51,
+            6,
+            3,
+            0
+          ]
+        ]
+      },
+      "joint_accuracy": 0.044444444444444446,
+      "rejected_rate": 0.0
+    }
+  ],
+  "paired_intervals": {
+    "test": {
+      "difference": -0.0718954248366013,
+      "lower_95": -0.16912972085385877,
+      "upper_95": -0.0016,
+      "template_groups": 24,
+      "samples": 2000,
+      "seed": 2026,
+      "method": "paired template-cluster bootstrap; synthetic-template uncertainty only"
+    },
+    "challenge": {
+      "difference": -0.38333333333333336,
+      "lower_95": -0.5898876404494382,
+      "upper_95": -0.19883040935672514,
+      "template_groups": 18,
+      "samples": 2000,
+      "seed": 2026,
+      "method": "paired template-cluster bootstrap; synthetic-template uncertainty only"
+    }
+  },
+  "runs": {
+    "base-42": {
+      "run_id": "ticket-v2-base-42",
+      "status": "completed",
+      "seed": 42,
+      "dataset": "ticket-v2",
+      "config_hash": "decb3bcf4ee8224173e1e177c87ff63165ceb367fc470e78a327e44403448e22",
+      "data_hashes": {
+        "train": "3821c211136ce107185ca1a2b57455ca93eaf37f3921335a5e056285d499672f",
+        "val": "347be792882486c1888e1ad45a7674d80432c8ffd1e861243f91db0cda767224",
+        "test": "04edf74d1fe7af98a5f5153f596293dbca6ea7452c3acd9e8d68bef6a878d4dc",
+        "challenge": "97378c0b8c013a0bad5ccdfe17b8d68d9ea40287604887bf37ec17d9736fe7c2"
+      },
+      "source_hashes": {
+        "baselines.py": "f338a5db564adf85a1d387760412af0a18947c87c7f091340385853efb315c19",
+        "benchmark.py": "d43d783420b4dfb35dba0e8aabecf29a7c11d0a4e3bdafb807551d3fd05bc30c",
+        "config.py": "b9672853ec9c4623fe1a4fe7c02cb80f5a31268ee944bdb75b0198773bd2fba5",
+        "data.py": "1959c622ac7df31ae7e9cd85c07a99e7ed7abef1ee79ec62371a1311e6ab5c3f",
+        "evaluate.py": "220ca33a4711ee4247548bee8cb05304c23d267880a3f8ae3f041c57c9a75208",
+        "inference.py": "ab0b602b2831edc5262dd1dba12229a90940df7ddffa696b37ac48c05fbd3400",
+        "model.py": "51b25c8b5f46f410756ebf7e58c36100392e2ce23052daf8927681a79861a0ad",
+        "report.py": "a859b2a855857d5f3f80839a7aed35a4216d0db18c6fa1cdfb8f1ca9f0a52d53",
+        "tokenizer.py": "06e5bce746a9c89c7951c2fe5809c3e64af37c2bce96b0343103580625d5e690",
+        "train.py": "aa1dfc0721cff7aa54be0c79aab3d694f5c6327773397af0b523d8c5908d4b3d"
+      },
+      "pooling": "exclude_separator",
+      "parameter_count": 655872,
+      "trainable_parameters": 655872,
+      "initial_parameters_sha256": "74bccfd318c6a9c07d99a9f834f1a3ee6786a5b297758892e090cdd8c50512e7",
+      "python": "3.12.12",
+      "torch": "2.8.0+cpu",
+      "platform": "Linux-6.18.54.1-microsoft-standard-WSL2-x86_64-with-glibc2.35",
+      "threads": 2,
+      "device": "cpu",
+      "train_examples": 3600,
+      "architecture": {
+        "vocab_size": 363,
+        "max_seq_len": 112,
+        "n_layer": 3,
+        "n_head": 4,
+        "n_embd": 128,
+        "dropout": 0.1
+      },
+      "selection": "minimum validation answer-token cross-entropy; earliest epoch on ties",
+      "lock_sha256": "01ed724113c2c8caf9e63f4abbab1bc414e29a0fc367d1c30669b5a6f5d9a380",
+      "git_commit": "8252b5d7b4df4fb91a7a3db05f3d6143a04e126a",
+      "git_dirty": true,
+      "selected_epoch": 3,
+      "steps": 570,
+      "best_val_answer_ce": 0.11219851322033826,
+      "elapsed_seconds": 61.95901833800053,
+      "peak_process_rss_mib": 542.4296875,
+      "artifact_hashes": {
+        "initial.pt": "e6bef37da345afa27ec11220a5217978b15e06e714ca12161631c067c598e6bc",
+        "model.pt": "8a164638354d53a860a37292ad2fb6cf78479f27f83a736fd6be69d40f8cd886"
+      }
+    },
+    "base-7": {
+      "run_id": "ticket-v2-base-7",
+      "status": "completed",
+      "seed": 7,
+      "dataset": "ticket-v2",
+      "config_hash": "67b0d2301e69bfd32ac9d4ce681bd856c37628380e68e1ffba1dbd91e175c48c",
+      "data_hashes": {
+        "train": "3821c211136ce107185ca1a2b57455ca93eaf37f3921335a5e056285d499672f",
+        "val": "347be792882486c1888e1ad45a7674d80432c8ffd1e861243f91db0cda767224",
+        "test": "04edf74d1fe7af98a5f5153f596293dbca6ea7452c3acd9e8d68bef6a878d4dc",
+        "challenge": "97378c0b8c013a0bad5ccdfe17b8d68d9ea40287604887bf37ec17d9736fe7c2"
+      },
+      "source_hashes": {
+        "baselines.py": "f338a5db564adf85a1d387760412af0a18947c87c7f091340385853efb315c19",
+        "benchmark.py": "d43d783420b4dfb35dba0e8aabecf29a7c11d0a4e3bdafb807551d3fd05bc30c",
+        "config.py": "b9672853ec9c4623fe1a4fe7c02cb80f5a31268ee944bdb75b0198773bd2fba5",
+        "data.py": "1959c622ac7df31ae7e9cd85c07a99e7ed7abef1ee79ec62371a1311e6ab5c3f",
+        "evaluate.py": "220ca33a4711ee4247548bee8cb05304c23d267880a3f8ae3f041c57c9a75208",
+        "inference.py": "ab0b602b2831edc5262dd1dba12229a90940df7ddffa696b37ac48c05fbd3400",
+        "model.py": "51b25c8b5f46f410756ebf7e58c36100392e2ce23052daf8927681a79861a0ad",
+        "report.py": "a859b2a855857d5f3f80839a7aed35a4216d0db18c6fa1cdfb8f1ca9f0a52d53",
+        "tokenizer.py": "06e5bce746a9c89c7951c2fe5809c3e64af37c2bce96b0343103580625d5e690",
+        "train.py": "aa1dfc0721cff7aa54be0c79aab3d694f5c6327773397af0b523d8c5908d4b3d"
+      },
+      "pooling": "exclude_separator",
+      "parameter_count": 655872,
+      "trainable_parameters": 655872,
+      "initial_parameters_sha256": "c8e9239b396f91374e9c921e9ea13767a046ecb55afd1d93048e7fb1c0700474",
+      "python": "3.12.12",
+      "torch": "2.8.0+cpu",
+      "platform": "Linux-6.18.54.1-microsoft-standard-WSL2-x86_64-with-glibc2.35",
+      "threads": 2,
+      "device": "cpu",
+      "train_examples": 3600,
+      "architecture": {
+        "vocab_size": 363,
+        "max_seq_len": 112,
+        "n_layer": 3,
+        "n_head": 4,
+        "n_embd": 128,
+        "dropout": 0.1
+      },
+      "selection": "minimum validation answer-token cross-entropy; earliest epoch on ties",
+      "lock_sha256": "01ed724113c2c8caf9e63f4abbab1bc414e29a0fc367d1c30669b5a6f5d9a380",
+      "git_commit": "8252b5d7b4df4fb91a7a3db05f3d6143a04e126a",
+      "git_dirty": true,
+      "selected_epoch": 3,
+      "steps": 570,
+      "best_val_answer_ce": 0.1442734998425627,
+      "elapsed_seconds": 58.47073032799926,
+      "peak_process_rss_mib": 552.7890625,
+      "artifact_hashes": {
+        "initial.pt": "125b9f3712432bf49fe34310b14bf8d3efd17f594c9e5a1ba0f867f2b9499f46",
+        "model.pt": "10707fb41d496be348427f98f73cabd9b8ae0c57963826cb461a342d99052548"
+      }
+    },
+    "base-123": {
+      "run_id": "ticket-v2-base-123",
+      "status": "completed",
+      "seed": 123,
+      "dataset": "ticket-v2",
+      "config_hash": "947a4e9829494d5aae7bdad3cd91b4b50a240c418f9f46b54aecdc25c91f8892",
+      "data_hashes": {
+        "train": "3821c211136ce107185ca1a2b57455ca93eaf37f3921335a5e056285d499672f",
+        "val": "347be792882486c1888e1ad45a7674d80432c8ffd1e861243f91db0cda767224",
+        "test": "04edf74d1fe7af98a5f5153f596293dbca6ea7452c3acd9e8d68bef6a878d4dc",
+        "challenge": "97378c0b8c013a0bad5ccdfe17b8d68d9ea40287604887bf37ec17d9736fe7c2"
+      },
+      "source_hashes": {
+        "baselines.py": "f338a5db564adf85a1d387760412af0a18947c87c7f091340385853efb315c19",
+        "benchmark.py": "d43d783420b4dfb35dba0e8aabecf29a7c11d0a4e3bdafb807551d3fd05bc30c",
+        "config.py": "b9672853ec9c4623fe1a4fe7c02cb80f5a31268ee944bdb75b0198773bd2fba5",
+        "data.py": "1959c622ac7df31ae7e9cd85c07a99e7ed7abef1ee79ec62371a1311e6ab5c3f",
+        "evaluate.py": "220ca33a4711ee4247548bee8cb05304c23d267880a3f8ae3f041c57c9a75208",
+        "inference.py": "ab0b602b2831edc5262dd1dba12229a90940df7ddffa696b37ac48c05fbd3400",
+        "model.py": "51b25c8b5f46f410756ebf7e58c36100392e2ce23052daf8927681a79861a0ad",
+        "report.py": "a859b2a855857d5f3f80839a7aed35a4216d0db18c6fa1cdfb8f1ca9f0a52d53",
+        "tokenizer.py": "06e5bce746a9c89c7951c2fe5809c3e64af37c2bce96b0343103580625d5e690",
+        "train.py": "aa1dfc0721cff7aa54be0c79aab3d694f5c6327773397af0b523d8c5908d4b3d"
+      },
+      "pooling": "exclude_separator",
+      "parameter_count": 655872,
+      "trainable_parameters": 655872,
+      "initial_parameters_sha256": "d9891ff503fafae25fa6b6a358ceb48e03810627b5e6c5352212e0c5fdc56792",
+      "python": "3.12.12",
+      "torch": "2.8.0+cpu",
+      "platform": "Linux-6.18.54.1-microsoft-standard-WSL2-x86_64-with-glibc2.35",
+      "threads": 2,
+      "device": "cpu",
+      "train_examples": 3600,
+      "architecture": {
+        "vocab_size": 363,
+        "max_seq_len": 112,
+        "n_layer": 3,
+        "n_head": 4,
+        "n_embd": 128,
+        "dropout": 0.1
+      },
+      "selection": "minimum validation answer-token cross-entropy; earliest epoch on ties",
+      "lock_sha256": "01ed724113c2c8caf9e63f4abbab1bc414e29a0fc367d1c30669b5a6f5d9a380",
+      "git_commit": "8252b5d7b4df4fb91a7a3db05f3d6143a04e126a",
+      "git_dirty": true,
+      "selected_epoch": 7,
+      "steps": 570,
+      "best_val_answer_ce": 0.11388281085132773,
+      "elapsed_seconds": 61.22204170800069,
+      "peak_process_rss_mib": 542.52734375,
+      "artifact_hashes": {
+        "initial.pt": "91fb49136c1736aa1bdd0a0b3e045e32c970e1b7ad94183a4257133272496d9b",
+        "model.pt": "5934ad7e401e3975783f799490f18ef72e01deffe4ebb589712f6c13c87b78c5"
+      }
+    },
+    "cosine-42": {
+      "run_id": "ticket-v2-cosine-42",
+      "status": "completed",
+      "seed": 42,
+      "dataset": "ticket-v2",
+      "config_hash": "001e9920edca440c014f8df2829bed912985117ebc4f2e65b7140ebed3b3e11e",
+      "data_hashes": {
+        "train": "3821c211136ce107185ca1a2b57455ca93eaf37f3921335a5e056285d499672f",
+        "val": "347be792882486c1888e1ad45a7674d80432c8ffd1e861243f91db0cda767224",
+        "test": "04edf74d1fe7af98a5f5153f596293dbca6ea7452c3acd9e8d68bef6a878d4dc",
+        "challenge": "97378c0b8c013a0bad5ccdfe17b8d68d9ea40287604887bf37ec17d9736fe7c2"
+      },
+      "source_hashes": {
+        "baselines.py": "f338a5db564adf85a1d387760412af0a18947c87c7f091340385853efb315c19",
+        "benchmark.py": "d43d783420b4dfb35dba0e8aabecf29a7c11d0a4e3bdafb807551d3fd05bc30c",
+        "config.py": "b9672853ec9c4623fe1a4fe7c02cb80f5a31268ee944bdb75b0198773bd2fba5",
+        "data.py": "1959c622ac7df31ae7e9cd85c07a99e7ed7abef1ee79ec62371a1311e6ab5c3f",
+        "evaluate.py": "220ca33a4711ee4247548bee8cb05304c23d267880a3f8ae3f041c57c9a75208",
+        "inference.py": "ab0b602b2831edc5262dd1dba12229a90940df7ddffa696b37ac48c05fbd3400",
+        "model.py": "51b25c8b5f46f410756ebf7e58c36100392e2ce23052daf8927681a79861a0ad",
+        "report.py": "a859b2a855857d5f3f80839a7aed35a4216d0db18c6fa1cdfb8f1ca9f0a52d53",
+        "tokenizer.py": "06e5bce746a9c89c7951c2fe5809c3e64af37c2bce96b0343103580625d5e690",
+        "train.py": "aa1dfc0721cff7aa54be0c79aab3d694f5c6327773397af0b523d8c5908d4b3d"
+      },
+      "pooling": "exclude_separator",
+      "parameter_count": 655872,
+      "trainable_parameters": 655872,
+      "initial_parameters_sha256": "74bccfd318c6a9c07d99a9f834f1a3ee6786a5b297758892e090cdd8c50512e7",
+      "python": "3.12.12",
+      "torch": "2.8.0+cpu",
+      "platform": "Linux-6.18.54.1-microsoft-standard-WSL2-x86_64-with-glibc2.35",
+      "threads": 2,
+      "device": "cpu",
+      "train_examples": 3600,
+      "architecture": {
+        "vocab_size": 363,
+        "max_seq_len": 112,
+        "n_layer": 3,
+        "n_head": 4,
+        "n_embd": 128,
+        "dropout": 0.1
+      },
+      "selection": "minimum validation answer-token cross-entropy; earliest epoch on ties",
+      "lock_sha256": "01ed724113c2c8caf9e63f4abbab1bc414e29a0fc367d1c30669b5a6f5d9a380",
+      "git_commit": "8252b5d7b4df4fb91a7a3db05f3d6143a04e126a",
+      "git_dirty": true,
+      "selected_epoch": 3,
+      "steps": 570,
+      "best_val_answer_ce": 0.1374811724899641,
+      "elapsed_seconds": 58.85980334300075,
+      "peak_process_rss_mib": 529.22265625,
+      "artifact_hashes": {
+        "initial.pt": "e6bef37da345afa27ec11220a5217978b15e06e714ca12161631c067c598e6bc",
+        "model.pt": "c97fa8f4ee6294413f1738d2ce95b542182000f324d690afd8318fd87609c069"
+      }
+    },
+    "cosine-7": {
+      "run_id": "ticket-v2-cosine-7",
+      "status": "completed",
+      "seed": 7,
+      "dataset": "ticket-v2",
+      "config_hash": "65a13ac276cd592c7a626bea22e72a0a78148780040b6ebe138b249f015162a8",
+      "data_hashes": {
+        "train": "3821c211136ce107185ca1a2b57455ca93eaf37f3921335a5e056285d499672f",
+        "val": "347be792882486c1888e1ad45a7674d80432c8ffd1e861243f91db0cda767224",
+        "test": "04edf74d1fe7af98a5f5153f596293dbca6ea7452c3acd9e8d68bef6a878d4dc",
+        "challenge": "97378c0b8c013a0bad5ccdfe17b8d68d9ea40287604887bf37ec17d9736fe7c2"
+      },
+      "source_hashes": {
+        "baselines.py": "f338a5db564adf85a1d387760412af0a18947c87c7f091340385853efb315c19",
+        "benchmark.py": "d43d783420b4dfb35dba0e8aabecf29a7c11d0a4e3bdafb807551d3fd05bc30c",
+        "config.py": "b9672853ec9c4623fe1a4fe7c02cb80f5a31268ee944bdb75b0198773bd2fba5",
+        "data.py": "1959c622ac7df31ae7e9cd85c07a99e7ed7abef1ee79ec62371a1311e6ab5c3f",
+        "evaluate.py": "220ca33a4711ee4247548bee8cb05304c23d267880a3f8ae3f041c57c9a75208",
+        "inference.py": "ab0b602b2831edc5262dd1dba12229a90940df7ddffa696b37ac48c05fbd3400",
+        "model.py": "51b25c8b5f46f410756ebf7e58c36100392e2ce23052daf8927681a79861a0ad",
+        "report.py": "a859b2a855857d5f3f80839a7aed35a4216d0db18c6fa1cdfb8f1ca9f0a52d53",
+        "tokenizer.py": "06e5bce746a9c89c7951c2fe5809c3e64af37c2bce96b0343103580625d5e690",
+        "train.py": "aa1dfc0721cff7aa54be0c79aab3d694f5c6327773397af0b523d8c5908d4b3d"
+      },
+      "pooling": "exclude_separator",
+      "parameter_count": 655872,
+      "trainable_parameters": 655872,
+      "initial_parameters_sha256": "c8e9239b396f91374e9c921e9ea13767a046ecb55afd1d93048e7fb1c0700474",
+      "python": "3.12.12",
+      "torch": "2.8.0+cpu",
+      "platform": "Linux-6.18.54.1-microsoft-standard-WSL2-x86_64-with-glibc2.35",
+      "threads": 2,
+      "device": "cpu",
+      "train_examples": 3600,
+      "architecture": {
+        "vocab_size": 363,
+        "max_seq_len": 112,
+        "n_layer": 3,
+        "n_head": 4,
+        "n_embd": 128,
+        "dropout": 0.1
+      },
+      "selection": "minimum validation answer-token cross-entropy; earliest epoch on ties",
+      "lock_sha256": "01ed724113c2c8caf9e63f4abbab1bc414e29a0fc367d1c30669b5a6f5d9a380",
+      "git_commit": "8252b5d7b4df4fb91a7a3db05f3d6143a04e126a",
+      "git_dirty": true,
+      "selected_epoch": 3,
+      "steps": 570,
+      "best_val_answer_ce": 0.21718852660235236,
+      "elapsed_seconds": 57.77906445899862,
+      "peak_process_rss_mib": 543.28515625,
+      "artifact_hashes": {
+        "initial.pt": "125b9f3712432bf49fe34310b14bf8d3efd17f594c9e5a1ba0f867f2b9499f46",
+        "model.pt": "8954fc90baf69bf4758c59f83af79a3ff1a733b0cee75af4a0da19335c1e03c1"
+      }
+    },
+    "cosine-123": {
+      "run_id": "ticket-v2-cosine-123",
+      "status": "completed",
+      "seed": 123,
+      "dataset": "ticket-v2",
+      "config_hash": "94a9b92f8eb50a0545fbee5623de622134e7b62fb0084487bea86048ce0d2fdb",
+      "data_hashes": {
+        "train": "3821c211136ce107185ca1a2b57455ca93eaf37f3921335a5e056285d499672f",
+        "val": "347be792882486c1888e1ad45a7674d80432c8ffd1e861243f91db0cda767224",
+        "test": "04edf74d1fe7af98a5f5153f596293dbca6ea7452c3acd9e8d68bef6a878d4dc",
+        "challenge": "97378c0b8c013a0bad5ccdfe17b8d68d9ea40287604887bf37ec17d9736fe7c2"
+      },
+      "source_hashes": {
+        "baselines.py": "f338a5db564adf85a1d387760412af0a18947c87c7f091340385853efb315c19",
+        "benchmark.py": "d43d783420b4dfb35dba0e8aabecf29a7c11d0a4e3bdafb807551d3fd05bc30c",
+        "config.py": "b9672853ec9c4623fe1a4fe7c02cb80f5a31268ee944bdb75b0198773bd2fba5",
+        "data.py": "1959c622ac7df31ae7e9cd85c07a99e7ed7abef1ee79ec62371a1311e6ab5c3f",
+        "evaluate.py": "220ca33a4711ee4247548bee8cb05304c23d267880a3f8ae3f041c57c9a75208",
+        "inference.py": "ab0b602b2831edc5262dd1dba12229a90940df7ddffa696b37ac48c05fbd3400",
+        "model.py": "51b25c8b5f46f410756ebf7e58c36100392e2ce23052daf8927681a79861a0ad",
+        "report.py": "a859b2a855857d5f3f80839a7aed35a4216d0db18c6fa1cdfb8f1ca9f0a52d53",
+        "tokenizer.py": "06e5bce746a9c89c7951c2fe5809c3e64af37c2bce96b0343103580625d5e690",
+        "train.py": "aa1dfc0721cff7aa54be0c79aab3d694f5c6327773397af0b523d8c5908d4b3d"
+      },
+      "pooling": "exclude_separator",
+      "parameter_count": 655872,
+      "trainable_parameters": 655872,
+      "initial_parameters_sha256": "d9891ff503fafae25fa6b6a358ceb48e03810627b5e6c5352212e0c5fdc56792",
+      "python": "3.12.12",
+      "torch": "2.8.0+cpu",
+      "platform": "Linux-6.18.54.1-microsoft-standard-WSL2-x86_64-with-glibc2.35",
+      "threads": 2,
+      "device": "cpu",
+      "train_examples": 3600,
+      "architecture": {
+        "vocab_size": 363,
+        "max_seq_len": 112,
+        "n_layer": 3,
+        "n_head": 4,
+        "n_embd": 128,
+        "dropout": 0.1
+      },
+      "selection": "minimum validation answer-token cross-entropy; earliest epoch on ties",
+      "lock_sha256": "01ed724113c2c8caf9e63f4abbab1bc414e29a0fc367d1c30669b5a6f5d9a380",
+      "git_commit": "8252b5d7b4df4fb91a7a3db05f3d6143a04e126a",
+      "git_dirty": true,
+      "selected_epoch": 5,
+      "steps": 570,
+      "best_val_answer_ce": 0.10296933167900135,
+      "elapsed_seconds": 59.6449279339995,
+      "peak_process_rss_mib": 537.1640625,
+      "artifact_hashes": {
+        "initial.pt": "91fb49136c1736aa1bdd0a0b3e045e32c970e1b7ad94183a4257133272496d9b",
+        "model.pt": "e6ca167801a079100fc12304d4908894eb3f764b6949d57329bdc2dea00dd904"
+      }
+    },
+    "pool-42": {
+      "run_id": "ticket-v2-pool-42",
+      "status": "completed",
+      "seed": 42,
+      "dataset": "ticket-v2",
+      "config_hash": "2c7e78488c7fd746c75c5664558e027b62a8b2dee36233e3054ab94fc681bc0d",
+      "data_hashes": {
+        "train": "3821c211136ce107185ca1a2b57455ca93eaf37f3921335a5e056285d499672f",
+        "val": "347be792882486c1888e1ad45a7674d80432c8ffd1e861243f91db0cda767224",
+        "test": "04edf74d1fe7af98a5f5153f596293dbca6ea7452c3acd9e8d68bef6a878d4dc",
+        "challenge": "97378c0b8c013a0bad5ccdfe17b8d68d9ea40287604887bf37ec17d9736fe7c2"
+      },
+      "source_hashes": {
+        "baselines.py": "f338a5db564adf85a1d387760412af0a18947c87c7f091340385853efb315c19",
+        "benchmark.py": "d43d783420b4dfb35dba0e8aabecf29a7c11d0a4e3bdafb807551d3fd05bc30c",
+        "config.py": "b9672853ec9c4623fe1a4fe7c02cb80f5a31268ee944bdb75b0198773bd2fba5",
+        "data.py": "1959c622ac7df31ae7e9cd85c07a99e7ed7abef1ee79ec62371a1311e6ab5c3f",
+        "evaluate.py": "220ca33a4711ee4247548bee8cb05304c23d267880a3f8ae3f041c57c9a75208",
+        "inference.py": "ab0b602b2831edc5262dd1dba12229a90940df7ddffa696b37ac48c05fbd3400",
+        "model.py": "51b25c8b5f46f410756ebf7e58c36100392e2ce23052daf8927681a79861a0ad",
+        "report.py": "a859b2a855857d5f3f80839a7aed35a4216d0db18c6fa1cdfb8f1ca9f0a52d53",
+        "tokenizer.py": "06e5bce746a9c89c7951c2fe5809c3e64af37c2bce96b0343103580625d5e690",
+        "train.py": "aa1dfc0721cff7aa54be0c79aab3d694f5c6327773397af0b523d8c5908d4b3d"
+      },
+      "pooling": "exclude_separator",
+      "parameter_count": 655872,
+      "trainable_parameters": 657033,
+      "initial_parameters_sha256": "74bccfd318c6a9c07d99a9f834f1a3ee6786a5b297758892e090cdd8c50512e7",
+      "python": "3.12.12",
+      "torch": "2.8.0+cpu",
+      "platform": "Linux-6.18.54.1-microsoft-standard-WSL2-x86_64-with-glibc2.35",
+      "threads": 2,
+      "device": "cpu",
+      "train_examples": 3600,
+      "architecture": {
+        "vocab_size": 363,
+        "max_seq_len": 112,
+        "n_layer": 3,
+        "n_head": 4,
+        "n_embd": 128,
+        "dropout": 0.1
+      },
+      "selection": "minimum validation answer-token cross-entropy; earliest epoch on ties",
+      "lock_sha256": "01ed724113c2c8caf9e63f4abbab1bc414e29a0fc367d1c30669b5a6f5d9a380",
+      "git_commit": "8252b5d7b4df4fb91a7a3db05f3d6143a04e126a",
+      "git_dirty": true,
+      "selected_epoch": 2,
+      "steps": 570,
+      "best_val_answer_ce": 0.17631959496370328,
+      "elapsed_seconds": 58.591973496999344,
+      "peak_process_rss_mib": 547.2421875,
+      "artifact_hashes": {
+        "initial.pt": "e6bef37da345afa27ec11220a5217978b15e06e714ca12161631c067c598e6bc",
+        "model.pt": "606bca382b422994f2489f0e9c57af0166f316b72f7d58f2bcd1704c508f5ffa",
+        "pool_head.pt": "88d29014caceebbc71ba511c248f271aacd7cd090a30d3abc72f20a69bc261cb"
+      }
+    },
+    "pool-7": {
+      "run_id": "ticket-v2-pool-7",
+      "status": "completed",
+      "seed": 7,
+      "dataset": "ticket-v2",
+      "config_hash": "9330c25729a8da98e752e52e7ea1249fea07c291c98980824edbe12ab0ab2008",
+      "data_hashes": {
+        "train": "3821c211136ce107185ca1a2b57455ca93eaf37f3921335a5e056285d499672f",
+        "val": "347be792882486c1888e1ad45a7674d80432c8ffd1e861243f91db0cda767224",
+        "test": "04edf74d1fe7af98a5f5153f596293dbca6ea7452c3acd9e8d68bef6a878d4dc",
+        "challenge": "97378c0b8c013a0bad5ccdfe17b8d68d9ea40287604887bf37ec17d9736fe7c2"
+      },
+      "source_hashes": {
+        "baselines.py": "f338a5db564adf85a1d387760412af0a18947c87c7f091340385853efb315c19",
+        "benchmark.py": "d43d783420b4dfb35dba0e8aabecf29a7c11d0a4e3bdafb807551d3fd05bc30c",
+        "config.py": "b9672853ec9c4623fe1a4fe7c02cb80f5a31268ee944bdb75b0198773bd2fba5",
+        "data.py": "1959c622ac7df31ae7e9cd85c07a99e7ed7abef1ee79ec62371a1311e6ab5c3f",
+        "evaluate.py": "220ca33a4711ee4247548bee8cb05304c23d267880a3f8ae3f041c57c9a75208",
+        "inference.py": "ab0b602b2831edc5262dd1dba12229a90940df7ddffa696b37ac48c05fbd3400",
+        "model.py": "51b25c8b5f46f410756ebf7e58c36100392e2ce23052daf8927681a79861a0ad",
+        "report.py": "a859b2a855857d5f3f80839a7aed35a4216d0db18c6fa1cdfb8f1ca9f0a52d53",
+        "tokenizer.py": "06e5bce746a9c89c7951c2fe5809c3e64af37c2bce96b0343103580625d5e690",
+        "train.py": "aa1dfc0721cff7aa54be0c79aab3d694f5c6327773397af0b523d8c5908d4b3d"
+      },
+      "pooling": "exclude_separator",
+      "parameter_count": 655872,
+      "trainable_parameters": 657033,
+      "initial_parameters_sha256": "c8e9239b396f91374e9c921e9ea13767a046ecb55afd1d93048e7fb1c0700474",
+      "python": "3.12.12",
+      "torch": "2.8.0+cpu",
+      "platform": "Linux-6.18.54.1-microsoft-standard-WSL2-x86_64-with-glibc2.35",
+      "threads": 2,
+      "device": "cpu",
+      "train_examples": 3600,
+      "architecture": {
+        "vocab_size": 363,
+        "max_seq_len": 112,
+        "n_layer": 3,
+        "n_head": 4,
+        "n_embd": 128,
+        "dropout": 0.1
+      },
+      "selection": "minimum validation answer-token cross-entropy; earliest epoch on ties",
+      "lock_sha256": "01ed724113c2c8caf9e63f4abbab1bc414e29a0fc367d1c30669b5a6f5d9a380",
+      "git_commit": "8252b5d7b4df4fb91a7a3db05f3d6143a04e126a",
+      "git_dirty": true,
+      "selected_epoch": 3,
+      "steps": 570,
+      "best_val_answer_ce": 0.1680767574146682,
+      "elapsed_seconds": 58.39319648899982,
+      "peak_process_rss_mib": 540.828125,
+      "artifact_hashes": {
+        "initial.pt": "125b9f3712432bf49fe34310b14bf8d3efd17f594c9e5a1ba0f867f2b9499f46",
+        "model.pt": "1ac345e59d2ca4e807b32c74aa403cbf36828a4730c591a38801e01ea4f1178a",
+        "pool_head.pt": "5cb53f5801dc2348de032975b8dfeb636f2b9d75c01f3e4810f3ac9b37798b06"
+      }
+    },
+    "pool-123": {
+      "run_id": "ticket-v2-pool-123",
+      "status": "completed",
+      "seed": 123,
+      "dataset": "ticket-v2",
+      "config_hash": "95d76ddbbadb1d2bea4119dab424493fc368ab2cf3ba6d3455b305329889cc8f",
+      "data_hashes": {
+        "train": "3821c211136ce107185ca1a2b57455ca93eaf37f3921335a5e056285d499672f",
+        "val": "347be792882486c1888e1ad45a7674d80432c8ffd1e861243f91db0cda767224",
+        "test": "04edf74d1fe7af98a5f5153f596293dbca6ea7452c3acd9e8d68bef6a878d4dc",
+        "challenge": "97378c0b8c013a0bad5ccdfe17b8d68d9ea40287604887bf37ec17d9736fe7c2"
+      },
+      "source_hashes": {
+        "baselines.py": "f338a5db564adf85a1d387760412af0a18947c87c7f091340385853efb315c19",
+        "benchmark.py": "d43d783420b4dfb35dba0e8aabecf29a7c11d0a4e3bdafb807551d3fd05bc30c",
+        "config.py": "b9672853ec9c4623fe1a4fe7c02cb80f5a31268ee944bdb75b0198773bd2fba5",
+        "data.py": "1959c622ac7df31ae7e9cd85c07a99e7ed7abef1ee79ec62371a1311e6ab5c3f",
+        "evaluate.py": "220ca33a4711ee4247548bee8cb05304c23d267880a3f8ae3f041c57c9a75208",
+        "inference.py": "ab0b602b2831edc5262dd1dba12229a90940df7ddffa696b37ac48c05fbd3400",
+        "model.py": "51b25c8b5f46f410756ebf7e58c36100392e2ce23052daf8927681a79861a0ad",
+        "report.py": "a859b2a855857d5f3f80839a7aed35a4216d0db18c6fa1cdfb8f1ca9f0a52d53",
+        "tokenizer.py": "06e5bce746a9c89c7951c2fe5809c3e64af37c2bce96b0343103580625d5e690",
+        "train.py": "aa1dfc0721cff7aa54be0c79aab3d694f5c6327773397af0b523d8c5908d4b3d"
+      },
+      "pooling": "exclude_separator",
+      "parameter_count": 655872,
+      "trainable_parameters": 657033,
+      "initial_parameters_sha256": "d9891ff503fafae25fa6b6a358ceb48e03810627b5e6c5352212e0c5fdc56792",
+      "python": "3.12.12",
+      "torch": "2.8.0+cpu",
+      "platform": "Linux-6.18.54.1-microsoft-standard-WSL2-x86_64-with-glibc2.35",
+      "threads": 2,
+      "device": "cpu",
+      "train_examples": 3600,
+      "architecture": {
+        "vocab_size": 363,
+        "max_seq_len": 112,
+        "n_layer": 3,
+        "n_head": 4,
+        "n_embd": 128,
+        "dropout": 0.1
+      },
+      "selection": "minimum validation answer-token cross-entropy; earliest epoch on ties",
+      "lock_sha256": "01ed724113c2c8caf9e63f4abbab1bc414e29a0fc367d1c30669b5a6f5d9a380",
+      "git_commit": "8252b5d7b4df4fb91a7a3db05f3d6143a04e126a",
+      "git_dirty": true,
+      "selected_epoch": 2,
+      "steps": 570,
+      "best_val_answer_ce": 0.16055354768154667,
+      "elapsed_seconds": 58.03303881199827,
+      "peak_process_rss_mib": 545.58984375,
+      "artifact_hashes": {
+        "initial.pt": "91fb49136c1736aa1bdd0a0b3e045e32c970e1b7ad94183a4257133272496d9b",
+        "model.pt": "e4c14cbc37a130ccdaaac2f1f399cab17c38015dd05f0486552c2e99f30b1d23",
+        "pool_head.pt": "e7b460ed8a09437214b2f7a9567350619a34c55ffe60aaa4e1dd1c7463326caa"
+      }
+    }
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "version": "ticket-v2",
+  "seed": 2026,
+  "origin": "authored synthetic templates; no customer data",
+  "generator_sha256": "1959c622ac7df31ae7e9cd85c07a99e7ed7abef1ee79ec62371a1311e6ab5c3f",
+  "splits": {
+    "train": {
+      "sha256": "3821c211136ce107185ca1a2b57455ca93eaf37f3921335a5e056285d499672f",
+      "examples": 3600,
+      "template_groups": 60
+    },
+    "val": {
+      "sha256": "347be792882486c1888e1ad45a7674d80432c8ffd1e861243f91db0cda767224",
+      "examples": 612,
+      "template_groups": 24
+    },
+    "test": {
+      "sha256": "04edf74d1fe7af98a5f5153f596293dbca6ea7452c3acd9e8d68bef6a878d4dc",
+      "examples": 612,
+      "template_groups": 24
+    },
+    "challenge": {
+      "sha256": "97378c0b8c013a0bad5ccdfe17b8d68d9ea40287604887bf37ec17d9736fe7c2",
+      "examples": 180,
+      "template_groups": 18
+    }
+  }
+}
