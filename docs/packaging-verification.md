@@ -1,32 +1,28 @@
-# P01-002 environment verification
+# Environment and packaging verification
 
-The repository has two independent buildable packages and a non-installable uv
-workspace root. Both packages currently contain only a package docstring;
-training and evaluation belong to later roadmap issues.
+The root is a non-installable uv workspace with two independent packages.
+`pretraining` now implements ticket data generation, training/recovery, prediction,
+evaluation, a frozen benchmark, artifact verification and a local demo.
+`finetuning` remains an importable package with its implementation planned.
 
-Setup verification covers:
+Verification covers:
 
-- CPU imports and one optimizer update on a tiny randomly initialized Llama with
-  PEFT LoRA, without downloading models or datasets.
-- Separate wheel builds and imports from outside the repository, with no
-  dependency on the other track.
-- Locked CPU/CUDA profile exports, matching PyTorch sources and hashes, and
-  rejection of conflicting profiles.
-- Ruff lint/format, mypy, lock consistency and installed dependency compatibility.
+- Ruff lint/format, strict mypy and 12 meaningful CPU tests.
+- Separate wheel builds and independent installation/import outside the checkout.
+- A full selected-model training replay from the installed pretraining wheel,
+  compared with the reference model tensors and held-out predictions.
+- Locked CPU/CUDA profile exports, correct Torch sources and conflict rejection.
+- The tiny CPU LoRA dependency-compatibility smoke and installed dependency checks.
+- Notebook smoke/prediction/validation cells and the actual Gradio browser flow.
 
-Results are recorded in [checks.json](../reports/packaging/checks.json),
-[cpu-smoke.json](../reports/packaging/cpu-smoke.json),
-[wheel-smoke.json](../reports/packaging/wheel-smoke.json) and
-[profiles.json](../reports/packaging/profiles.json).
+Compact command receipts are in [checks.json](../reports/packaging/checks.json);
+independent-wheel results are in [wheel-smoke.json](../reports/packaging/wheel-smoke.json).
+[CPU dependency smoke](../reports/packaging/cpu-smoke.json) and
+[profile resolution](../reports/packaging/profiles.json) remain separate from the
+[actual ticket experiments](../pretraining/reports/ticket-v2/benchmark.json).
 
-To repeat the environment checks after the [initial setup](../README.md#setup):
-
-```bash
-uv run --no-sync python scripts/smoke_cpu.py
-uv run --no-sync python scripts/verify_profiles.py
-uv build --all-packages
-```
-
-Track tests will accompany the data, model, training and scoring implementations.
-No training experiment, CUDA execution, memory target, CI run or Space deployment
-is established by these environment checks.
+The [CPU workflow](../.github/workflows/cpu.yml) is added with pinned action revisions.
+Local checks and shell syntax were verified; no remote Actions run is claimed.
+CUDA execution, a physical 3 GiB GPU target and public hosting have not been measured
+or deployed by these CPU checks. Follow the [root README](../README.md) and
+[pretraining guide](../pretraining/README.md) to repeat the appropriate checks.
