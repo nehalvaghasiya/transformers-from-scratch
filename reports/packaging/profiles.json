@@ -1,7 +1,7 @@
 {
   "status": "passed",
   "uv": "uv 0.12.1 (x86_64-unknown-linux-gnu)",
-  "lock_sha256": "49a148fabe96665eaadf0518de8d51209e71f81626001f4100d65b242276e0cd",
+  "lock_sha256": "01ed724113c2c8caf9e63f4abbab1bc414e29a0fc367d1c30669b5a6f5d9a380",
   "profiles": {
     "cpu": {
       "torch": "2.8.0+cpu",
