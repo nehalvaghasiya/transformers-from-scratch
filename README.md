@@ -1,59 +1,161 @@
+<div align="center">
+
 # Transformers from Scratch & Fine-Tuning
 
-An ML portfolio with readable implementations, reproducible experiments and measured comparisons.
+**Build a Transformer. Measure what it learns. Compare it with simpler models.**
+
+An ML engineering portfolio focused on **transparent PyTorch implementations**, **reproducible experiments**, **honest baselines**, and **working inference demos**.
+
+[Quick start](#quick-start) · [Results](#measured-results) · [Architecture](#model-and-experiment-design) · [Reproducibility](#reproduce-the-results) · [Limitations](#limitations-and-research-integrity)
+
+</div>
+
+> [!IMPORTANT]
+> **Project status:** The **pretraining/training-from-scratch track is implemented and evaluated**. The **SmolLM2 LoRA fine-tuning track is planned**, not yet integrated in the version described here. This repository currently demonstrates a **656K-parameter task-specific causal Transformer trained from random initialization**.
+
+## At a glance
 
 | Track | Status | What it demonstrates |
 | --- | --- | --- |
-| [Pretraining / training from scratch](pretraining/README.md) | **Implemented and evaluated** | A 656K-parameter causal Transformer, training-only tokenizer, nine training runs, classical baselines, checkpoint recovery and a working demo |
-| [Fine-tuning](finetuning/README.md) | Planned | LoRA adaptation of SmolLM2 for structured job extraction |
+| [Training from scratch](pretraining/README.md) | **Implemented · evaluated · demo available** | A 656K-parameter causal Transformer, tokenizer trained only on training data, nine training runs, classical baselines, checkpoint recovery, and error analysis |
+| [Fine-tuning](finetuning/README.md) | **Planned** | LoRA adaptation of a pretrained SmolLM2 checkpoint for structured job-information extraction |
 
-One repository, two independent Python packages. The ticket model is trained from
-random weights to predict intent and priority; it is a small task-specific language
-model. WikiText pretraining remains a separate future experiment.
+**Repository design:** two independent Python packages under a single `uv` workspace, shared dependency lockfile, and track-specific documentation. Code, model artifacts, and experimental claims are kept separate.
+
+## Demo: structured ticket decisions
+
+**Input:** a support ticket written in natural language.  
+**Output:** a generated structured prediction for **intent** and **priority**.
 
 ![Actual ticket Transformer demo](pretraining/docs/assets/demo-preview.gif)
 
+<details>
+<summary><strong>What does the demonstration prove?</strong></summary>
+
+The model generates the expected task-specific fields after training from random weights. The demo is **not** evidence of robust performance on real customer-support tickets, and the model is not a general-purpose chat assistant. For model behavior, reproducible predictions, and known failure patterns, see the [pretraining case study](pretraining/README.md).
+
+</details>
+
 ## Measured results
 
-On the versioned synthetic ticket-v2 benchmark, pooled-head training plus dual-head
-decoding reaches **96.51% ± 2.98 test joint accuracy** across three seeds. Word
-TF-IDF reaches **99.51%**. On the challenge split, the same Transformer variant
-reaches **73.15% ± 6.14**, while character TF-IDF reaches **93.89%**.
+The project uses a **versioned, synthetic ticket-v2 benchmark**. For the pooled-head training variant with dual-head decoding, three independent seeds produced:
 
-The comparisons show learning, the effect of auxiliary supervision, and the strength
-of classical methods on small synthetic datasets. These scores do not establish
-real-ticket performance. The [full case study](pretraining/README.md) includes every
-seed, the validation selection, plots, uncertainty and failures.
+| Evaluation | Transformer: mean ± reported variation | Strong classical baseline |
+| --- | ---: | ---: |
+| **Test · joint intent + priority accuracy** | **96.51% ± 2.98** | Word TF-IDF: **99.51%** |
+| **Challenge · joint accuracy** | **73.15% ± 6.14** | Character TF-IDF: **93.89%** |
+
+> **Bottom line:** The Transformer learns task-relevant representations, but **does not outperform the strongest classical baselines** on this synthetic task. The performance gap is particularly large on challenge examples. The ± values are reproduced as reported by the project and should not be interpreted as confidence intervals without reviewing their calculation in the full case study.
 
 ![Measured model comparison](pretraining/reports/ticket-v2/comparison.png)
 
-## Run locally
+### What was compared?
 
-Use Linux x86-64 (including WSL2), Python 3.12.12 and uv 0.12.1. From the repository root:
+- Multiple Transformer training variants, including pooled-head auxiliary supervision and dual-head inference.
+- **Word TF-IDF** and **character TF-IDF** classical approaches.
+- Multiple random seeds, validation-based checkpoint selection, and an explicit challenge split.
+- Qualitative error analysis, training curves, and checkpoint recovery.
+
+**Read the complete evidence:** [Pretraining experiments and case study](pretraining/README.md) — per-seed scores, run selection, charts, uncertainty, reproducibility instructions, and failure cases.
+
+## Model and experiment design
+
+### Training from scratch: task-specific causal Transformer
+
+```text
+Synthetic ticket-v2 data
+        │
+        ▼
+Training-only tokenizer
+        │
+        ▼
+Causal Transformer (~656K parameters)
+        │
+        ├── Autoregressive token predictions
+        │
+        └── Optional pooled auxiliary heads (training variants)
+        │
+        ▼
+Validation-selected checkpoint
+        │
+        ▼
+Intent + priority predictions
+        │
+        ▼
+Held-out test / challenge evaluation
+```
+
+- **Initialization:** Random model weights, not a downloaded pretrained checkpoint.
+- **Objective:** Task-specific structured decisions expressed through causal language-model output; variants investigate auxiliary supervision.
+- **Data integrity:** The tokenizer is trained on the training partition to avoid vocabulary leakage.
+- **Evaluation discipline:** Different random seeds, validation selection, and explicit reporting of held-out and challenge behavior.
+- **Interpretation:** Demonstrates Transformer fundamentals and experiment design, not large-scale language pretraining.
+
+### Planned fine-tuning: SmolLM2 + LoRA
+
+The planned fine-tuning track will adapt an **already pretrained SmolLM2** model for **structured job-information extraction** with low-rank adapters. The intended comparisons are an unchanged base model, prompted base model, and fine-tuned adapter, evaluated for structured-output validity, extraction accuracy, inference efficiency, and failure modes.
+
+**No fine-tuned weights, improvements, or benchmark numbers are claimed here.** Refer to the [fine-tuning track README](finetuning/README.md) for its implementation status and eventual results.
+
+## Quick start
+
+**Supported documented environment:** Linux x86-64 (including WSL2), Python **3.12.12**, and `uv` **0.12.1**.
+
+From the repository root:
 
 ```bash
 uv python install 3.12.12
 uv sync --locked --extra cpu --group pretraining --group demo
-uv run --no-sync pretraining data prepare --config pretraining/configs/ticket-base.toml
-uv run --no-sync pretraining train --config pretraining/configs/ticket-base.toml --run-id ticket-v2-base-42
-uv run --no-sync pretraining demo --model pretraining/runs/ticket-v2-base-42 --report pretraining/reports/ticket-v2
+
+# Prepare the versioned local synthetic data
+uv run --no-sync pretraining data prepare \
+  --config pretraining/configs/ticket-base.toml
+
+# Train a new random-initialized model
+uv run --no-sync pretraining train \
+  --config pretraining/configs/ticket-base.toml \
+  --run-id ticket-v2-base-42
+
+# Launch the interactive demo for this run
+uv run --no-sync pretraining demo \
+  --model pretraining/runs/ticket-v2-base-42 \
+  --report pretraining/reports/ticket-v2
 ```
 
-The local demo opens at `http://127.0.0.1:7860`. This trains the **validation-selected**
-Transformer; it is intentionally distinct from the best average test-scoring variant.
-Training took about one minute per run on the recorded i5-13420H CPU with two Torch
-threads. Timings vary by machine. No pretrained weights or dataset download is needed.
+Open **http://127.0.0.1:7860** for the Gradio demo.
 
-For the full three-seed benchmark, artifact verification, notebook and demo recording,
-follow the [pretraining reproduction guide](pretraining/README.md#reproduce-the-experiments).
+> [!NOTE]
+> The commands above train the **validation-selected base configuration**, which is intentionally distinct from the **best average test-scoring pooled/dual-head variant** reported in the results table. To reproduce that specific reported result, use the full experiment matrix in the track-specific guide rather than assuming the single base command produces 96.51%.
 
-## Environment and checks
+**Compute:** The documented CPU training time was approximately **one minute per run** on an Intel i5-13420H with two PyTorch threads. This is a recorded environment-specific observation, not a runtime guarantee. The shown training workflow does not require downloading pretrained weights or datasets.
 
-The independent track packages share one root `uv.lock` and `.venv`.
-Choose exactly one profile: `cpu`, `cu126` (local GPU), or `cu128` (planned Space).
-CUDA profiles are lock-resolved; CUDA training and the 3 GiB memory target have not
-been verified. From a track directory, add `--project ..` to root sync commands.
-Keep `--no-sync` on subsequent commands to preserve the selected profile.
+## Reproduce the results
+
+To reproduce the **three-seed benchmark**, follow the [pretraining reproduction guide](pretraining/README.md#reproduce-the-experiments). It covers the exact run configurations, experiment matrix, evaluation commands, artifact checks, notebook workflow, and demo recording.
+
+| Goal | Where to look |
+| --- | --- |
+| Reproduce training and checkpoint selection | [Pretraining guide](pretraining/README.md) |
+| Inspect model comparisons and failures | [Pretraining case study](pretraining/README.md) |
+| View the recorded demo | [Demo preview](pretraining/docs/assets/demo-preview.gif) |
+| Review planned LoRA work | [Fine-tuning guide](finetuning/README.md) |
+| Follow implementation milestones | [P01 roadmap](plan.md) |
+
+**Artifact policy:** Full datasets, trained checkpoints, environments, and videos are intentionally kept outside Git. The repository includes compact evaluation reports and preview media. Follow the reproduction guide to regenerate local artifacts; do not expect a pretrained model checkpoint to be committed in the repository.
+
+## Environment profiles and quality checks
+
+The two track packages share the root `uv.lock` and `.venv`. Select **one compute profile** for an environment:
+
+| Profile | Purpose | Verification status |
+| --- | --- | --- |
+| `cpu` | Documented local and CI path | Used for the reported CPU workflow |
+| `cu126` | Local CUDA training | Lock-resolved, not GPU-validated |
+| `cu128` | Planned Hugging Face Space GPU environment | Lock-resolved, not GPU-validated |
+
+The CUDA profiles' **3 GiB VRAM target has not been verified**. When running commands from a track directory, use `--project ..` for the root project as described in the track documentation. Keep `--no-sync` on later run commands to preserve your selected environment profile.
+
+Run the software checks from the repository root:
 
 ```bash
 uv run --no-sync ruff check .
@@ -65,7 +167,38 @@ uv build --all-packages
 uv run --no-sync python scripts/verify_profiles.py
 ```
 
-[CPU CI](.github/workflows/cpu.yml) runs software checks and tiny fixtures; it does
-not rerun the full experiment matrix. The original [P01 roadmap](plan.md) retains
-its issue IDs and separate WikiText/LoRA contracts. Full datasets, checkpoints,
-environments and videos remain outside Git. Compact reports and demo previews are included.
+[CPU GitHub Actions](.github/workflows/cpu.yml) checks formatting, typing, tests, and lightweight fixtures. It **does not rerun the full training and evaluation matrix**.
+
+## Repository navigation
+
+```text
+.
+├── README.md                      # Project overview (this file)
+├── pretraining/                   # Implemented from-scratch ticket model
+│   ├── README.md                  # Experiments and full reproduction guide
+│   ├── configs/                   # Versioned run configurations
+│   ├── docs/assets/               # Demo preview
+│   └── reports/ticket-v2/         # Compact evaluation reports and plots
+├── finetuning/                    # Planned SmolLM2 LoRA track
+│   └── README.md
+├── .github/workflows/cpu.yml      # Lightweight CI
+├── scripts/verify_profiles.py     # Environment-profile checks
+├── pyproject.toml                 # uv workspace configuration
+├── uv.lock                        # Locked dependencies
+└── plan.md                        # P01 milestones and issue contracts
+```
+
+This is an **overview of the important paths**, not a claim that the repository contains only these files.
+
+## Limitations and research integrity
+
+1. **Synthetic data only:** Ticket-v2 results do not establish real-world customer-support accuracy.
+2. **Strong classical baselines:** Word TF-IDF wins on the reported test benchmark; character TF-IDF is stronger on the challenge split.
+3. **Small scope:** A 656K-parameter, task-trained causal model should not be confused with a broadly pretrained large language model.
+4. **Fine-tuning scope:** SmolLM2 LoRA fine-tuning remains planned in the described repository state; no completed fine-tuning result is claimed.
+5. **Environment boundaries:** CUDA execution, 3 GiB VRAM compatibility, public Space deployment, and full-matrix CI are not verified.
+6. **Reproducibility:** Results depend on specified seeds, configurations, versions, and validation-based checkpoint selection. Refer to the detailed experiment records before quoting individual model variants.
+
+
+
+
