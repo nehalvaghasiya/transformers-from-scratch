@@ -155,16 +155,18 @@ curves and reproduction commands. Vocabulary coverage is not calibrated confiden
 Pooled checkpoints also offer intent-head fusion (historical mode name `dual`); for example, use a trained
 `ticket-v2-pool-42` artifact to compare both decoding modes.
 
-The GIF above is taken from an actual browser recording. A full captioned MP4 and
-SRT are generated locally in ignored `pretraining/runs/demo/`; the
-recording script contains the captions. The recording shows a
-correct example, an urgency edit, a real failure, results and reproduction.
+The GIF above is taken from an actual browser recording. Each ticket is typed character
+by character before requesting a real model prediction, matching the fine-tuning preview.
+It shows a correct example, an urgency edit and a real failure. The full walkthrough also
+shows results and reproduction. A captioned MP4, SRT, transcript and displayed predictions
+are generated locally in ignored `pretraining/runs/demo/`.
 
 To record again after training:
 
 ```bash
 uv sync --locked --extra cpu --group pretraining --group demo --group media
 uv run --no-sync playwright install --with-deps chromium
+uv run --no-sync python pretraining/scripts/record_demo.py --model pretraining/runs/ticket-v2-base-42 --report pretraining/reports/ticket-v2 --output pretraining/runs/demo-rehearsal --rehearse
 uv run --no-sync python pretraining/scripts/record_demo.py --model pretraining/runs/ticket-v2-base-42 --report pretraining/reports/ticket-v2 --output pretraining/runs/demo-new
 ```
 

@@ -1,5 +1,11 @@
 # Transformers from Scratch and LoRA Fine-Tuning
 
+### From-scratch ticket routing and TinySQL LoRA adaptation with custom PyTorch Transformers
+
+**655,872-parameter ticket model • 32,768-parameter LoRA adapter • classical baselines • live demos**
+
+[![Python](https://img.shields.io/badge/Python-3.12.12-blue)](#shared-cpu-setup) [![Training](https://img.shields.io/badge/training-from%20scratch-informational)](#pretraining-ticket-routing) [![Fine-tuning](https://img.shields.io/badge/fine--tuning-custom%20LoRA-teal)](#fine-tuning-tinysql-lora)
+
 Two independent, synthetic-data experiments built with custom PyTorch Transformers.
 They share a locked Python workspace, but **do not share weights, tasks, or benchmarks**.
 
@@ -41,7 +47,8 @@ fuses the **intent** classifier into intent-token logits. Historical `pool-dual`
 identifiers refer to that intent-head fusion, rather than two-head inference.
 
 The [recorded walkthrough and live app](pretraining/README.md#demo-and-recorded-walkthrough)
-show predictions, an urgency edit, a real failure, learning curves and reproduction commands.
+show character-by-character ticket entry, predictions, an urgency edit, a real failure,
+learning curves and reproduction commands.
 
 ### What the ticket results establish
 
