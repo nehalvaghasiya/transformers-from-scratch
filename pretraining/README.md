@@ -15,7 +15,7 @@ Example input: `My invoice is incorrect. There is no rush; next week is fine.`
 
 The decoder generates two constrained label tokens and maps them to JSON. Training
 supervises the label continuation and EOS, with prompt/padding loss masked. This is
-a task-specific language model; general text pretraining on WikiText remains future work.
+a task-specific language model; this experiment does not perform general text pretraining.
 
 ## Architecture
 
@@ -28,7 +28,7 @@ flowchart LR
     E --> F[Intent token then priority token]
     F --> G[JSON label mapping]
     D -. prompt states .-> H[Optional mean-pooled auxiliary heads]
-    H -. training loss / optional dual-head decoding .-> F
+    H -. training loss / optional intent-head fusion .-> F
 ```
 
 | Setting | Value |
@@ -152,12 +152,12 @@ uv run --no-sync pretraining demo --model pretraining/runs/ticket-v2-base-42 --r
 
 The app shows live predictions, vocabulary coverage, measured comparisons, learning
 curves and reproduction commands. Vocabulary coverage is not calibrated confidence.
-Pooled checkpoints also offer dual-head mode; for example, use a trained
+Pooled checkpoints also offer intent-head fusion (historical mode name `dual`); for example, use a trained
 `ticket-v2-pool-42` artifact to compare both decoding modes.
 
 The GIF above is taken from an actual browser recording. A full captioned MP4 and
 SRT are generated locally in ignored `pretraining/runs/demo/`; the
-[transcript](docs/assets/demo-transcript.md) is included. The recording shows a
+recording script contains the captions. The recording shows a
 correct example, an urgency edit, a real failure, results and reproduction.
 
 To record again after training:
@@ -210,18 +210,14 @@ splits, class balance, deterministic generation and shared vocabulary/urgency as
 There is no real-customer evaluation, open-ended language generation, multilingual
 coverage or calibrated confidence. Long inputs are explicitly rejected.
 
-## What changed from the supplied project
+## Historical evidence and naming
 
-The original bundle is retained locally under ignored `pretrained/`; the maintained
-implementation is here. [Historical reports](reports/legacy/README.md) preserve all
-43 sweep records and distinguish the packaged checkpoint from harness runs.
+The maintained experiment is ticket-v2. `pool-dual` and CLI mode `dual` are historical
+identifiers: both auxiliary classifiers are trained, but inference fuses only the intent
+head into intent-token logits. The priority token is generated without priority-head fusion.
+Historical identifiers and measured decoding behavior are preserved.
 
-The old 71.57% versus 80.39% discrepancy was traced to a progress wrapper creating
-an extra DataLoader iterator, consuming the shared Torch RNG. The canonical trainer
-uses dedicated loader generators and no progress-wrapper iterator. A controlled
-three-update comparison and full legacy replay are recorded in the
-[diagnosis](reports/legacy/trainer-diagnosis.json).
-
-The [integration plan](integration-plan.md) records the original audit and migration
-intent. The original P01 WikiText experiment remains distinct; these ticket results
-do not complete its experiment contracts. Fine-tuning remains independent and planned.
+The original ticket-v1 inventory, sweep records and trainer-diagnosis report are absent
+from this checkout. Their earlier conclusions are not independently verified here.
+[Historical evidence note](reports/legacy/README.md) explains that boundary. This package
+is independent of the implemented TinySQL LoRA experiment in `../finetuning/`.
