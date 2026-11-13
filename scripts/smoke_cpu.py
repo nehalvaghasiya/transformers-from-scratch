@@ -1,117 +1,96 @@
-"""Verify the isolated CPU ML stack with a tiny local model and one LoRA update."""
+"""Exercise the actual ticket model and custom SQL LoRA in the isolated CPU environment."""
 
 import argparse
 import importlib
 import json
-import math
 import sys
 from importlib.metadata import distributions, version
 from pathlib import Path
+
+import torch
 
 
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--track", choices=["pretraining", "finetuning", "both"], default="both")
-    parser.add_argument("--demo", action="store_true", help="Also verify Gradio import.")
-    parser.add_argument("--output", type=Path, help="Write the JSON evidence to this path.")
+    parser.add_argument("--demo", action="store_true")
+    parser.add_argument("--output", type=Path)
     args = parser.parse_args()
-
     if sys.prefix == sys.base_prefix or sys.version_info[:2] != (3, 12):
-        raise RuntimeError("Run this smoke check inside a clean Python 3.12 virtual environment.")
-    names = {
-        "torch": "torch",
-        "transformers": "transformers",
-        "peft": "peft",
-        "datasets": "datasets",
-        "accelerate": "accelerate",
-        "tokenizers": "tokenizers",
-        "huggingface_hub": "huggingface-hub",
-        "numpy": "numpy",
-        "safetensors": "safetensors",
-    }
-    tracks = ["pretraining", "finetuning"] if args.track == "both" else [args.track]
-    names.update({track: f"small-llm-{track}" for track in tracks})
-    if args.demo:
-        names["gradio"] = "gradio"
-    modules = {name: importlib.import_module(name) for name in names}
-    environment = Path(sys.prefix).resolve()
-    for name, module in modules.items():
-        # Track packages may be editable; third-party dependencies must be isolated.
-        if name not in {"pretraining", "finetuning"} and not Path(
-            module.__file__
-        ).resolve().is_relative_to(environment):
-            raise RuntimeError(f"{name} was imported from outside the virtual environment.")
-
-    torch = modules["torch"]
+        raise RuntimeError("Use the documented Python 3.12 virtual environment")
     if torch.__version__ != "2.8.0+cpu" or torch.version.cuda is not None:
-        raise RuntimeError(f"Expected PyTorch 2.8.0 CPU, got {torch.__version__}.")
-    cuda_packages = sorted(
+        raise RuntimeError("Expected the locked PyTorch 2.8.0 CPU profile")
+    environment = Path(sys.prefix).resolve()
+    if not Path(torch.__file__).resolve().is_relative_to(environment):
+        raise RuntimeError("Torch was imported from outside the virtual environment")
+    cuda = [
         dist.metadata["Name"]
         for dist in distributions()
         if dist.metadata["Name"].lower().startswith("nvidia-")
         or dist.metadata["Name"].lower() == "triton"
-    )
-    if cuda_packages:
-        raise RuntimeError(f"CPU environment contains CUDA packages: {cuda_packages}")
-
-    # No remote model, dataset, tokenizer, or accelerator is needed for this check.
-    from peft import LoraConfig, TaskType, get_peft_model
-    from transformers import LlamaConfig, LlamaForCausalLM
-
+    ]
+    if cuda:
+        raise RuntimeError(f"Unexpected GPU dependencies: {cuda}")
+    if args.demo:
+        importlib.import_module("gradio")
     torch.set_num_threads(1)
     torch.manual_seed(42)
-    model = LlamaForCausalLM(
-        LlamaConfig(
-            vocab_size=32,
-            hidden_size=32,
-            intermediate_size=64,
-            num_hidden_layers=1,
-            num_attention_heads=4,
-            num_key_value_heads=4,
-            max_position_embeddings=32,
-            pad_token_id=0,
-            bos_token_id=1,
-            eos_token_id=2,
-        )
-    )
-    model = get_peft_model(
-        model,
-        LoraConfig(
-            task_type=TaskType.CAUSAL_LM,
-            r=2,
-            lora_alpha=4,
-            target_modules=["q_proj", "v_proj"],
-        ),
-    )
-    trainable = [parameter for parameter in model.parameters() if parameter.requires_grad]
-    before = [parameter.detach().clone() for parameter in trainable]
-    optimizer = torch.optim.AdamW(trainable, lr=0.01)
-    tokens = torch.tensor([[1, 3, 4, 5, 6, 7, 8, 2]])
-    loss = model(input_ids=tokens, labels=tokens).loss
-    if not math.isfinite(loss.item()):
-        raise RuntimeError("Tiny model produced a non-finite loss.")
-    loss.backward()
-    if not all(parameter.grad is not None for parameter in trainable):
-        raise RuntimeError("An adapter parameter received no gradient.")
-    if not all(torch.isfinite(parameter.grad).all() for parameter in trainable):
-        raise RuntimeError("Adapter gradients are non-finite.")
-    optimizer.step()
-    changed = sum(not torch.equal(old, new) for old, new in zip(before, trainable, strict=True))
-    if not changed:
-        raise RuntimeError("The optimizer did not update the LoRA adapter.")
+    results = {}
+    if args.track in {"pretraining", "both"}:
+        from pretraining.model import ModelConfig, TinyTicketLM
 
+        model = TinyTicketLM(ModelConfig(32, 16, 1, 2, 16, 0.0))
+        before = model.token_emb.weight.detach().clone()
+        optimizer = torch.optim.AdamW(model.parameters(), lr=0.01)
+        tokens = torch.tensor([[1, 3, 4, 5, 6]])
+        targets = torch.tensor([[-100, -100, 5, 6, 2]])
+        _, loss = model(tokens, targets)
+        assert loss is not None and torch.isfinite(loss)
+        loss.backward()
+        optimizer.step()
+        assert not torch.equal(before, model.token_emb.weight)
+        results["pretraining"] = {"loss": loss.item(), "parameters": model.count_parameters()}
+    if args.track in {"finetuning", "both"}:
+        from finetuning.lora_sql.adapters import (
+            LoRAConfig,
+            adapter_parameters,
+            attach_lora,
+            base_fingerprint,
+        )
+        from finetuning.tinysql.model import ModelConfig as SQLConfig
+        from finetuning.tinysql.model import TinySQLLM
+
+        sql = TinySQLLM(SQLConfig(32, 16, 16, 1, 2))
+        frozen = base_fingerprint(sql)
+        attach_lora(sql, LoRAConfig(rank=2, alpha=4))
+        parameters = adapter_parameters(sql)
+        before_adapter = [p.detach().clone() for p in parameters]
+        optimizer = torch.optim.AdamW(parameters, lr=0.01)
+        tokens = torch.tensor([[1, 3, 4, 5, 6]])
+        _, loss = sql(tokens, tokens)
+        assert loss is not None and torch.isfinite(loss)
+        loss.backward()
+        assert all(p.grad is not None and torch.isfinite(p.grad).all() for p in parameters)
+        optimizer.step()
+        assert any(not torch.equal(a, b) for a, b in zip(before_adapter, parameters, strict=True))
+        assert frozen == base_fingerprint(sql)
+        results["finetuning"] = {
+            "loss": loss.item(),
+            "adapter_parameters": sum(p.numel() for p in parameters),
+            "frozen_base_unchanged": True,
+        }
+    tracks = ["pretraining", "finetuning"] if args.track == "both" else [args.track]
     result = {
         "status": "passed",
         "python": sys.version.split()[0],
-        "executable": sys.executable,
         "environment": sys.prefix,
-        "package_paths": {name: modules[name].__file__ for name in tracks},
-        "versions": {distribution: version(distribution) for distribution in names.values()},
-        "torch_cuda_runtime": torch.version.cuda,
-        "cuda_packages": cuda_packages,
-        "tiny_lora_loss": loss.item(),
-        "trainable_parameters": sum(parameter.numel() for parameter in trainable),
-        "updated_parameter_tensors": changed,
+        "torch": str(torch.__version__),
+        "cuda_runtime_tested": False,
+        "package_paths": {name: importlib.import_module(name).__file__ for name in tracks},
+        "versions": {
+            name: version(name) for name in ["torch", "numpy", *[f"small-llm-{x}" for x in tracks]]
+        },
+        "checks": results,
     }
     output = json.dumps(result, indent=2) + "\n"
     if args.output:

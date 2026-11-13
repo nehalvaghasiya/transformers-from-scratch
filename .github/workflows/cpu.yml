@@ -1,0 +1,30 @@
+name: CPU checks
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+jobs:
+  tests:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+        with:
+          version: "0.12.1"
+      - name: Python and locked dependencies
+        run: |
+          uv python install 3.12.12
+          uv sync --locked --extra cpu --group pretraining --group demo
+      - name: Tests for both tracks
+        run: uv run --no-sync pytest
+      - name: Static checks
+        run: |
+          uv run --no-sync ruff check .
+          uv run --no-sync ruff format --check .
+          uv run --no-sync mypy
+      - name: Actual model smoke, lock and wheel checks
+        run: |
+          uv run --no-sync python scripts/smoke_cpu.py --demo
+          uv lock --check
+          uv build --all-packages
+          uv run --no-sync python scripts/verify_profiles.py
