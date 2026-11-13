@@ -15,7 +15,16 @@ SCHEMA = (
 )
 STATES = ["tx", "ca", "ny", "wa", "fl", "oh", "az", "ga", "co", "il", "or", "nc"]
 STATUS = ["completed", "pending", "cancelled", "refunded"]
-CATEGORIES = ["books", "toys", "electronics", "clothing", "office", "sports", "beauty", "home"]
+CATEGORIES = [
+    "books",
+    "toys",
+    "electronics",
+    "clothing",
+    "office",
+    "sports",
+    "beauty",
+    "home",
+]
 AMOUNTS = [10, 20, 30, 40, 50, 75, 100, 150, 200, 300, 500, 750]
 LIMITS = [2, 3, 4, 5, 6, 8, 10]
 
@@ -138,35 +147,44 @@ TEMPLATES = {
 
 def sql_for(family: str, values: dict[str, Any]) -> str:
     v = values
+
     if family == "state_customers":
         return f"SELECT name FROM customers WHERE state = '{v['state']}' ORDER BY name ASC;"
+
     if family == "order_lookup":
         return (
             f"SELECT id FROM orders WHERE status = '{v['status']}' AND total >= "
             f"{v['amount']} ORDER BY total DESC, id ASC LIMIT {v['limit']};"
         )
+
     if family == "order_count":
         return f"SELECT COUNT(*) FROM orders WHERE status = '{v['status']}';"
+
     if family == "order_sum":
         return f"SELECT SUM(total) FROM orders WHERE status = '{v['status']}';"
+
     if family == "top_customers":
         return (
             f"SELECT c.name, SUM(o.total) AS spent FROM customers c JOIN orders o "
             f"ON c.id = o.customer_id WHERE o.status = '{v['status']}' GROUP BY "
             f"c.id, c.name ORDER BY spent DESC, c.name ASC LIMIT {v['limit']};"
         )
+
     if family == "product_lookup":
         return (
             f"SELECT name FROM products WHERE category = '{v['category']}' AND "
             f"price <= {v['amount']} ORDER BY price ASC, name ASC;"
         )
+
     if family == "product_avg":
         return f"SELECT AVG(price) FROM products WHERE category = '{v['category']}';"
+
     if family == "state_order_count":
         return (
             f"SELECT COUNT(*) FROM orders o JOIN customers c ON o.customer_id = "
             f"c.id WHERE c.state = '{v['state']}' AND o.status = '{v['status']}';"
         )
+
     raise ValueError(family)
 
 
@@ -188,6 +206,7 @@ def values_for(family: str, rng: random.Random) -> dict[str, Any]:
         "amount": AMOUNTS,
         "limit": LIMITS,
     }
+
     return {k: rng.choice(choices[k]) for k in fields}
 
 
@@ -211,19 +230,25 @@ def build_dataset(
     }
     used = set()
     stats = {}
+
     for split, (n, template_ids) in plans.items():
         rows: list[dict[str, Any]] = []
         trials = 0
+
         while len(rows) < n:
             trials += 1
+
             if trials > n * 100:
                 raise RuntimeError("insufficient unique examples")
+
             family = rng.choice(list(TEMPLATES))
             values = values_for(family, rng)
             t = rng.choice(list(template_ids))
             question = TEMPLATES[family][t].format(**values)
+
             if question in used and split != "train":
                 continue
+
             used.add(question)
             rows.append(
                 {
@@ -235,9 +260,14 @@ def build_dataset(
                     "values": values,
                 }
             )
+
         rng.shuffle(rows)
         (out / f"{split}.jsonl").write_text("".join(json.dumps(x) + "\n" for x in rows))
-        stats[split] = {"count": len(rows), "families": dict(Counter(x["family"] for x in rows))}
+        stats[split] = {
+            "count": len(rows),
+            "families": dict(Counter(x["family"] for x in rows)),
+        }
+
     # Historical challenge phrasings: these were inspected during prior development.
     challenge_templates = {
         "state_customers": "i am interested in names of people from {state} sort by name",
@@ -256,15 +286,20 @@ def build_dataset(
     rows = []
     used_ch = set()
     trials = 0
+
     while len(rows) < n_challenge:
         trials += 1
+
         if trials > n_challenge * 100:
             raise RuntimeError("insufficient challenge examples")
+
         family = rng.choice(list(TEMPLATES))
         values = values_for(family, rng)
         question = challenge_templates[family].format(**values)
+
         if question in used_ch or question in used:
             continue
+
         used_ch.add(question)
         rows.append(
             {
@@ -276,8 +311,12 @@ def build_dataset(
                 "values": values,
             }
         )
+
     (out / "challenge.jsonl").write_text("".join(json.dumps(x) + "\n" for x in rows))
-    stats["challenge"] = {"count": len(rows), "families": dict(Counter(x["family"] for x in rows))}
+    stats["challenge"] = {
+        "count": len(rows),
+        "families": dict(Counter(x["family"] for x in rows)),
+    }
     (out / "manifest.json").write_text(
         json.dumps(
             {
@@ -292,6 +331,7 @@ def build_dataset(
             indent=2,
         )
     )
+
     return stats
 
 
@@ -317,22 +357,37 @@ def create_db(seed: int = 2026) -> sqlite3.Connection:
         "jamie",
         "cameron",
     ]
+
     for i in range(1, 101):
         db.execute(
             "INSERT INTO customers VALUES (?,?,?)",
             (i, f"{rng.choice(first)}_{i}", rng.choice(STATES)),
         )
+
     for i in range(1, 801):
         db.execute(
             "INSERT INTO orders VALUES (?,?,?,?)",
-            (i, rng.randint(1, 100), rng.choice(AMOUNTS) + rng.randint(0, 70), rng.choice(STATUS)),
+            (
+                i,
+                rng.randint(1, 100),
+                rng.choice(AMOUNTS) + rng.randint(0, 70),
+                rng.choice(STATUS),
+            ),
         )
+
     for i in range(1, 241):
         db.execute(
             "INSERT INTO products VALUES (?,?,?,?)",
-            (i, f"product_{i}", rng.choice(CATEGORIES), rng.choice(AMOUNTS) + rng.randint(0, 20)),
+            (
+                i,
+                f"product_{i}",
+                rng.choice(CATEGORIES),
+                rng.choice(AMOUNTS) + rng.randint(0, 20),
+            ),
         )
+
     db.commit()
+
     return db
 
 
@@ -340,28 +395,37 @@ def validate_read_only(sql: str) -> bool:
     import re
 
     cleaned = sql.strip()
+
     if not re.fullmatch(r"(?is)\s*select\b[^;]*;?\s*", cleaned):
         return False
+
     if re.search(
         r"(?i)\b(insert|update|delete|drop|attach|pragma|alter|create|replace|vacuum|load_extension)\b",
         cleaned,
     ):
         return False
+
     if "--" in cleaned or "/*" in cleaned:
         return False
+
     return True
 
 
-def execute_sql(sql: str, db: sqlite3.Connection, timeout_steps: int = 40000) -> list[Any]:
+def execute_sql(
+    sql: str, db: sqlite3.Connection, timeout_steps: int = 40000
+) -> list[Any]:
     if not validate_read_only(sql):
         raise ValueError("Only single read-only SELECT queries supported")
+
     progress = [0]
 
     def watchdog() -> bool:
         progress[0] += 1
+
         return progress[0] > timeout_steps
 
     db.set_progress_handler(watchdog, 100)
+
     try:
         return db.execute(sql).fetchall()
     finally:
@@ -378,4 +442,8 @@ if __name__ == "__main__":
     p.add_argument("--test", type=int, default=320)
     p.add_argument("--challenge", type=int, default=160)
     a = p.parse_args()
-    print(json.dumps(build_dataset(Path(a.out), a.train, a.val, a.test, a.challenge), indent=2))
+    print(
+        json.dumps(
+            build_dataset(Path(a.out), a.train, a.val, a.test, a.challenge), indent=2
+        )
+    )

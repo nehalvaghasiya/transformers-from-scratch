@@ -93,9 +93,11 @@ def create(
     rng = random.Random(seed)
     base = read_jsonl(src)
     result: list[Record] = []
+
     for row in base:
         if rng.random() < original_fraction:
             result.append(dict(row, id="lora-original-" + str(len(result))))
+
         for _ in range(repeat):
             question = rng.choice(PARAPHRASES[row["family"]]).format(**row["values"])
             result.append(
@@ -107,13 +109,19 @@ def create(
                     source="train_only_paraphrase",
                 )
             )
+
     rng.shuffle(result)
     output = Path(out)
     output.parent.mkdir(parents=True, exist_ok=True)
     write_jsonl(output, result)
     validation = Path(src).with_name("val.jsonl")
-    if validation.is_file() and validation.resolve() != output.with_name("val.jsonl").resolve():
+
+    if (
+        validation.is_file()
+        and validation.resolve() != output.with_name("val.jsonl").resolve()
+    ):
         shutil.copy2(validation, output.with_name("val.jsonl"))
+
     return {
         "count": len(result),
         "source_examples": len(base),

@@ -37,10 +37,18 @@ class ExperimentConfig:
     loader_rng: str = "isolated"
 
     def __post_init__(self) -> None:
-        if self.dataset not in {"ticket-v1", "ticket-v2"} or self.device not in {"cpu", "cuda"}:
+        if self.dataset not in {"ticket-v1", "ticket-v2"} or self.device not in {
+            "cpu",
+            "cuda",
+        }:
             raise ValueError("Unsupported dataset or device")
-        if self.schedule not in {"flat", "cosine"} or self.loader_rng not in {"isolated", "legacy"}:
+
+        if self.schedule not in {"flat", "cosine"} or self.loader_rng not in {
+            "isolated",
+            "legacy",
+        }:
             raise ValueError("Unsupported schedule or loader RNG")
+
         if (
             min(
                 self.threads,
@@ -54,10 +62,13 @@ class ExperimentConfig:
             < 1
         ):
             raise ValueError("Counts must be positive")
+
         if self.max_steps < 0 or self.limit_train < 0 or not 0 <= self.warmup_ratio < 1:
             raise ValueError("Invalid run limits or warmup")
+
         if not 0 <= self.dropout < 1 or self.n_embd % self.n_head:
             raise ValueError("Invalid dropout or attention dimensions")
+
         if (
             any(
                 not math.isfinite(value) or value < 0
@@ -71,18 +82,23 @@ class ExperimentConfig:
 
     def fingerprint(self) -> str:
         values = asdict(self)
+
         for key in ("data_dir", "runs_dir"):
             values.pop(key)
+
         return hashlib.sha256(json.dumps(values, sort_keys=True).encode()).hexdigest()
 
 
 def read_config(path: str | Path) -> ExperimentConfig:
     path = Path(path).resolve()
     values = tomllib.loads(path.read_text())
+
     for key in ("data_dir", "runs_dir"):
         values[key] = str(
             (
-                path.parent / values.get(key, ExperimentConfig.__dataclass_fields__[key].default)
+                path.parent
+                / values.get(key, ExperimentConfig.__dataclass_fields__[key].default)
             ).resolve()
         )
+
     return ExperimentConfig(**values)

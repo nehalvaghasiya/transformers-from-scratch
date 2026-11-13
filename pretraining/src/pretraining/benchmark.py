@@ -26,8 +26,12 @@ VARIANTS = (("base", "flat", 0.0), ("cosine", "cosine", 0.0), ("pool", "cosine",
 
 def run_benchmark(config_path: Path, output: Path) -> None:
     config = read_config(config_path)
+
     if config.dataset != "ticket-v2" or config.max_steps or config.limit_train:
-        raise ValueError("The full benchmark requires ticket-v2 without shortened training")
+        raise ValueError(
+            "The full benchmark requires ticket-v2 without shortened training"
+        )
+
     torch.set_num_threads(config.threads)
     data_dir = Path(config.data_dir)
     output.mkdir(parents=True, exist_ok=True)
@@ -50,12 +54,15 @@ def run_benchmark(config_path: Path, output: Path) -> None:
     }
     contract = json.loads(json.dumps(contract))
     contract_file = output / "contract.json"
+
     if contract_file.exists() and json.loads(contract_file.read_text()) != contract:
         raise ValueError("Benchmark contract changed; use a new report/run directory")
+
     write_json(contract_file, contract)
     validation = read_rows(data_dir / "val.csv")
     candidates: list[dict[str, Any]] = []
     paths: dict[tuple[str, int], Path] = {}
+
     for variant, schedule, pool in VARIANTS:
         for seed in SEEDS:
             current = replace(config, seed=seed, schedule=schedule, pool_weight=pool)
@@ -66,8 +73,10 @@ def run_benchmark(config_path: Path, output: Path) -> None:
                 info_file.exists()
                 and json.loads(info_file.read_text()).get("status") == "completed"
             )
+
             if completed:
                 previous = json.loads(info_file.read_text())
+
                 if (
                     previous["config_hash"] != current.fingerprint()
                     or previous["source_hashes"] != contract["source_hashes"]
@@ -97,9 +106,11 @@ def run_benchmark(config_path: Path, output: Path) -> None:
                         "MKL_NUM_THREADS": str(config.threads),
                     },
                 )
+
             paths[(variant, seed)] = artifact
             model, tokenizer, head, legacy = load_artifact(artifact, config.device)
             info = json.loads(info_file.read_text())
+
             for mode in ("generative", "dual") if pool else ("generative",):
                 predictions = predict(
                     model,
@@ -118,9 +129,14 @@ def run_benchmark(config_path: Path, output: Path) -> None:
                         **score(validation, predictions),
                     }
                 )
+
     grouped: dict[tuple[str, str], list[dict[str, Any]]] = {}
+
     for candidate in candidates:
-        grouped.setdefault((candidate["variant"], candidate["mode"]), []).append(candidate)
+        grouped.setdefault((candidate["variant"], candidate["mode"]), []).append(
+            candidate
+        )
+
     winner = min(
         grouped,
         key=lambda key: (
@@ -134,7 +150,9 @@ def run_benchmark(config_path: Path, output: Path) -> None:
     selected_path = paths[(winner[0], selected["seed"])]
     baselines = fit_baselines(read_rows(data_dir / "train.csv"))
     baseline_validation = {
-        baseline.name: score(validation, baseline.predict([row["text"] for row in validation]))
+        baseline.name: score(
+            validation, baseline.predict([row["text"] for row in validation])
+        )
         for baseline in baselines
     }
     baseline_name = min(
@@ -160,28 +178,52 @@ def run_benchmark(config_path: Path, output: Path) -> None:
     results = []
     selected_predictions = {}
     baseline_predictions = {}
+
     for split in ("test", "challenge"):
         rows = read_rows(data_dir / f"{split}.csv")
         texts = [row["text"] for row in rows]
+
         for baseline in baselines:
             predictions = baseline.predict(texts)
             results.append(
-                {"split": split, "system": baseline.name, "seed": None, **score(rows, predictions)}
+                {
+                    "split": split,
+                    "system": baseline.name,
+                    "seed": None,
+                    **score(rows, predictions),
+                }
             )
-            write_predictions(output / f"{split}-{baseline.name}.csv", rows, predictions)
+            write_predictions(
+                output / f"{split}-{baseline.name}.csv", rows, predictions
+            )
+
             if baseline.name == baseline_name:
                 baseline_predictions[split] = predictions
+
         for variant, _, pool in VARIANTS:
             for seed in SEEDS:
                 artifact = paths[(variant, seed)]
+
                 for mode in ("generative", "dual") if pool else ("generative",):
                     metrics = evaluate_artifact(
-                        artifact, data_dir, split, artifact / "evaluation", mode, config.device
+                        artifact,
+                        data_dir,
+                        split,
+                        artifact / "evaluation",
+                        mode,
+                        config.device,
                     )
                     system = f"{variant}-{mode}"
                     results.append({"system": system, "seed": seed, **metrics})
-                    if variant == winner[0] and mode == winner[1] and seed == selected["seed"]:
-                        model, tokenizer, head, legacy = load_artifact(artifact, config.device)
+
+                    if (
+                        variant == winner[0]
+                        and mode == winner[1]
+                        and seed == selected["seed"]
+                    ):
+                        model, tokenizer, head, legacy = load_artifact(
+                            artifact, config.device
+                        )
                         selected_predictions[split] = predict(
                             model,
                             tokenizer,
@@ -190,22 +232,34 @@ def run_benchmark(config_path: Path, output: Path) -> None:
                             pool_head=head if mode == "dual" else None,
                             legacy_pooling=legacy,
                         )
+
                     write_predictions_path = (
                         artifact / "evaluation" / f"{split}-{mode}-predictions.csv"
                     )
                     (output / f"{split}-{system}-{seed}.csv").write_bytes(
                         write_predictions_path.read_bytes()
                     )
+
         for seed in SEEDS:
             artifact = paths[("base", seed)]
             model, tokenizer, _, _ = load_artifact(artifact, config.device)
             model.load_state_dict(
-                torch.load(artifact / "initial.pt", map_location=config.device, weights_only=True)
+                torch.load(
+                    artifact / "initial.pt",
+                    map_location=config.device,
+                    weights_only=True,
+                )
             )
             predictions = predict(model, tokenizer, texts, device=config.device)
             results.append(
-                {"split": split, "system": "random-init", "seed": seed, **score(rows, predictions)}
+                {
+                    "split": split,
+                    "system": "random-init",
+                    "seed": seed,
+                    **score(rows, predictions),
+                }
             )
+
     intervals = {
         split: paired_interval(
             read_rows(data_dir / f"{split}.csv"),
@@ -232,4 +286,7 @@ def run_benchmark(config_path: Path, output: Path) -> None:
     from .report import render_report
 
     render_report(output, paths, data_dir, selected_predictions)
-    print(f"Benchmark complete: {output}; selected {selected_path} ({winner[1]})", flush=True)
+    print(
+        f"Benchmark complete: {output}; selected {selected_path} ({winner[1]})",
+        flush=True,
+    )

@@ -20,6 +20,7 @@ def build_demo(base_dir: Path, adapter: Path) -> gr.Blocks:
                 f"Local model artifact missing: {path}. "
                 "Train a base and adapter or restore an external bundle; see finetuning/README.md."
             )
+
     torch.set_num_threads(2)
     base, tok = load_model(base_dir, device="cpu")
     adapted, _ = load_model(base_dir, device="cpu")
@@ -29,16 +30,21 @@ def build_demo(base_dir: Path, adapter: Path) -> gr.Blocks:
     def run(question):
         if not question.strip():
             return "Enter a question", "", [], []
+
         if len(question) > 280:
             return "Input too long", "", [], []
+
         ids = tok.format_input(question)
+
         if len(ids) >= base.config.context:
             return "Input exceeds context", "", [], []
+
         original = tok.decode(base.generate(ids, tok.eos_id, max_new_tokens=85))
         final = tok.decode(adapted.generate(ids, tok.eos_id, max_new_tokens=85))
 
         def safe_run(sql):
             db = create_db(2026)
+
             try:
                 return execute_sql(sql, db)[:20]
             except Exception as error:
@@ -54,15 +60,26 @@ def build_demo(base_dir: Path, adapter: Path) -> gr.Blocks:
             "Both SQL strings are generated autoregressively; the small model has serious "
             "limitations. Demo uses a synthetic, isolated sample database."
         )
-        question = gr.Textbox(label="Question", value="how many completed orders are there")
+        question = gr.Textbox(
+            label="Question", value="how many completed orders are there"
+        )
         button = gr.Button("Generate and execute")
+
         with gr.Row():
             base_sql = gr.Textbox(label="Frozen base SQL", lines=3, interactive=False)
             lora_sql = gr.Textbox(label="LoRA SQL", lines=3, interactive=False)
+
         with gr.Row():
-            base_rows = gr.JSON(label="Frozen base results", height=160, elem_id="base-results")
-            lora_rows = gr.JSON(label="LoRA results", height=160, elem_id="lora-results")
-        button.click(run, inputs=question, outputs=[base_sql, lora_sql, base_rows, lora_rows])
+            base_rows = gr.JSON(
+                label="Frozen base results", height=160, elem_id="base-results"
+            )
+            lora_rows = gr.JSON(
+                label="LoRA results", height=160, elem_id="lora-results"
+            )
+
+        button.click(
+            run, inputs=question, outputs=[base_sql, lora_sql, base_rows, lora_rows]
+        )
         gr.Markdown(
             "Results show at most 20 rows from a fixed sample database. "
             "SQL that executes can still answer the question incorrectly. "
@@ -78,12 +95,15 @@ def build_demo(base_dir: Path, adapter: Path) -> gr.Blocks:
             ],
             inputs=question,
         )
+
     return demo
 
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--base", type=Path, default=ROOT / "base_small")
-    parser.add_argument("--adapter", type=Path, default=ROOT / "adapters/aug_r8_fast/adapter.pt")
+    parser.add_argument(
+        "--adapter", type=Path, default=ROOT / "adapters/aug_r8_fast/adapter.pt"
+    )
     args = parser.parse_args()
     build_demo(args.base, args.adapter).launch()

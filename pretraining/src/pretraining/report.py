@@ -14,8 +14,10 @@ from .inference import Prediction
 
 def summarize(results: list[dict[str, Any]]) -> list[dict[str, Any]]:
     groups: dict[tuple[str, str], list[dict[str, Any]]] = {}
+
     for row in results:
         groups.setdefault((row["system"], row["split"]), []).append(row)
+
     return [
         {
             "system": system,
@@ -52,18 +54,25 @@ def render_report(
 
     report = json.loads((output / "benchmark.json").read_text())
     summary = summarize(report["results"])
+
     with (output / "summary.csv").open("w", newline="") as stream:
         writer = csv.DictWriter(stream, fieldnames=list(summary[0]))
         writer.writeheader()
         writer.writerows(summary)
+
     lines = [
         "| System | Test joint accuracy | Challenge joint accuracy | Test intent macro-F1 |",
         "| --- | ---: | ---: | ---: |",
     ]
+
     for system in sorted({row["system"] for row in summary}):
-        test = next(row for row in summary if row["system"] == system and row["split"] == "test")
+        test = next(
+            row for row in summary if row["system"] == system and row["split"] == "test"
+        )
         challenge = next(
-            row for row in summary if row["system"] == system and row["split"] == "challenge"
+            row
+            for row in summary
+            if row["system"] == system and row["split"] == "challenge"
         )
 
         def percent(row: dict[str, Any]) -> str:
@@ -74,8 +83,10 @@ def render_report(
         lines.append(
             f"| {system} | {percent(test)} | {percent(challenge)} | {test['intent_macro_f1']:.3f} |"
         )
+
     (output / "results.md").write_text(
-        "\n".join(lines) + "\n\n± denotes sample standard deviation across three fixed seeds. "
+        "\n".join(lines)
+        + "\n\n± denotes sample standard deviation across three fixed seeds. "
         "Classical baselines are single fitted systems.\n"
     )
     plt.rcParams.update(
@@ -88,24 +99,30 @@ def render_report(
         }
     )
     fig, axes = plt.subplots(1, 2, figsize=(12, 4.5), layout="constrained")
+
     for split, ax in zip(("test", "challenge"), axes, strict=True):
         rows = [row for row in summary if row["split"] == split]
         ax.barh(
             [row["system"] for row in rows],
             [100 * row["joint_accuracy"] for row in rows],
             xerr=[100 * row["joint_std"] for row in rows],
-            color=["#b66d42" if "tfidf" in row["system"] else "#326b70" for row in rows],
+            color=[
+                "#b66d42" if "tfidf" in row["system"] else "#326b70" for row in rows
+            ],
             capsize=3,
         )
         ax.set(xlim=(0, 100), xlabel="Joint accuracy (%)", title=split.title())
         ax.grid(axis="x", alpha=0.18)
+
     fig.suptitle("Ticket-v2 · Transformer and classical baselines", fontsize=16)
     fig.savefig(output / "comparison.png", dpi=160)
     plt.close(fig)
     fig, axes = plt.subplots(1, 2, figsize=(10, 4), layout="constrained")
     seed = report["selection"]["seed"]
+
     for variant in ("base", "cosine", "pool"):
         history = json.loads((paths[(variant, seed)] / "history.json").read_text())
+
         for ax, key in zip(axes, ("answer_ce", "val_answer_ce"), strict=True):
             ax.plot(
                 [row["epoch"] for row in history],
@@ -115,17 +132,20 @@ def render_report(
             )
             ax.set(xlabel="Epoch", ylabel="Answer-token cross-entropy", yscale="log")
             ax.grid(alpha=0.2)
+
     axes[0].set_title(f"Training answer CE · seed {seed}")
     axes[1].set_title("Validation answer CE")
     axes[1].legend()
     fig.savefig(output / "learning-curves.png", dpi=160)
     plt.close(fig)
     errors: list[dict[str, Any]] = []
+
     for split, predictions in selected_predictions.items():
         rows = read_rows(data_dir / f"{split}.csv")
         from .evaluate import score
 
         metrics = score(rows, predictions)
+
         for key in ("intent", "priority"):
             confusion = metrics[f"{key}_confusion"]
             fig, ax = plt.subplots(figsize=(8, 5), layout="constrained")
@@ -137,12 +157,19 @@ def render_report(
                 ha="right",
             )
             ax.set_yticks(range(len(confusion["labels"])), confusion["labels"])
-            ax.set(xlabel="Predicted", ylabel="True", title=f"Selected Transformer · {split} {key}")
+            ax.set(
+                xlabel="Predicted",
+                ylabel="True",
+                title=f"Selected Transformer · {split} {key}",
+            )
+
             for i, counts in enumerate(confusion["counts"]):
                 for j, value in enumerate(counts):
                     ax.text(j, i, str(value), ha="center", va="center", fontsize=8)
+
             fig.savefig(output / f"{split}-{key}-confusion.png", dpi=140)
             plt.close(fig)
+
         wrong = [
             (row, prediction)
             for row, prediction in zip(rows, predictions, strict=True)
@@ -157,6 +184,7 @@ def render_report(
             }
             for row, prediction in wrong[:5]
         )
+
     (output / "errors.json").write_text(json.dumps(errors, indent=2) + "\n")
 
 

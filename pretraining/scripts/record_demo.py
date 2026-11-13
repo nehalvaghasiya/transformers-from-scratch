@@ -22,16 +22,23 @@ TRACK = Path(__file__).resolve().parents[1]
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--url", default="http://127.0.0.1:7860")
-    parser.add_argument("--model", type=Path, help="Optionally start and stop a local demo server")
+    parser.add_argument(
+        "--model", type=Path, help="Optionally start and stop a local demo server"
+    )
     parser.add_argument("--report", type=Path)
     parser.add_argument("--output", type=Path, default=TRACK / "runs/demo")
     parser.add_argument("--assets", type=Path, default=TRACK / "docs/assets")
     args = parser.parse_args()
+
     args.output.mkdir(parents=True, exist_ok=True)
     args.assets.mkdir(parents=True, exist_ok=True)
     movie = args.output / "ticket-transformer.mp4"
+
     if movie.exists():
-        raise FileExistsError("Use a new output directory to preserve the existing recording")
+        raise FileExistsError(
+            "Use a new output directory to preserve the existing recording"
+        )
+
     if args.model is not None:
         command = [
             str(Path(sys.executable).parent / "pretraining"),
@@ -41,11 +48,16 @@ def main() -> None:
             "--port",
             str(urlsplit(args.url).port or 7860),
         ]
+
         if args.report is not None:
             command.extend(["--report", str(args.report)])
+
         log = (args.output / "server.log").open("w")
         server = subprocess.Popen(
-            command, stdout=log, stderr=log, env={**os.environ, "GRADIO_ANALYTICS_ENABLED": "False"}
+            command,
+            stdout=log,
+            stderr=log,
+            env={**os.environ, "GRADIO_ANALYTICS_ENABLED": "False"},
         )
 
         def stop_server() -> None:
@@ -54,9 +66,11 @@ def main() -> None:
             log.close()
 
         atexit.register(stop_server)
+
         for _ in range(40):
             if server.poll() is not None:
                 raise RuntimeError("Demo server failed; inspect server.log")
+
             try:
                 with urllib.request.urlopen(args.url, timeout=1):
                     break
@@ -64,7 +78,9 @@ def main() -> None:
                 time.sleep(1)
         else:
             raise RuntimeError("Demo server did not become ready")
+
     events: list[tuple[float, str]] = []
+
     with sync_playwright() as playwright:
         browser = playwright.chromium.launch(headless=True)
         context = browser.new_context(
@@ -100,6 +116,7 @@ def main() -> None:
 
         def until(seconds: float) -> None:
             remaining = seconds - (time.perf_counter() - start)
+
             if remaining > 0:
                 page.wait_for_timeout(remaining * 1000)
 
@@ -124,7 +141,9 @@ def main() -> None:
             "Edit the urgency and run the same model again. These are computed "
             "predictions, not saved example responses."
         )
-        route("My invoice is incorrect. Our team is blocked from an essential task today.")
+        route(
+            "My invoice is incorrect. Our team is blocked from an essential task today."
+        )
         until(45)
         caption(
             "A real failure: this ticket requests account cancellation, but the "
@@ -158,14 +177,19 @@ def main() -> None:
             "establish real-ticket accuracy."
         )
         page.get_by_text("Reproduce this model", exact=True).click()
-        page.get_by_text("Reproduce this model", exact=True).scroll_into_view_if_needed()
+        page.get_by_text(
+            "Reproduce this model", exact=True
+        ).scroll_into_view_if_needed()
         until(123)
         video = page.video
+
         assert video is not None
+
         raw = Path(video.path())
         duration = time.perf_counter() - start
         context.close()
         browser.close()
+
     ffmpeg = imageio_ffmpeg.get_ffmpeg_exe()
     subprocess.run(
         [
@@ -216,6 +240,7 @@ def main() -> None:
         "",
     ]
     subtitles = []
+
     for index, (begin, text) in enumerate(events):
         end = events[index + 1][0] if index + 1 < len(events) else duration
 
@@ -224,10 +249,12 @@ def main() -> None:
             hours, remainder = divmod(milliseconds, 3600000)
             minutes, remainder = divmod(remainder, 60000)
             seconds, fraction = divmod(remainder, 1000)
+
             return f"{hours:02}:{minutes:02}:{seconds:02},{fraction:03}"
 
         subtitles.append(f"{index + 1}\n{stamp(begin)} --> {stamp(end)}\n{text}\n")
         transcript.append(f"**{int(begin):02}s:** {text}\n")
+
     (args.output / "captions.srt").write_text("\n".join(subtitles))
     (args.assets / "demo-transcript.md").write_text("\n".join(transcript) + "\n")
     (args.output / "recording.json").write_text(

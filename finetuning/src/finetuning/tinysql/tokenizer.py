@@ -26,8 +26,10 @@ class WordSQLTokenizer:
     def __init__(self, vocab: list[str]) -> None:
         self.vocab = list(vocab)
         self.stoi = {s: i for i, s in enumerate(vocab)}
+
         if len(self.vocab) != len(self.stoi) or not set(SPECIAL) <= self.stoi.keys():
             raise ValueError("Invalid vocabulary")
+
         self.pad_id = self.stoi["<pad>"]
         self.unk_id = self.stoi["<unk>"]
         self.bos_id = self.stoi["<bos>"]
@@ -36,9 +38,11 @@ class WordSQLTokenizer:
     @classmethod
     def fit(cls, records: list[Record]) -> WordSQLTokenizer:
         counts: Counter[str] = Counter()
+
         for r in records:
             counts.update(tokens(prompt(r["question"])))
             counts.update(tokens(r["sql"]))
+
         return cls(
             SPECIAL
             + [
@@ -54,15 +58,21 @@ class WordSQLTokenizer:
     def format_input(self, question: str) -> list[int]:
         return [self.bos_id] + self.encode(prompt(question))
 
-    def format_train(self, row: Record, context: int = 160) -> tuple[list[int], list[int]]:
+    def format_train(
+        self, row: Record, context: int = 160
+    ) -> tuple[list[int], list[int]]:
         p = self.format_input(row["question"])
         out = self.encode(row["sql"]) + [self.eos_id]
         seq = p + out
+
         if len(seq) > context:
             raise ValueError(f"Sequence {len(seq)} too long for context {context}")
+
         x = seq[:-1]
         y = [-100] * (len(p) - 1) + out
+
         assert len(x) == len(y)
+
         return x, y
 
     def decode(self, ids: list[int]) -> str:
@@ -70,6 +80,7 @@ class WordSQLTokenizer:
         decoded = [x for x in decoded if x not in ("<pad>", "<bos>", "<eos>")]
         txt = " ".join(decoded)
         txt = re.sub(r"'\s+([a-z_]+)\s+'", r"'\1'", txt)
+
         return txt.strip()
 
     def save(self, path: str | Path) -> None:

@@ -159,26 +159,37 @@ Accelerate are not required. Gradio may bring its own transitive dependencies.
 
 VS Code automatically formats Python files and notebook cells on save when using
 [this workspace](.vscode/transformers-from-scratch.code-workspace) with the Ruff extension.
-It normalizes spacing, four-space indentation, quotes and line wrapping, and runs
-import sorting and safe lint fixes on explicit saves. The editor uses the locked
+It normalizes spacing, four-space indentation, double quotes and 88-character line
+wrapping, and sorts imports on explicit saves. Automatic fixes are limited to imports
+so formatting does not rewrite expressions or control flow. The editor uses the locked
 `.venv/bin/ruff` and the shared `pyproject.toml` configuration. Run the setup above
 first. These settings are also applied to this checkout's local VS Code configuration.
 
-Use Ruff for import sorting and Black-style formatting:
+Use the root Makefile for the shared development commands. `make setup` installs the
+locked CPU environment described above; `make help` lists the available targets.
+
+Sort imports and apply Ruff formatting to Python files and notebook code cells:
 
 ```bash
-uv run --no-sync ruff check . --select I --fix
-uv run --no-sync ruff format .
+make format
 ```
 
-Verify formatting and run the other checks:
+Group standard-library, third-party and project imports with a blank line between
+groups. Separate validation, preparation, computation and return sections inside
+functions with one blank line, keeping closely related statements together. Ruff
+preserves these logical section breaks; it does not infer or insert them. A trailing
+comma in a multiline expression keeps its arguments or items on separate lines.
+
+Pretraining recovery checkpoints validate source file hashes. Format before starting
+a run; resuming an earlier run requires the source files used for that run.
+
+Verify formatting without changing files, then run the other checks:
 
 ```bash
-uv run --no-sync ruff check .
-uv run --no-sync ruff format --check .
-uv run --no-sync mypy
-uv run --no-sync pytest
-uv run --no-sync python scripts/smoke_cpu.py
+make check
+make typecheck
+make test
+make smoke
 uv lock --check
 uv build --all-packages
 uv run --no-sync python scripts/verify_profiles.py

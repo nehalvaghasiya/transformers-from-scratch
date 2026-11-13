@@ -41,6 +41,7 @@ def train_lora(
 ) -> Record:
     if Path(out).exists():
         raise FileExistsError(out)
+
     if (
         min(batch, epochs, num_threads) < 1
         or steps < 0
@@ -49,20 +50,27 @@ def train_lora(
         or lr <= 0
     ):
         raise ValueError("Invalid training settings")
+
     start = time.time()
     seed_all(seed)
     torch.set_num_threads(num_threads)
     device = device or ("cuda" if torch.cuda.is_available() else "cpu")
+
     base_model, tok = load_model(base, device)
     base_model.eval()
     base_count = base_model.count_parameters()
-    frozen_checksum = {k: v.detach().clone() for k, v in base_model.state_dict().items()}
+    frozen_checksum = {
+        k: v.detach().clone() for k, v in base_model.state_dict().items()
+    }
+
     cfg = LoRAConfig(rank, alpha, dropout, tuple(targets))
     attach_lora(base_model, cfg)
     trainable = sum(p.numel() for p in adapter_parameters(base_model))
     total = sum(p.numel() for p in base_model.parameters())
+
     output = Path(out)
     output.mkdir(parents=True, exist_ok=False)
+
     rows = read_jsonl(Path(data) / "train.jsonl")
     val = read_jsonl(Path(data) / "val.jsonl")
     train_ds = SQLDataset(rows, tok, base_model.config.context)
@@ -88,10 +96,13 @@ def train_lora(
     def scale(step: int) -> float:
         if step < warmup:
             return max(0.001, (step + 1) / warmup)
+
         x = min(1, (step - warmup) / max(1, total_steps - warmup))
+
         return 0.1 + 0.9 * 0.5 * (1 + math.cos(math.pi * x))
 
     schedule = torch.optim.lr_scheduler.LambdaLR(optim, scale)
+
     baseline_val = teacher_eval(base_model, vloader, device)
     best = baseline_val
     best_epoch = 0
@@ -100,26 +111,33 @@ def train_lora(
     step = 0
     # save zero-update as fallback, allowing honest reporting if LoRA fails
     save_adapter(base_model, output / "adapter.pt", cfg, base_ref=base)
+
     for epoch in range(1, epochs + 1):
         base_model.train()
         seen = 0
         weighted = 0
+
         for x, y in loader:
             x = x.to(device)
             y = y.to(device)
             optim.zero_grad(set_to_none=True)
             _, loss = base_model(x, y)
+
             assert loss is not None
+
             loss.backward()
             torch.nn.utils.clip_grad_norm_(adapter_parameters(base_model), 1.0)
             optim.step()
             schedule.step()
             step += 1
+
             n = (y != -100).sum().item()
             seen += n
             weighted += loss.detach().item() * n
+
             if steps and step >= steps:
                 break
+
         val_ce = teacher_eval(base_model, vloader, device)
         record = {
             "epoch": epoch,
@@ -131,6 +149,7 @@ def train_lora(
         }
         history.append(record)
         print(json.dumps(record), flush=True)
+
         if val_ce < best - 1e-5:
             best = val_ce
             best_epoch = epoch
@@ -138,16 +157,22 @@ def train_lora(
             save_adapter(base_model, output / "adapter.pt", cfg, base_ref=base)
         else:
             bad += 1
+
         if (patience and bad >= patience) or (steps and step >= steps):
             break
+
     # verify exact unchanged frozen base weights within LoRA wrappers
     current = {
         k.replace(".original.", "."): v
         for k, v in base_model.state_dict().items()
         if ".lora_" not in k
     }
-    if any(not torch.equal(current[k].cpu(), v.cpu()) for k, v in frozen_checksum.items()):
+
+    if any(
+        not torch.equal(current[k].cpu(), v.cpu()) for k, v in frozen_checksum.items()
+    ):
         raise AssertionError("Frozen base changed")
+
     summary: Record = {
         "base": str(base),
         "base_params": base_count,
@@ -185,11 +210,13 @@ def train_lora(
     (output / "history.json").write_text(json.dumps(history, indent=2))
     (output / "metadata.json").write_text(json.dumps(summary, indent=2))
     print("SUMMARY", json.dumps(summary), flush=True)
+
     return summary
 
 
 if __name__ == "__main__":
     p = argparse.ArgumentParser()
+
     for name, typ, default in [
         ("base", str, "base_small"),
         ("data", str, "data"),
@@ -207,5 +234,6 @@ if __name__ == "__main__":
         ("num_threads", int, 2),
     ]:
         p.add_argument("--" + name.replace("_", "-"), type=typ, default=default)
+
     a = p.parse_args()
     train_lora(**vars(a))

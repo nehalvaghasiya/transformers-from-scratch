@@ -193,10 +193,12 @@ def _make_record(
     urgency = rng.choice(URGENCY[priority])
     context = rng.choice(CONTEXTS)
     pieces = [base, urgency, context]
+
     if rng.random() < 0.5:
         pieces = [context, base, urgency]
     elif rng.random() < 0.25:
         pieces = [urgency, base, context]
+
     return {
         "id": ticket_id,
         "text": " ".join(pieces),
@@ -218,17 +220,21 @@ def generate_dataset(
     """Generate balanced, unique synthetic tickets; test uses unseen wording templates."""
     if version not in {"ticket-v1", "ticket-v2"}:
         raise ValueError("Unknown dataset version")
+
     sizes = {"train": n_train, "val": n_val, "test": n_test, "challenge": n_challenge}
     output_dir = Path(output_dir)
     output_dir.mkdir(parents=True, exist_ok=True)
     rng = random.Random(seed)
     seen = set()
     paths = {}
+
     for split, n in sizes.items():
         if n < 18 or n % (len(INTENTS) * len(PRIORITIES)):
             raise ValueError("split size must be divisible by 18 for balancing")
+
         rows: list[Ticket] = []
         per_group = n // (len(INTENTS) * len(PRIORITIES))
+
         for intent in INTENTS:
             for priority in PRIORITIES:
                 for _ in range(per_group):
@@ -247,7 +253,9 @@ def generate_dataset(
                                 else [13]
                             )
                             if version == "ticket-v1"
-                            else range(10 if split == "train" else len(templates[intent]))
+                            else range(
+                                10 if split == "train" else len(templates[intent])
+                            )
                         )
                         template_index = rng.choice(choices)
                         record = _make_record(
@@ -258,19 +266,29 @@ def generate_dataset(
                             f"{split}-{len(rows):05d}",
                             templates,
                         )
+
                         if version == "ticket-v2":
-                            record["template_id"] = f"ticket-v2:{split}:{intent}:{template_index}"
+                            record["template_id"] = (
+                                f"ticket-v2:{split}:{intent}:{template_index}"
+                            )
+
                         if record["text"] not in seen:
                             seen.add(record["text"])
                             rows.append(record)
                             break
+
         rng.shuffle(rows)
         path = output_dir / f"{split}.csv"
+
         with path.open("w", newline="", encoding="utf-8") as f:
-            w = csv.DictWriter(f, fieldnames=["id", "text", "intent", "priority", "template_id"])
+            w = csv.DictWriter(
+                f, fieldnames=["id", "text", "intent", "priority", "template_id"]
+            )
             w.writeheader()
             w.writerows(rows)
+
         paths[split] = path
+
     return paths
 
 
@@ -394,19 +412,31 @@ V2_TEMPLATES = {
 
 
 class TicketDataset(Dataset[tuple[Tensor, Tensor]]):
-    def __init__(self, rows: list[Ticket], tokenizer: WordTokenizer, max_seq_len: int) -> None:
+    def __init__(
+        self, rows: list[Ticket], tokenizer: WordTokenizer, max_seq_len: int
+    ) -> None:
         self.items: list[tuple[Tensor, Tensor]] = []
+
         for row in rows:
             if row["intent"] not in INTENTS or row["priority"] not in PRIORITIES:
                 raise ValueError("Unknown ticket label")
+
             prompt = tokenizer.encode_prompt(row["text"])
             answer = tokenizer.answer_ids(row["intent"], row["priority"])
             ids = prompt + answer
+
             if len(ids) > max_seq_len:
-                raise ValueError("Input too long; increase context rather than dropping examples")
+                raise ValueError(
+                    "Input too long; increase context rather than dropping examples"
+                )
+
             self.items.append(
-                (torch.tensor(ids[:-1]), torch.tensor([-100] * (len(prompt) - 1) + answer))
+                (
+                    torch.tensor(ids[:-1]),
+                    torch.tensor([-100] * (len(prompt) - 1) + answer),
+                )
             )
+
         if not self.items:
             raise ValueError("Training and validation datasets must be nonempty")
 
@@ -424,13 +454,17 @@ def batchify(items: list[tuple[Tensor, Tensor]], pad_id: int) -> tuple[Tensor, T
     )
 
 
-def prepare_dataset(directory: Path, version: str, seed: int = 2026) -> dict[str, object]:
+def prepare_dataset(
+    directory: Path, version: str, seed: int = 2026
+) -> dict[str, object]:
     import hashlib
     import json
 
     manifest = directory / "manifest.json"
+
     if manifest.exists() and json.loads(manifest.read_text())["version"] != version:
         raise ValueError("Use a different directory for each dataset version")
+
     paths = generate_dataset(directory, seed=seed, version=version)
     result: dict[str, object] = {
         "version": version,
@@ -447,4 +481,5 @@ def prepare_dataset(directory: Path, version: str, seed: int = 2026) -> dict[str
         },
     }
     manifest.write_text(json.dumps(result, indent=2) + "\n")
+
     return result
