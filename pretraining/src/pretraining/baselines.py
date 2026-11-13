@@ -17,14 +17,18 @@ class Baseline:
 
     def predict(self, texts: list[str]) -> list[Prediction]:
         features = (
-            self.vectorizer.transform(texts) if self.vectorizer is not None else [[0]] * len(texts)
+            self.vectorizer.transform(texts)
+            if self.vectorizer is not None
+            else [[0]] * len(texts)
         )
         fields = {
             key: classifier.predict(features).tolist()
             for key, classifier in self.classifiers.items()
         }
+
         return [
-            {key: values[index] for key, values in fields.items()} for index in range(len(texts))
+            {key: values[index] for key, values in fields.items()}
+            for index in range(len(texts))
         ]
 
 
@@ -36,16 +40,27 @@ def fit_baselines(rows: list[Ticket]) -> list[Baseline]:
     texts = [row["text"] for row in rows]
     specs: list[tuple[str, Any]] = [
         ("majority", None),
-        ("word_tfidf", TfidfVectorizer(ngram_range=(1, 2), min_df=2, sublinear_tf=True)),
+        (
+            "word_tfidf",
+            TfidfVectorizer(ngram_range=(1, 2), min_df=2, sublinear_tf=True),
+        ),
         (
             "char_tfidf",
-            TfidfVectorizer(analyzer="char_wb", ngram_range=(3, 5), min_df=2, sublinear_tf=True),
+            TfidfVectorizer(
+                analyzer="char_wb", ngram_range=(3, 5), min_df=2, sublinear_tf=True
+            ),
         ),
     ]
     models = []
+
     for name, vectorizer in specs:
-        features = vectorizer.fit_transform(texts) if vectorizer is not None else [[0]] * len(texts)
+        features = (
+            vectorizer.fit_transform(texts)
+            if vectorizer is not None
+            else [[0]] * len(texts)
+        )
         classifiers = {}
+
         for key in ("intent", "priority"):
             classifier = (
                 DummyClassifier(strategy="most_frequent")
@@ -54,5 +69,7 @@ def fit_baselines(rows: list[Ticket]) -> list[Baseline]:
             )
             classifier.fit(features, [row[key] for row in rows])
             classifiers[key] = classifier
+
         models.append(Baseline(name, vectorizer, classifiers))
+
     return models

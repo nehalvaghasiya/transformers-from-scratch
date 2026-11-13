@@ -31,9 +31,11 @@ def plot(
     out.mkdir(parents=True, exist_ok=True)
     fig, ax = plt.subplots(figsize=(8, 4.5))
     any_ = False
+
     for path in run_dirs:
         h = Path(path) / "history.json"
         meta = Path(path) / "metadata.json"
+
         if h.exists():
             hist = json.loads(h.read_text())
             m = json.loads(meta.read_text())
@@ -44,6 +46,7 @@ def plot(
                 marker="o",
                 label=Path(path).name,
             )
+
     if any_:
         ax.set(
             xlabel="Optimization steps",
@@ -54,34 +57,48 @@ def plot(
         ax.grid(alpha=0.25)
         fig.tight_layout()
         fig.savefig(out / "validation_loss.png", dpi=160)
+
     plt.close(fig)
+
     for file in reports:
         p = Path(file)
+
         if not p.exists():
             continue
+
         d = json.loads(p.read_text())
         scores = d["model_scores"]
         names = list(scores)
         values = [100 * scores[k]["execution_accuracy"] for k in names]
+
         fig, ax = plt.subplots(figsize=(max(7, len(names) * 1.5), 4.5))
         bars = ax.bar(range(len(names)), values)
-        ax.set_xticks(range(len(names)), [x.replace("_", "\n") for x in names], fontsize=8)
+        ax.set_xticks(
+            range(len(names)), [x.replace("_", "\n") for x in names], fontsize=8
+        )
         ax.set(
             ylim=(0, 100),
             ylabel="Execution accuracy (%)",
             title=f"{d['split']} | n={d['sample_count']} | 2 SQLite DBs",
         )
         ax.bar_label(bars, fmt="%.1f%%", padding=2, fontsize=9)
+
         fig.tight_layout()
         fig.savefig(out / (d["split"] + "_accuracy.png"), dpi=160)
         plt.close(fig)
+
         if "frozen_base" in scores and "lora_raw" in scores:
             fam = sorted(scores["frozen_base"]["by_family"])
             x = np.arange(len(fam))
-            b = [100 * scores["frozen_base"]["by_family"][f]["execution_accuracy"] for f in fam]
-            adapted_values = [
-                100 * scores["lora_raw"]["by_family"][f]["execution_accuracy"] for f in fam
+            b = [
+                100 * scores["frozen_base"]["by_family"][f]["execution_accuracy"]
+                for f in fam
             ]
+            adapted_values = [
+                100 * scores["lora_raw"]["by_family"][f]["execution_accuracy"]
+                for f in fam
+            ]
+
             fig, ax = plt.subplots(figsize=(11, 4))
             ax.bar(x - 0.2, b, 0.4, label="Frozen base")
             ax.bar(x + 0.2, adapted_values, 0.4, label="LoRA")
@@ -92,9 +109,11 @@ def plot(
                 title=f"{d['split']}: accuracy by query family",
             )
             ax.legend()
+
             fig.tight_layout()
             fig.savefig(out / (d["split"] + "_by_family.png"), dpi=160)
             plt.close(fig)
+
     return sorted(str(p) for p in out.glob("*.png"))
 
 
@@ -105,8 +124,11 @@ if __name__ == "__main__":
     parser.add_argument("--out", default="runs/plots")
     args = parser.parse_args()
     options = {}
+
     if args.run_dir is not None:
         options["run_dirs"] = tuple(args.run_dir)
+
     if args.report is not None:
         options["reports"] = tuple(args.report)
+
     print("\n".join(plot(out=args.out, **options)))

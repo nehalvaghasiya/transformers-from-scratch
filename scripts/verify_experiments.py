@@ -25,8 +25,11 @@ def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--ticket-report", type=Path, required=True)
-    parser.add_argument("--reuse-sql", action="store_true", help="Reuse matching SQL replay files")
+    parser.add_argument(
+        "--reuse-sql", action="store_true", help="Reuse matching SQL replay files"
+    )
     args = parser.parse_args()
+
     required = [
         ROOT / "finetuning/base_small/model.pt",
         ROOT / "finetuning/base_small/tokenizer.json",
@@ -34,16 +37,19 @@ def main() -> None:
         ROOT / "finetuning/adapters/aug_r8_fast/compatibility.json",
     ]
     required += [
-        ROOT / f"finetuning/data/{split}.jsonl" for split in ["train", "val", "test", "challenge"]
+        ROOT / f"finetuning/data/{split}.jsonl"
+        for split in ["train", "val", "test", "challenge"]
     ]
     required.append(ROOT / "finetuning/data_lora/train.jsonl")
     missing = [str(path.relative_to(ROOT)) for path in required if not path.is_file()]
+
     if missing:
         parser.error(
             "Historical replay needs separately stored weights and generated data: "
             + ", ".join(missing)
             + ". See finetuning/README.md."
         )
+
     output = args.output.resolve()
     output.mkdir(parents=True, exist_ok=args.reuse_sql)
     sql_root = ROOT / "finetuning"
@@ -55,20 +61,24 @@ def main() -> None:
         "sql": {},
         "ticket": {},
     }
+
     with tempfile.TemporaryDirectory(prefix="tinysql-regeneration-") as directory:
         data = Path(directory)
         build_dataset(data, 6400, 320, 320, 160, seed=42)
         result["data"]["original_bytes_match"] = {
-            split: file_hash(data / f"{split}.jsonl") == file_hash(sql_root / f"data/{split}.jsonl")
+            split: file_hash(data / f"{split}.jsonl")
+            == file_hash(sql_root / f"data/{split}.jsonl")
             for split in ["train", "val", "test", "challenge"]
         }
         create(sql_root / "data/train.jsonl", data / "aug.jsonl")
-        result["data"]["augmentation_bytes_match"] = file_hash(data / "aug.jsonl") == file_hash(
-            sql_root / "data_lora/train.jsonl"
-        )
+        result["data"]["augmentation_bytes_match"] = file_hash(
+            data / "aug.jsonl"
+        ) == file_hash(sql_root / "data_lora/train.jsonl")
+
     _, tokenizer = load_model(sql_root / "base_small")
     result["data"]["tokenizer_matches_training"] = (
-        tokenizer.vocab == WordSQLTokenizer.fit(read_jsonl(sql_root / "data/train.jsonl")).vocab
+        tokenizer.vocab
+        == WordSQLTokenizer.fit(read_jsonl(sql_root / "data/train.jsonl")).vocab
     )
     train = read_jsonl(sql_root / "data/train.jsonl")
     augmented = read_jsonl(sql_root / "data_lora/train.jsonl")
@@ -85,12 +95,19 @@ def main() -> None:
         )
         for split in ["val", "test", "challenge"]
     }
+
     for split in ["val", "test", "challenge"]:
         if args.reuse_sql:
             reproduced = json.loads((output / f"{split}.json").read_text())
             identity = provenance(sql_root / "data")
-            if any(reproduced[k] != identity[k] for k in ["source_hashes", "data_hashes"]):
-                raise ValueError("SQL replay source or data changed; use a fresh output")
+
+            if any(
+                reproduced[k] != identity[k] for k in ["source_hashes", "data_hashes"]
+            ):
+                raise ValueError(
+                    "SQL replay source or data changed; use a fresh output"
+                )
+
             for key, path in [
                 ("adapter_sha256", sql_root / "adapters/aug_r8_fast/adapter.pt"),
                 ("base_model_sha256", sql_root / "base_small/model.pt"),
@@ -107,11 +124,13 @@ def main() -> None:
                 count=0,
                 output=output / f"{split}.json",
             )
+
         historical = json.loads((sql_root / f"reports/{split}_final.json").read_text())
         before = read_jsonl(sql_root / f"reports/{split}_final_predictions.jsonl")
         after = read_jsonl(output / f"{split}_predictions.jsonl")
         aligned = [r["id"] for r in before] == [r["id"] for r in after]
         comparison = {}
+
         for name, metrics in reproduced["model_scores"].items():
             comparison[name] = {
                 "historical_execution_accuracy": historical["model_scores"][name][
@@ -120,16 +139,19 @@ def main() -> None:
                 "reproduced_execution_accuracy": metrics["execution_accuracy"],
                 "sql_strings_match": aligned
                 and all(
-                    a[name]["sql"] == b[name]["sql"] for a, b in zip(before, after, strict=True)
+                    a[name]["sql"] == b[name]["sql"]
+                    for a, b in zip(before, after, strict=True)
                 ),
                 "all_metrics_match": metrics == historical["model_scores"][name],
             }
+
         result["sql"][split] = {
             "ids_match": aligned,
             "models": comparison,
             "bootstrap_interval_matches": reproduced["paired_bootstrap_95pct_ci_pp"]
             == historical["paired_bootstrap_95pct_ci_pp"],
         }
+
     plot(
         run_dirs=(sql_root / "adapters/aug_r8_fast",),
         reports=tuple(output / f"{s}.json" for s in ["val", "test", "challenge"]),
@@ -152,8 +174,10 @@ def main() -> None:
     expected = {index(r): r for r in old["results"]}
     actual = {index(r): r for r in new["results"]}
     differences = []
+
     if expected.keys() != actual.keys():
         differences.append({"problem": "Missing or extra systems/splits/seeds"})
+
     for key in expected.keys() & actual.keys():
         for metric in metrics:
             if abs(expected[key][metric] - actual[key][metric]) > 1e-12:
@@ -165,16 +189,27 @@ def main() -> None:
                         "reproduced": actual[key][metric],
                     }
                 )
+
     prediction_matches = {}
+
     for path in sorted(reference_root.glob("*.csv")):
         if path.name == "summary.csv":
             continue
+
         destination = args.ticket_report / path.name
         # Rows are compared semantically to avoid differences in newline conventions.
         prediction_matches[path.name] = destination.exists() and (
-            list(csv.DictReader(path.open())) == list(csv.DictReader(destination.open()))
+            list(csv.DictReader(path.open()))
+            == list(csv.DictReader(destination.open()))
         )
-    selection_keys = ["variant", "mode", "seed", "comparison_baseline", "test_used_for_selection"]
+
+    selection_keys = [
+        "variant",
+        "mode",
+        "seed",
+        "comparison_baseline",
+        "test_used_for_selection",
+    ]
     result["ticket"] = {
         "run_count": len(new["runs"]),
         "metric_differences": differences,
@@ -183,7 +218,8 @@ def main() -> None:
             old["selection"][k] == new["selection"][k] for k in selection_keys
         ),
         "source_hashes_match_current": {
-            run: info["source_hashes"] == source_hashes() for run, info in new["runs"].items()
+            run: info["source_hashes"] == source_hashes()
+            for run, info in new["runs"].items()
         },
         "paired_intervals_match": old["paired_intervals"] == new["paired_intervals"],
     }
@@ -198,7 +234,8 @@ def main() -> None:
                 s["ids_match"]
                 and s["bootstrap_interval_matches"]
                 and all(
-                    m["all_metrics_match"] and m["sql_strings_match"] for m in s["models"].values()
+                    m["all_metrics_match"] and m["sql_strings_match"]
+                    for m in s["models"].values()
                 )
                 for s in result["sql"].values()
             )

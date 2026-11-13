@@ -16,7 +16,9 @@ type Record = dict[str, Any]
 
 
 def read_jsonl(path: str | Path) -> list[Record]:
-    return [json.loads(line) for line in Path(path).read_text().splitlines() if line.strip()]
+    return [
+        json.loads(line) for line in Path(path).read_text().splitlines() if line.strip()
+    ]
 
 
 def write_jsonl(path: str | Path, rows: list[Record]) -> None:
@@ -31,6 +33,7 @@ def seed_all(seed: int) -> None:
     random.seed(seed)
     np.random.seed(seed)
     torch.manual_seed(seed)
+
     if torch.cuda.is_available():
         torch.cuda.manual_seed_all(seed)
 
@@ -41,6 +44,7 @@ def device_for() -> str:
 
 def provenance(data_dir: str | Path) -> Record:
     root = Path(__file__).parents[1]
+
     return {
         "environment": {
             "python": platform.python_version(),
@@ -52,5 +56,7 @@ def provenance(data_dir: str | Path) -> Record:
         "source_hashes": {
             str(p.relative_to(root)): file_hash(p) for p in sorted(root.rglob("*.py"))
         },
-        "data_hashes": {p.name: file_hash(p) for p in sorted(Path(data_dir).glob("*.jsonl"))},
+        "data_hashes": {
+            p.name: file_hash(p) for p in sorted(Path(data_dir).glob("*.jsonl"))
+        },
     }

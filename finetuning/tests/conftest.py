@@ -18,6 +18,7 @@ def sql_data(tmp_path_factory):
     root = tmp_path_factory.mktemp("sql-data")
     build_dataset(root / "data", 6400, 320, 320, 160, seed=42)
     create(root / "data/train.jsonl", root / "data_lora/train.jsonl")
+
     return root
 
 
@@ -57,4 +58,7 @@ def prepared_sql(tmp_path_factory):
         device="cpu",
         num_threads=1,
     )
-    return SimpleNamespace(base=root / "base", adapter=root / "adapter", data=root / "data")
+
+    return SimpleNamespace(
+        base=root / "base", adapter=root / "adapter", data=root / "data"
+    )

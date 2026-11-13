@@ -22,21 +22,26 @@ def load_artifact(
     model = TinyTicketLM.load_model(folder, device)
     tokenizer = WordTokenizer.load(folder / "vocab.json")
     head = None
+
     if (folder / "pool_head.pt").exists():
         with torch.random.fork_rng(devices=[]):
             head = make_pool_head(model.config.n_embd).to(device)
+
         head.load_state_dict(
             torch.load(folder / "pool_head.pt", map_location=device, weights_only=True)
         )
         head.eval()
+
     metadata = (
         json.loads((folder / "run_info.json").read_text())
         if (folder / "run_info.json").exists()
         else {}
     )
     legacy_pooling = (
-        metadata.get("pooling", "legacy_include_separator") == "legacy_include_separator"
+        metadata.get("pooling", "legacy_include_separator")
+        == "legacy_include_separator"
     )
+
     return model, tokenizer, head, legacy_pooling
 
 
@@ -53,10 +58,14 @@ def predict(
 ) -> list[Prediction]:
     if batch_size < 1 or alpha < 0:
         raise ValueError("Batch size must be positive and alpha nonnegative")
+
     model.eval()
+
     if pool_head is not None:
         pool_head.eval()
+
     results: list[Prediction] = []
+
     for start in range(0, len(texts), batch_size):
         chunk = texts[start : start + batch_size]
         prompts = [tokenizer.encode_prompt(text) for text in chunk]
@@ -75,19 +84,24 @@ def predict(
         ]
         sequences = [prompts[index] for index in good]
         generated: list[list[int]] = []
+
         for step, allowed in enumerate((tokenizer.intent_ids, tokenizer.priority_ids)):
             if not sequences:
                 break
+
             tokens = pad_sequence(
                 [torch.tensor(sequence, dtype=torch.long) for sequence in sequences],
                 batch_first=True,
                 padding_value=tokenizer.pad_id,
             ).to(device)
             hidden = model.encode(tokens)
-            positions = torch.tensor([len(sequence) - 1 for sequence in sequences], device=device)
+            positions = torch.tensor(
+                [len(sequence) - 1 for sequence in sequences], device=device
+            )
             label_logits = model.lm_head(hidden)[
                 torch.arange(len(sequences), device=device), positions
             ][:, allowed]
+
             if step == 0 and pool_head is not None:
                 if legacy_pooling:
                     mask = tokens != tokenizer.pad_id
@@ -95,17 +109,25 @@ def predict(
                         1, keepdim=True
                     ).clamp_min(1)
                 else:
-                    pooled = pool_prompt(hidden, tokens, tokenizer.pad_id, tokenizer.sep_id)
+                    pooled = pool_prompt(
+                        hidden, tokens, tokenizer.pad_id, tokenizer.sep_id
+                    )
+
                 label_logits = label_logits + alpha * pool_head["intent"](pooled)
+
             labels = [allowed[index] for index in label_logits.argmax(dim=-1).tolist()]
             generated.append(labels)
             sequences = [
-                sequence + [label] for sequence, label in zip(sequences, labels, strict=True)
+                sequence + [label]
+                for sequence, label in zip(sequences, labels, strict=True)
             ]
+
         for index, original in enumerate(good):
             output[original] = {
                 "intent": tokenizer.decode_label(generated[0][index], "intent"),
                 "priority": tokenizer.decode_label(generated[1][index], "priority"),
             }
+
         results.extend(output)
+
     return results

@@ -32,8 +32,11 @@ class RetrievalBaseline:
             if hasattr(sims.argmax(axis=1), "A")
             else sims.argmax(axis=1).ravel()
         )
+
         return [
-            self.copy_values(questions[i], self.rows[j]) if self.slots else self.rows[j]["sql"]
+            self.copy_values(questions[i], self.rows[j])
+            if self.slots
+            else self.rows[j]["sql"]
             for i, j in enumerate(idx)
         ]
 
@@ -45,22 +48,37 @@ class RetrievalBaseline:
         # Only copy observed structured values. Family/SQL skeleton comes from nearest-
         # neighbor retrieval.
         lex = {"state": STATES, "status": STATUS, "category": CATEGORIES}
+
         for field, options in lex.items():
             if field not in source:
                 continue
+
             found = [
-                x for x in options if re.search(r"(?<![a-z_])" + re.escape(x) + r"(?![a-z_])", q)
+                x
+                for x in options
+                if re.search(r"(?<![a-z_])" + re.escape(x) + r"(?![a-z_])", q)
             ]
+
             if len(found) == 1:
                 sql = sql.replace("'" + str(source[field]) + "'", "'" + found[0] + "'")
+
         ints = [int(x) for x in re.findall(r"\b\d+\b", q)]
+
         if "amount" in source:
             amounts = [x for x in ints if x in AMOUNTS and x >= 10]
+
             if amounts:
                 tgt = max(amounts)
-                sql = re.sub(r"(?<!\d)" + str(source["amount"]) + r"(?!\d)", str(tgt), sql, count=1)
+                sql = re.sub(
+                    r"(?<!\d)" + str(source["amount"]) + r"(?!\d)",
+                    str(tgt),
+                    sql,
+                    count=1,
+                )
+
         if "limit" in source:
             limits = [x for x in ints if x in LIMITS]
+
             if limits:
                 tgt = min(limits)
                 sql = re.sub(
@@ -68,11 +86,13 @@ class RetrievalBaseline:
                     lambda m: m.group(1) + str(tgt),
                     sql,
                 )
+
         return sql
 
 
 def make_baselines(train_dir: str | Path = "data") -> dict[str, RetrievalBaseline]:
     rows = read_jsonl(Path(train_dir) / "train.jsonl")
+
     return {
         "word_tfidf_retrieval": RetrievalBaseline(rows, "word"),
         "char_tfidf_retrieval": RetrievalBaseline(rows, "char"),

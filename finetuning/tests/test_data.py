@@ -12,9 +12,16 @@ from finetuning.tinysql.utils import read_jsonl
 
 def test_dataset_is_disjoint_and_template_heldout(tmp_path):
     build_dataset(tmp_path, n_train=80, n_val=40, n_test=40, n_challenge=16)
-    splits = {x: read_jsonl(tmp_path / f"{x}.jsonl") for x in ["train", "val", "test", "challenge"]}
+    splits = {
+        x: read_jsonl(tmp_path / f"{x}.jsonl")
+        for x in ["train", "val", "test", "challenge"]
+    }
+
     for a, bb in [("train", "val"), ("train", "test"), ("val", "test")]:
-        assert set(x["question"] for x in splits[a]).isdisjoint(x["question"] for x in splits[bb])
+        assert set(x["question"] for x in splits[a]).isdisjoint(
+            x["question"] for x in splits[bb]
+        )
+
     assert set(r["template_id"] for r in splits["train"]) <= set(range(8))
     assert set(r["template_id"] for r in splits["val"]) <= set(range(8, 10))
     assert set(r["template_id"] for r in splits["test"]) <= set(range(10, 12))
@@ -33,10 +40,13 @@ def test_sql_gold_executes_all_families():
         "product_avg": {"category": "toys"},
         "state_order_count": {"state": "tx", "status": "completed"},
     }
+
     for k, v in examples.items():
         sql = sql_for(k, v)
+
         assert validate_read_only(sql)
         assert isinstance(execute_sql(sql, db), list)
+
     db.close()
 
 
@@ -54,6 +64,7 @@ def test_sql_gold_executes_all_families():
 )
 def test_sql_safety(bad):
     assert not validate_read_only(bad)
+
     with pytest.raises(ValueError):
         execute_sql(bad, create_db())
 
@@ -63,5 +74,6 @@ def test_seed_determinism(tmp_path):
     b = tmp_path / "b"
     build_dataset(a, 60, 24, 24, 16, seed=42)
     build_dataset(b, 60, 24, 24, 16, seed=42)
+
     for x in ["train", "val", "test", "challenge"]:
         assert (a / f"{x}.jsonl").read_bytes() == (b / f"{x}.jsonl").read_bytes()
