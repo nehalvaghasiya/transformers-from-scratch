@@ -1,0 +1,10 @@
+{
+  "python": "3.13.5",
+  "torch": "2.10.0+cpu",
+  "numpy": "2.3.5",
+  "sklearn": "1.8.0",
+  "pytest": "9.0.2",
+  "accelerator": "CPU",
+  "gpu_used_for_run": false,
+  "hardware_report": "CPU-only sandbox environment"
+}

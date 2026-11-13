@@ -1,0 +1,216 @@
+{
+  "split": "val",
+  "sample_count": 320,
+  "seed_for_subset": 19,
+  "base": "base_small",
+  "adapter": "adapters/aug_r8_fast/adapter.pt",
+  "model_scores": {
+    "frozen_base": {
+      "count": 320,
+      "exact_match": 0.690625,
+      "valid_sql": 0.871875,
+      "execution_accuracy": 0.69375,
+      "by_family": {
+        "order_count": {
+          "n": 8,
+          "execution_accuracy": 1.0
+        },
+        "order_lookup": {
+          "n": 82,
+          "execution_accuracy": 0.7682926829268293
+        },
+        "order_sum": {
+          "n": 8,
+          "execution_accuracy": 1.0
+        },
+        "product_avg": {
+          "n": 16,
+          "execution_accuracy": 1.0
+        },
+        "product_lookup": {
+          "n": 77,
+          "execution_accuracy": 0.5454545454545454
+        },
+        "state_customers": {
+          "n": 24,
+          "execution_accuracy": 0.8333333333333334
+        },
+        "state_order_count": {
+          "n": 64,
+          "execution_accuracy": 0.5625
+        },
+        "top_customers": {
+          "n": 41,
+          "execution_accuracy": 0.7073170731707317
+        }
+      }
+    },
+    "lora_raw": {
+      "count": 320,
+      "exact_match": 0.728125,
+      "valid_sql": 0.971875,
+      "execution_accuracy": 0.759375,
+      "by_family": {
+        "order_count": {
+          "n": 8,
+          "execution_accuracy": 1.0
+        },
+        "order_lookup": {
+          "n": 82,
+          "execution_accuracy": 0.8658536585365854
+        },
+        "order_sum": {
+          "n": 8,
+          "execution_accuracy": 1.0
+        },
+        "product_avg": {
+          "n": 16,
+          "execution_accuracy": 1.0
+        },
+        "product_lookup": {
+          "n": 77,
+          "execution_accuracy": 0.6623376623376623
+        },
+        "state_customers": {
+          "n": 24,
+          "execution_accuracy": 1.0
+        },
+        "state_order_count": {
+          "n": 64,
+          "execution_accuracy": 0.5625
+        },
+        "top_customers": {
+          "n": 41,
+          "execution_accuracy": 0.7073170731707317
+        }
+      }
+    },
+    "word_tfidf_retrieval": {
+      "count": 320,
+      "exact_match": 0.49375,
+      "valid_sql": 1.0,
+      "execution_accuracy": 0.503125,
+      "by_family": {
+        "order_count": {
+          "n": 8,
+          "execution_accuracy": 0.0
+        },
+        "order_lookup": {
+          "n": 82,
+          "execution_accuracy": 0.17073170731707318
+        },
+        "order_sum": {
+          "n": 8,
+          "execution_accuracy": 0.5
+        },
+        "product_avg": {
+          "n": 16,
+          "execution_accuracy": 1.0
+        },
+        "product_lookup": {
+          "n": 77,
+          "execution_accuracy": 0.5974025974025974
+        },
+        "state_customers": {
+          "n": 24,
+          "execution_accuracy": 1.0
+        },
+        "state_order_count": {
+          "n": 64,
+          "execution_accuracy": 0.859375
+        },
+        "top_customers": {
+          "n": 41,
+          "execution_accuracy": 0.04878048780487805
+        }
+      }
+    },
+    "char_tfidf_retrieval": {
+      "count": 320,
+      "exact_match": 0.571875,
+      "valid_sql": 1.0,
+      "execution_accuracy": 0.653125,
+      "by_family": {
+        "order_count": {
+          "n": 8,
+          "execution_accuracy": 0.0
+        },
+        "order_lookup": {
+          "n": 82,
+          "execution_accuracy": 0.524390243902439
+        },
+        "order_sum": {
+          "n": 8,
+          "execution_accuracy": 1.0
+        },
+        "product_avg": {
+          "n": 16,
+          "execution_accuracy": 1.0
+        },
+        "product_lookup": {
+          "n": 77,
+          "execution_accuracy": 0.42857142857142855
+        },
+        "state_customers": {
+          "n": 24,
+          "execution_accuracy": 1.0
+        },
+        "state_order_count": {
+          "n": 64,
+          "execution_accuracy": 0.71875
+        },
+        "top_customers": {
+          "n": 41,
+          "execution_accuracy": 0.9512195121951219
+        }
+      }
+    },
+    "word_tfidf_slots": {
+      "count": 320,
+      "exact_match": 0.784375,
+      "valid_sql": 1.0,
+      "execution_accuracy": 0.784375,
+      "by_family": {
+        "order_count": {
+          "n": 8,
+          "execution_accuracy": 0.0
+        },
+        "order_lookup": {
+          "n": 82,
+          "execution_accuracy": 0.975609756097561
+        },
+        "order_sum": {
+          "n": 8,
+          "execution_accuracy": 0.5
+        },
+        "product_avg": {
+          "n": 16,
+          "execution_accuracy": 1.0
+        },
+        "product_lookup": {
+          "n": 77,
+          "execution_accuracy": 0.8181818181818182
+        },
+        "state_customers": {
+          "n": 24,
+          "execution_accuracy": 1.0
+        },
+        "state_order_count": {
+          "n": 64,
+          "execution_accuracy": 0.96875
+        },
+        "top_customers": {
+          "n": 41,
+          "execution_accuracy": 0.04878048780487805
+        }
+      }
+    }
+  },
+  "paired_gain_percent_points": 6.5625,
+  "paired_bootstrap_95pct_ci_pp": [
+    4.0625,
+    9.382812499999957
+  ],
+  "duration_seconds": 24.77,
+  "note": "All predictions evaluated against gold queries on two SQLite DBs. Held-out splits were known from earlier project; scores are exploratory."
+}

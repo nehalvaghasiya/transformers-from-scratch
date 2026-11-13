@@ -1,0 +1,29 @@
+{
+  "note": "Historical artifact identities only; weight files are stored outside Git. No public download URL is configured.",
+  "base": {
+    "model_sha256": "633a631ecf19d81e7913dccfa04d24114a9fe3df45343f98c754f1c868c72908",
+    "tokenizer_sha256": "b27d1ddf8cdae221905af63425acdb4fc7c452d720ca7876cc0d56a54deec78a"
+  },
+  "adapter": {
+    "name": "aug_r8_fast",
+    "config": {
+      "rank": 8,
+      "alpha": 16.0,
+      "dropout": 0.0,
+      "targets": [
+        "qkv",
+        "proj",
+        "ff.0",
+        "ff.2"
+      ]
+    },
+    "compatibility": {
+      "format": 1,
+      "adapter_sha256": "17c824d62aacd0cadf48c0f07b66254c7e093f51211495c7ff764b088f370d6f",
+      "base_fingerprint": "0016aae2fea32b43331fbad395be37cd3a13de11617bfcf345ca8b3baf4089fb",
+      "base_model_sha256": "633a631ecf19d81e7913dccfa04d24114a9fe3df45343f98c754f1c868c72908",
+      "tokenizer_sha256": "b27d1ddf8cdae221905af63425acdb4fc7c452d720ca7876cc0d56a54deec78a",
+      "provenance": "Compatibility binding added during cleanup; original weight bytes are unchanged. Historical training-source hashes were not recorded."
+    }
+  }
+}
