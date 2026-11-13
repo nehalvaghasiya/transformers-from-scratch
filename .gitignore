@@ -1,23 +1,111 @@
 # Local environments and Python/build caches
 .venv/
+venv/
+env/
+.direnv/
 __pycache__/
 *.py[cod]
 *.egg-info/
 .pytest_cache/
 .mypy_cache/
 .ruff_cache/
+.tox/
+.nox/
 build/
 dist/
+.coverage
+.coverage.*
+htmlcov/
+coverage.xml
+.ipynb_checkpoints/
 
 # User editor settings and secrets
 .vscode/
+!/.vscode/
+/.vscode/*
+!/.vscode/transformers-from-scratch.code-workspace
+.idea/
 .env
 .env.*
+!.env.example
+!.env.sample
+!.env.template
+.aws/
+.DS_Store
+Thumbs.db
+Desktop.ini
+*.swp
+*.swo
+*~
 
 # Full experiment artifacts; compact reports belong in reports/.
 data/
+data_lora/
+datasets/
 runs/
+artifacts/
+checkpoints/
+outputs/
+exports/
 .cache/
+*.log
+*.log.*
+*.pid
+*.prof
+*.pstats
+wandb/
+mlruns/
+lightning_logs/
+tensorboard/
+events.out.tfevents.*
+
+# Model weights, numeric datasets and local release archives.
+*.pt
+*.pth
+*.ckpt
+*.safetensors
+*.onnx
+*.gguf
+*.ggml
+*.h5
+*.hdf5
+*.keras
+*.npy
+*.npz
+*.arrow
+*.parquet
+*.feather
+pytorch_model*.bin
+adapter_model*.bin
+*.zip
+*.tar
+*.tar.gz
+*.tgz
+
+# Portable exports belong under runs/; only this explanatory note is versioned.
+finetuning/hf_adapter/*
+!finetuning/hf_adapter/README.md
+
+# Model artifact directories, including their tokenizers, metadata and histories.
+adapters/
+models/
+weights/
+pretraining/adapters/
+pretraining/models/
+pretraining/weights/
+pretraining/base_*/
+finetuning/adapters/
+finetuning/models/
+finetuning/weights/
+finetuning/base_*/
+
+# Disposable notebook receipts and duplicate replay outputs.
+finetuning/reports/notebook_*.json*
+finetuning/reports/unit_tests.txt
+finetuning/reports/val_full_r8*.json*
+
+# Root verification receipts are local artifacts; track benchmark reports stay versioned.
+/reports/
 
 # Original imported bundle is preserved locally; maintained code lives in pretraining/.
 pretrained/
