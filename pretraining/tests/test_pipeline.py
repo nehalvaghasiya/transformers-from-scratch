@@ -9,15 +9,15 @@ from pathlib import Path
 
 import pytest
 import torch
+
 from pretraining.artifact import export_artifact, fetch_artifact
 from pretraining.config import ExperimentConfig
+from pretraining.data import TicketDataset, batchify, generate_dataset, read_rows
 from pretraining.evaluate import paired_interval, score
 from pretraining.inference import load_artifact, predict
 from pretraining.model import ModelConfig, TinyTicketLM, make_pool_head, pool_prompt
 from pretraining.tokenizer import WordTokenizer
 from pretraining.train import train
-
-from pretraining.data import TicketDataset, batchify, generate_dataset, read_rows
 
 
 @pytest.fixture(autouse=True)
@@ -31,16 +31,14 @@ def data_dir(tmp_path: Path) -> Path:
     return tmp_path
 
 
-def test_v1_dataset_is_byte_compatible(tmp_path: Path) -> None:
-    inventory = json.loads(
-        (Path(__file__).parents[1] / "reports/legacy/inventory.json").read_text()
-    )["files"]
-    generated = generate_dataset(tmp_path)
+def test_v2_regeneration_matches_reference_manifest(tmp_path: Path) -> None:
+    manifest = json.loads(
+        (Path(__file__).parents[1] / "reports/ticket-v2/data-manifest.json").read_text()
+    )
+    generated = generate_dataset(tmp_path, version="ticket-v2")
     for split, path in generated.items():
-        assert (
-            hashlib.sha256(path.read_bytes()).hexdigest()
-            == inventory[f"project/data/{split}.csv"]["sha256"]
-        )
+        assert hashlib.sha256(path.read_bytes()).hexdigest() == manifest["splits"][split]["sha256"]
+        assert len(read_rows(path)) == manifest["splits"][split]["examples"]
 
 
 def test_v2_has_disjoint_text_and_template_groups(data_dir: Path) -> None:

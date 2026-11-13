@@ -50,11 +50,9 @@ many contain related vocabulary. Explicit urgency makes priority much easier tha
 intent. Report both fields and the number of template groups. This benchmark
 establishes neither real-ticket accuracy nor broad language understanding.
 
-The original **ticket-v1** dataset is preserved by a byte-compatible generator.
-Its training and validation templates overlap; test/challenge were repeatedly
-examined in historical tuning. V1 scores remain development evidence and are not
-combined with v2 metrics or represented as an untouched benchmark.
+Historical ticket-v1 used overlapping training/validation templates and repeatedly inspected
+held-out sets. Original historical artifacts are unavailable in this checkout. Its scores
+are not combined with the maintained ticket-v2 benchmark.
 
 Full generated CSVs are ignored. Regenerate them with `pretraining data prepare`.
-Compact [v2 manifest](../reports/ticket-v2/data-manifest.json) and
-[legacy manifest](../reports/legacy/data-manifest.json) identify the exact data.
+The compact [v2 manifest](../reports/ticket-v2/data-manifest.json) identifies the reference data.

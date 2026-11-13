@@ -14,12 +14,12 @@ def build_demo(artifact: Path, report: Path | None = None) -> Any:
 
     model, tokenizer, head, legacy = load_artifact(artifact)
     metadata = json.loads((artifact / "run_info.json").read_text())
-    modes = ["Generative"] + (["Dual head"] if head is not None else [])
+    modes = ["Generative"] + (["Intent-head fusion"] if head is not None else [])
     selected_mode = "Generative"
     if report is not None and (report / "selection.json").exists():
         selection = json.loads((report / "selection.json").read_text())
         if selection.get("mode") == "dual" and head is not None:
-            selected_mode = "Dual head"
+            selected_mode = "Intent-head fusion"
 
     def classify(text: str, mode: str) -> dict[str, Any]:
         result: dict[str, Any] = dict(
@@ -27,7 +27,7 @@ def build_demo(artifact: Path, report: Path | None = None) -> Any:
                 model,
                 tokenizer,
                 [text],
-                pool_head=head if mode == "Dual head" else None,
+                pool_head=head if mode == "Intent-head fusion" else None,
                 legacy_pooling=legacy,
             )[0]
         )

@@ -1,0 +1,67 @@
+{
+  "seed": 42,
+  "schema": "customers(id,name,state); orders(id,customer_id,total,status); products(id,name,category,price)",
+  "splits": {
+    "train": {
+      "count": 6400,
+      "families": {
+        "product_lookup": 783,
+        "state_order_count": 773,
+        "state_customers": 786,
+        "top_customers": 776,
+        "product_avg": 817,
+        "order_count": 845,
+        "order_lookup": 804,
+        "order_sum": 816
+      }
+    },
+    "val": {
+      "count": 320,
+      "families": {
+        "product_lookup": 77,
+        "order_sum": 8,
+        "order_lookup": 82,
+        "state_order_count": 64,
+        "top_customers": 41,
+        "state_customers": 24,
+        "order_count": 8,
+        "product_avg": 16
+      }
+    },
+    "test": {
+      "count": 320,
+      "families": {
+        "state_customers": 24,
+        "product_lookup": 66,
+        "order_lookup": 84,
+        "state_order_count": 69,
+        "top_customers": 45,
+        "product_avg": 16,
+        "order_count": 8,
+        "order_sum": 8
+      }
+    },
+    "challenge": {
+      "count": 160,
+      "families": {
+        "order_count": 4,
+        "order_lookup": 53,
+        "product_avg": 8,
+        "state_customers": 10,
+        "top_customers": 24,
+        "product_lookup": 34,
+        "state_order_count": 23,
+        "order_sum": 4
+      }
+    }
+  },
+  "note": "Synthetic domain-specific grammar. Questions are unique across splits. Fixed template ranges held out.",
+  "sha256": {
+    "data/challenge.jsonl": "404fae100c7892af87e942ff78ff9bfb4a5c36d10c76d4d13198f50dfa8d6049",
+    "data/test.jsonl": "1d2179d1d166f53af605cd6c7e25fc891fce8ae0c233445033c0979b2e99c608",
+    "data/train.jsonl": "5b34302e3c2431a9c491c932c4daf448b29266746b51a5fe79428abdd57f9d78",
+    "data/val.jsonl": "aab2e1a7fb0c1e4f6014567b794afbf8c01349e1e7267481b8d51be1cd897004",
+    "data_lora/train.jsonl": "5a4bb740d8467d00408b251be2baf527bda972a340f187ebfd8f1f94356dbada",
+    "data_lora/val.jsonl": "aab2e1a7fb0c1e4f6014567b794afbf8c01349e1e7267481b8d51be1cd897004"
+  }
+}

@@ -8,7 +8,8 @@ tags: [from-scratch, synthetic-data, text-classification]
 Run `ticket-v2-base-42`; seed 42; 655,872 Transformer
 parameters; 655,872 total trainable parameters.
 Word-level tokenizer fitted on training text. Answer-token causal cross-entropy,
-with optional auxiliary pooled classifiers. Label tokens are constraint-decoded
+with optional auxiliary pooled classifiers. In historical `dual` mode, inference fuses
+only the intent classifier into intent-token logits. Label tokens are constraint-decoded
 and mapped to JSON; this is a task-specific model, not free-form JSON generation.
 
 ## Benchmark
